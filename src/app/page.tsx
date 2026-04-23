@@ -44,6 +44,8 @@ export default function Home() {
   const [input, setInput] = useState('')
   const [sending, setSending] = useState(false)
   const [docHint, setDocHint] = useState<(typeof DOC_HINTS)[number]['value']>('license')
+  const [isDragging, setIsDragging] = useState(false)
+  const dragCounterRef = useRef(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -190,18 +192,53 @@ export default function Home() {
                 ))}
               </select>
             </label>
-            <label className="block cursor-pointer rounded-lg border-2 border-dashed border-neutral-300 bg-neutral-50 p-6 text-center text-sm text-neutral-600 hover:border-neutral-400 hover:bg-neutral-100">
+            <label
+              onDragEnter={(e) => {
+                e.preventDefault()
+                dragCounterRef.current += 1
+                if (e.dataTransfer?.types?.includes('Files')) setIsDragging(true)
+              }}
+              onDragLeave={(e) => {
+                e.preventDefault()
+                dragCounterRef.current -= 1
+                if (dragCounterRef.current <= 0) {
+                  dragCounterRef.current = 0
+                  setIsDragging(false)
+                }
+              }}
+              onDragOver={(e) => {
+                e.preventDefault()
+                if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy'
+              }}
+              onDrop={(e) => {
+                e.preventDefault()
+                dragCounterRef.current = 0
+                setIsDragging(false)
+                const files = Array.from(e.dataTransfer?.files ?? [])
+                for (const f of files) {
+                  if (f.type.startsWith('image/') || f.type === 'application/pdf') {
+                    handleUpload(f)
+                  }
+                }
+              }}
+              className={`block cursor-pointer rounded-lg border-2 border-dashed p-6 text-center text-sm transition-colors ${
+                isDragging
+                  ? 'border-neutral-900 bg-neutral-200 text-neutral-900'
+                  : 'border-neutral-300 bg-neutral-50 text-neutral-600 hover:border-neutral-400 hover:bg-neutral-100'
+              }`}
+            >
               <input
                 type="file"
                 accept="image/*,application/pdf"
+                multiple
                 className="hidden"
                 onChange={(e) => {
-                  const f = e.target.files?.[0]
-                  if (f) handleUpload(f)
+                  const files = Array.from(e.target.files ?? [])
+                  for (const f of files) handleUpload(f)
                   e.target.value = ''
                 }}
               />
-              Click to upload
+              {isDragging ? 'Drop to upload' : 'Drag and drop, or click to upload'}
               <br />
               <span className="text-xs text-neutral-400">png, jpg, or pdf — up to 10MB</span>
             </label>
