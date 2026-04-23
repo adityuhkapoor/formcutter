@@ -52,3 +52,6 @@ prisma/dev.db*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated test docs (regenerate via scripts/gen-test-docs.mjs)
+test-docs/
