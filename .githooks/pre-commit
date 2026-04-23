@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# formcutter pre-commit: block secrets from entering git.
+# Install: `git config core.hooksPath .githooks`
+set -euo pipefail
+
+fail() {
+  echo ""
+  echo "commit BLOCKED by .githooks/pre-commit"
+  echo "----------------------------------------"
+  echo "$1"
+  echo "----------------------------------------"
+  echo "If this is a false positive, bypass with: git commit --no-verify"
+  echo "But read what was flagged first."
+  exit 1
+}
+
+# 1) Block any staged .env file (allow .env.example / .env.sample)
+STAGED_ENV="$(git diff --cached --name-only --diff-filter=ACM \
+  | grep -E '(^|/)\.env($|\.)' \
+  | grep -Ev '\.(example|sample|template)$' || true)"
+
+if [ -n "$STAGED_ENV" ]; then
+  fail ".env file(s) staged for commit:
+$STAGED_ENV
+
+These files likely contain secrets. Add to .gitignore, unstage with:
+  git restore --staged <file>"
+fi
+
+# 2) Scan staged content for Anthropic keys and common secret patterns
+DIFF="$(git diff --cached --no-color -U0 || true)"
+
+if echo "$DIFF" | grep -Eq 'sk-ant-[a-zA-Z0-9_-]{20,}'; then
+  fail "Anthropic API key (sk-ant-...) detected in staged changes."
+fi
+
+if echo "$DIFF" | grep -Eq 'sk-[a-zA-Z0-9]{40,}'; then
+  fail "Possible OpenAI-style API key (sk-...) detected in staged changes."
+fi
+
+if echo "$DIFF" | grep -Eq 'AKIA[0-9A-Z]{16}'; then
+  fail "AWS access key ID detected in staged changes."
+fi
+
+if echo "$DIFF" | grep -Eq 'ghp_[A-Za-z0-9]{36}'; then
+  fail "GitHub personal access token detected in staged changes."
+fi
+
+exit 0
