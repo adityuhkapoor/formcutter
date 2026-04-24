@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation'
 import { useI18n } from '@/lib/i18n/provider'
 import { BrandGlyph } from '@/components/AppSidebar'
 import { RecommendationsGrid } from '@/components/RecommendationsGrid'
+import { FORM_REGISTRY, type FormId } from '@/lib/forms'
 import type {
   TriageFacts,
   TriageMessage,
@@ -28,6 +29,10 @@ export type TriageChatHandle = {
 /** Meta starter chip — short-circuited to a deterministic reply instead of
  * burning an LLM call. Recognized by exact string match in sendMessage. */
 const META_CHIP = 'How can Formcutter help me?'
+
+/** "I know the form" starter chip — short-circuited to render a deterministic
+ * form picker in-message rather than letting the LLM improvise a chip list. */
+const FILL_FORM_CHIP = 'Help me fill out a USCIS form I know about'
 
 const META_REPLY = `Formcutter helps you fill out U.S. immigration forms without paying a lawyer for paperwork you can do yourself. Three ways I can help:
 
@@ -98,6 +103,23 @@ export const TriageChat = forwardRef<TriageChatHandle>(function TriageChat(_, re
     // across demo runs so the walkthrough is predictable.
     if (text === META_CHIP) {
       appendAssistant(META_REPLY)
+      return
+    }
+
+    // "I know the form" — render a deterministic form picker rather than
+    // asking the LLM to list supported forms (which it does inconsistently).
+    if (text === FILL_FORM_CHIP) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: 'assistant',
+          content:
+            "Great — pick the form you want to fill out. If you don't see it in the list, let me know which one and I'll check if we support it.",
+          createdAt: Date.now(),
+          formPicker: true,
+        },
+      ])
       return
     }
 
@@ -216,6 +238,8 @@ export const TriageChat = forwardRef<TriageChatHandle>(function TriageChat(_, re
               }
               onChip={handleChip}
               chipsEnabled={!loading && m === messages[messages.length - 1]}
+              onSelectForm={(formId) => router.push(`/fill?formId=${formId}`)}
+              onTypeFallback={(text) => void sendMessage(text)}
             />
           ))}
 
@@ -308,11 +332,15 @@ function ChatBubble({
   onChip,
   chipsEnabled,
   showHeader,
+  onSelectForm,
+  onTypeFallback,
 }: {
   msg: TriageMessage
   onChip: (value: string) => void
   chipsEnabled: boolean
   showHeader: boolean
+  onSelectForm: (formId: FormId) => void
+  onTypeFallback: (text: string) => void
 }) {
   const isUser = msg.role === 'user'
   const timeLabel = new Date(msg.createdAt).toLocaleTimeString([], {
@@ -343,6 +371,13 @@ function ChatBubble({
       <div className="whitespace-pre-wrap text-[15px] leading-relaxed text-neutral-900">
         {msg.content}
       </div>
+      {msg.formPicker && (
+        <FormPicker
+          enabled={chipsEnabled}
+          onSelectForm={onSelectForm}
+          onTypeFallback={onTypeFallback}
+        />
+      )}
       {msg.chips && msg.chips.length > 0 && (
         <div className="mt-4 flex flex-col items-end gap-2">
           <div className="text-xs text-neutral-500">Select an option:</div>
@@ -358,6 +393,92 @@ function ChatBubble({
             </button>
           ))}
         </div>
+      )}
+    </div>
+  )
+}
+
+/**
+ * Deterministic form picker rendered in-message. 2-col grid of supported
+ * USCIS forms; clicking one routes straight to /fill?formId=X. "Don't see
+ * your form?" reveals a text input — the typed value is fed back through
+ * the regular triage path so the LLM can route it if supported or escalate
+ * if not.
+ */
+function FormPicker({
+  enabled,
+  onSelectForm,
+  onTypeFallback,
+}: {
+  enabled: boolean
+  onSelectForm: (formId: FormId) => void
+  onTypeFallback: (text: string) => void
+}) {
+  const [showFallback, setShowFallback] = useState(false)
+  const [typed, setTyped] = useState('')
+  const forms = Object.values(FORM_REGISTRY)
+
+  function submitFallback() {
+    const v = typed.trim()
+    if (!v) return
+    onTypeFallback(`I need to fill out ${v}`)
+  }
+
+  return (
+    <div className="mt-4 rounded-xl border border-neutral-200 bg-neutral-50 p-3">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {forms.map((f) => (
+          <button
+            key={f.id}
+            type="button"
+            disabled={!enabled}
+            onClick={() => onSelectForm(f.id)}
+            className="flex flex-col items-start gap-0.5 rounded-lg border border-neutral-200 bg-white px-3 py-2 text-left transition-colors hover:border-neutral-900 hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <span className="font-mono text-xs font-semibold uppercase text-neutral-900">
+              {f.id}
+            </span>
+            <span className="text-xs text-neutral-600">
+              {f.name.replace(`${f.id.toUpperCase()} `, '')}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {showFallback ? (
+        <div className="mt-3 flex items-center gap-2">
+          <input
+            type="text"
+            value={typed}
+            onChange={(e) => setTyped(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault()
+                submitFallback()
+              }
+            }}
+            placeholder="Type the form number (e.g. I-751)"
+            disabled={!enabled}
+            className="flex-1 rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-neutral-900 focus:outline-none disabled:opacity-50"
+          />
+          <button
+            type="button"
+            disabled={!enabled || !typed.trim()}
+            onClick={submitFallback}
+            className="rounded-md bg-neutral-900 px-3 py-2 text-xs font-medium text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-300"
+          >
+            Submit
+          </button>
+        </div>
+      ) : (
+        <button
+          type="button"
+          disabled={!enabled}
+          onClick={() => setShowFallback(true)}
+          className="mt-3 text-xs text-neutral-500 underline-offset-2 hover:text-neutral-800 hover:underline disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          Don&apos;t see your form? →
+        </button>
       )}
     </div>
   )

@@ -28,6 +28,13 @@ export type TriageMessage = {
   createdAt: number
   /** Only present on `ask` turns — quick-reply choices surfaced as chips. */
   chips?: string[]
+  /**
+   * If true, render an inline deterministic form picker in this assistant
+   * turn. Used by the "Help me fill out a USCIS form I know about" starter
+   * chip so we don't rely on the LLM to list forms as chips (inconsistent
+   * across runs, and looks cluttered with 8 options).
+   */
+  formPicker?: boolean
 }
 
 export type TriageRouteOutcome = {
