@@ -1,6 +1,13 @@
 'use client'
 
-import { useEffect, useRef, useState, type FormEvent } from 'react'
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+  type FormEvent,
+} from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useI18n } from '@/lib/i18n/provider'
@@ -11,13 +18,19 @@ import type {
   TriageOutcome,
 } from '@/lib/triage-types'
 
+/** Imperative handle exposed to the landing header so its "Speak to a rep"
+ * CTA can trigger the same self-escalation path as the in-card button. */
+export type TriageChatHandle = {
+  triggerEscalation: () => void
+}
+
 /**
  * Landing-page chat that triages free-text user input into one of four
  * outcomes (route / recommend / ask / escalate) via POST /api/triage. The
  * chat IS the new front door — replaces the archetype-card interstitial +
  * the /start wizard.
  */
-export function TriageChat() {
+export const TriageChat = forwardRef<TriageChatHandle>(function TriageChat(_, ref) {
   const { lang } = useI18n()
   const router = useRouter()
 
@@ -131,26 +144,37 @@ export function TriageChat() {
   const lastAskChips =
     outcome?.type === 'ask' ? outcome.chips : undefined
 
+  // Expose triggerEscalation so the landing header's "Speak to a rep" CTA
+  // can fire the exact same path as the in-card button.
+  useImperativeHandle(
+    ref,
+    () => ({ triggerEscalation: () => void requestSelfEscalation() }),
+    // requestSelfEscalation is stable enough for demo purposes; we accept the
+    // lint warning to avoid memoizing the handler and over-engineering this.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  )
+
   return (
-    <section className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6">
-      <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-sm font-semibold uppercase tracking-wider text-neutral-500">
-          Tell us about your situation
-        </h2>
+    <section
+      id="triage-chat"
+      className="mx-auto w-full max-w-4xl px-4 pb-6 pt-2 sm:px-6"
+    >
+      <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
+        {/* Floating top-right "Speak to a rep" button inside the card (Granted
+         * pattern: the CTA repeats close to the product). */}
         <button
           type="button"
           onClick={requestSelfEscalation}
           disabled={loading}
-          className="rounded-md border border-neutral-300 bg-white px-2.5 py-1 text-xs font-medium text-neutral-700 hover:border-neutral-900 hover:bg-neutral-100 disabled:opacity-50"
+          className="absolute right-3 top-3 z-10 rounded-full border border-neutral-300 bg-white/90 px-2.5 py-1 text-[11px] font-medium text-neutral-700 backdrop-blur hover:border-neutral-900 hover:bg-neutral-100 disabled:opacity-50"
         >
           Speak to a rep
         </button>
-      </div>
 
-      <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
         <div
           ref={scrollRef}
-          className="max-h-[480px] min-h-[320px] space-y-3 overflow-y-auto px-4 py-4 sm:px-6"
+          className="max-h-[540px] min-h-[400px] space-y-3 overflow-y-auto px-4 py-4 pt-12 sm:px-6 sm:pt-12"
         >
           {messages.map((m) => (
             <ChatBubble key={m.id} msg={m} onChip={handleChip} chipsEnabled={!loading && m === messages[messages.length - 1]} />
@@ -195,10 +219,27 @@ export function TriageChat() {
         )}
       </div>
 
-      <p className="mt-3 text-center text-xs text-neutral-500">
+      {/* Trust strip — relocated from the hero. Keeps the signal without
+       * putting chrome between the hero copy and the chat card. */}
+      <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[11px] text-neutral-500">
+        <TrustDot>Works in 10 languages</TrustDot>
+        <TrustDot>Always free while in beta</TrustDot>
+        <TrustDot>Your docs stay on your device until you submit</TrustDot>
+      </div>
+
+      <p className="mt-2 text-center text-xs text-neutral-500">
         Formcutter is not a law firm and does not provide legal advice.
       </p>
     </section>
+  )
+})
+
+function TrustDot({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center gap-1.5">
+      <span className="inline-block h-1 w-1 rounded-full bg-emerald-500" />
+      {children}
+    </span>
   )
 }
 

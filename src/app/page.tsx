@@ -1,22 +1,32 @@
 'use client'
 
+import { useRef } from 'react'
 import Link from 'next/link'
 import { useI18n } from '@/lib/i18n/provider'
 import { LanguagePicker } from '@/components/LanguagePicker'
-import { TriageChat } from '@/components/TriageChat'
+import { TriageChat, type TriageChatHandle } from '@/components/TriageChat'
 import { FORM_REGISTRY } from '@/lib/forms'
 
 export default function LandingPage() {
   const { t } = useI18n()
+  const triageRef = useRef<TriageChatHandle>(null)
+
+  // Header "Speak to a rep" CTA mirrors the in-card button. Scroll into view
+  // first (especially on mobile where the chat may be below the fold once
+  // someone's scrolled down) and then trigger the chat's self-escalation.
+  function requestEscalation() {
+    const el = document.getElementById('triage-chat')
+    el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    triageRef.current?.triggerEscalation()
+  }
 
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
-      <Header />
+      <Header onRequestEscalation={requestEscalation} />
       <Hero t={t} />
-      <TriageChat />
+      <TriageChat ref={triageRef} />
       <HowItWorks t={t} />
       <FormsSupported t={t} />
-      <TrustSection t={t} />
       <FAQ t={t} />
       <Footer t={t} />
     </div>
@@ -25,10 +35,10 @@ export default function LandingPage() {
 
 // ─── Header ─────────────────────────────────────────────────────────────
 
-function Header() {
+function Header({ onRequestEscalation }: { onRequestEscalation: () => void }) {
   return (
     <header className="sticky top-0 z-10 border-b border-neutral-200 bg-white/80 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 py-3">
         <Link href="/" className="flex items-center gap-2">
           <span className="inline-block h-5 w-5 rounded-sm bg-neutral-900" />
           <span className="text-lg font-semibold tracking-tight">formcutter</span>
@@ -41,6 +51,13 @@ function Header() {
           >
             Reviewer console →
           </Link>
+          <button
+            type="button"
+            onClick={onRequestEscalation}
+            className="rounded-full bg-emerald-500 px-3.5 py-1.5 text-xs font-semibold text-neutral-900 hover:bg-emerald-400"
+          >
+            Speak to a rep
+          </button>
         </div>
       </div>
     </header>
@@ -51,28 +68,14 @@ function Header() {
 
 function Hero({ t }: { t: ReturnType<typeof useI18n>['t'] }) {
   return (
-    <section className="mx-auto max-w-4xl px-6 pb-4 pt-16 text-center md:pt-20">
+    <section className="mx-auto max-w-4xl px-6 pb-2 pt-12 text-center md:pt-16">
       <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
         {t('landing.hero.title')}
       </h1>
-      <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
+      <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
         {t('landing.hero.subtitle')}
       </p>
-      <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-neutral-500">
-        <TrustPill>{t('landing.hero.trust1')}</TrustPill>
-        <TrustPill>{t('landing.hero.trust2')}</TrustPill>
-        <TrustPill>{t('landing.hero.trust3')}</TrustPill>
-      </div>
     </section>
-  )
-}
-
-function TrustPill({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center gap-1.5">
-      <span className="inline-block h-1 w-1 rounded-full bg-emerald-500" />
-      {children}
-    </span>
   )
 }
 
@@ -80,34 +83,26 @@ function TrustPill({ children }: { children: React.ReactNode }) {
 
 function HowItWorks({ t }: { t: ReturnType<typeof useI18n>['t'] }) {
   const steps = [
-    { n: '1', titleKey: 'landing.how.step1.title' as const, descKey: 'landing.how.step1.desc' as const, emoji: '📸' },
-    { n: '2', titleKey: 'landing.how.step2.title' as const, descKey: 'landing.how.step2.desc' as const, emoji: '💬' },
-    { n: '3', titleKey: 'landing.how.step3.title' as const, descKey: 'landing.how.step3.desc' as const, emoji: '✅' },
-    { n: '4', titleKey: 'landing.how.step4.title' as const, descKey: 'landing.how.step4.desc' as const, emoji: '📄' },
+    { n: '1', titleKey: 'landing.how.step1.title' as const, emoji: '📸' },
+    { n: '2', titleKey: 'landing.how.step2.title' as const, emoji: '💬' },
+    { n: '3', titleKey: 'landing.how.step3.title' as const, emoji: '✅' },
+    { n: '4', titleKey: 'landing.how.step4.title' as const, emoji: '📄' },
   ]
   return (
-    <section className="border-y border-neutral-200 bg-white py-16">
+    <section className="border-t border-neutral-200 bg-white py-10">
       <div className="mx-auto max-w-5xl px-6">
-        <h2 className="text-center text-2xl font-semibold tracking-tight">
+        <h2 className="text-center text-sm font-semibold uppercase tracking-wider text-neutral-500">
           {t('landing.how.heading')}
         </h2>
-        <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-4">
-          {steps.map((s, i) => (
-            <div key={s.n} className="relative">
-              {i < steps.length - 1 && (
-                <div className="absolute left-full top-6 hidden h-px w-full -translate-x-4 bg-neutral-200 md:block" />
-              )}
-              <div className="relative flex flex-col items-start">
-                <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 text-xl text-white">
-                  {s.emoji}
-                </div>
+        <div className="mt-5 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {steps.map((s) => (
+            <div key={s.n} className="flex items-start gap-3">
+              <span className="text-xl leading-none">{s.emoji}</span>
+              <div>
                 <div className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400">
                   Step {s.n}
                 </div>
-                <h3 className="mt-1 text-base font-semibold">{t(s.titleKey)}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-                  {t(s.descKey)}
-                </p>
+                <h3 className="mt-0.5 text-sm font-semibold">{t(s.titleKey)}</h3>
               </div>
             </div>
           ))}
@@ -122,75 +117,24 @@ function HowItWorks({ t }: { t: ReturnType<typeof useI18n>['t'] }) {
 function FormsSupported({ t }: { t: ReturnType<typeof useI18n>['t'] }) {
   const forms = Object.values(FORM_REGISTRY)
   return (
-    <section className="mx-auto max-w-5xl px-6 py-16">
-      <h2 className="text-center text-2xl font-semibold tracking-tight">
+    <section className="mx-auto max-w-5xl px-6 py-10">
+      <h2 className="text-center text-sm font-semibold uppercase tracking-wider text-neutral-500">
         {t('landing.forms.heading')}
       </h2>
-      <p className="mt-2 text-center text-sm text-neutral-500">
-        {t('landing.forms.subheading')}
-      </p>
-      <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-4 flex flex-wrap justify-center gap-2">
         {forms.map((f) => (
-          <div
+          <span
             key={f.id}
-            className="rounded-xl border border-neutral-200 bg-white p-4"
+            title={f.shortDescription}
+            className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-xs"
           >
-            <div className="flex items-baseline justify-between">
-              <span className="font-mono text-sm font-semibold uppercase">
-                {f.id}
-              </span>
-              <span className="text-[10px] uppercase tracking-wider text-neutral-400">
-                {f.mappedFieldCount} fields
-              </span>
-            </div>
-            <div className="mt-1 text-xs font-medium">{f.name.replace(`${f.id.toUpperCase()} `, '')}</div>
-            <p className="mt-2 text-xs leading-snug text-neutral-600">
-              {f.shortDescription}
-            </p>
-          </div>
+            <span className="font-mono font-semibold uppercase">{f.id}</span>
+            <span className="text-neutral-300">·</span>
+            <span className="text-neutral-600">
+              {f.name.replace(`${f.id.toUpperCase()} `, '')}
+            </span>
+          </span>
         ))}
-      </div>
-    </section>
-  )
-}
-
-// ─── Trust section ──────────────────────────────────────────────────────
-
-function TrustSection({ t }: { t: ReturnType<typeof useI18n>['t'] }) {
-  const items = [
-    {
-      emoji: '⚖️',
-      titleKey: 'landing.trust.notLawFirm.title' as const,
-      descKey: 'landing.trust.notLawFirm.desc' as const,
-    },
-    {
-      emoji: '🔒',
-      titleKey: 'landing.trust.privacy.title' as const,
-      descKey: 'landing.trust.privacy.desc' as const,
-    },
-    {
-      emoji: '🤝',
-      titleKey: 'landing.trust.humans.title' as const,
-      descKey: 'landing.trust.humans.desc' as const,
-    },
-  ]
-  return (
-    <section className="border-t border-neutral-200 bg-neutral-900 py-16 text-neutral-100">
-      <div className="mx-auto max-w-5xl px-6">
-        <h2 className="text-center text-2xl font-semibold tracking-tight">
-          {t('landing.trust.heading')}
-        </h2>
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {items.map((i) => (
-            <div key={i.titleKey}>
-              <div className="text-2xl">{i.emoji}</div>
-              <h3 className="mt-2 text-base font-semibold">{t(i.titleKey)}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-300">
-                {t(i.descKey)}
-              </p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   )
