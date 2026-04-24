@@ -80,22 +80,16 @@ const DOC_HINTS = [
 // mismatch (#1 listed cause per Next.js docs).
 const BUILD_STAMP_VALUE = new Date().toISOString().slice(11, 19)
 
+type CaseStatus = 'drafting' | 'pending_review' | 'approved' | 'released'
+
+const LOCAL_CASE_KEY = 'formcutter:caseId'
+
 export default function Home() {
   const [state, setState] = useState<Record<string, unknown>>({})
   const [buildStamp, setBuildStamp] = useState<string>('')
-  useEffect(() => {
-    setBuildStamp(BUILD_STAMP_VALUE)
-    setMessages((prev) =>
-      prev.length > 0
-        ? prev
-        : [
-            makeMsg(
-              'assistant',
-              "Hey — I'll help you fill out your I-864. Upload a photo of your license, green card, passport, or tax transcript. I'll extract what I can and then walk through anything missing."
-            ),
-          ]
-    )
-  }, [])
+  const [caseId, setCaseId] = useState<string | null>(null)
+  const [caseStatus, setCaseStatus] = useState<CaseStatus>('drafting')
+  const [submitting, setSubmitting] = useState(false)
   // Messages start empty to avoid SSR/hydration timestamp drift. Initial
   // greeting is added after mount so Date.now() only runs client-side.
   const [messages, setMessages] = useState<Msg[]>([])
@@ -109,6 +103,83 @@ export default function Home() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const hasKickedOffRef = useRef(false)
   const activeUploadsRef = useRef(0)
+
+  // Create-or-resume a case on mount. Mix of localStorage for "remember where
+  // I was" + a server fetch to verify the case still exists.
+  useEffect(() => {
+    setBuildStamp(BUILD_STAMP_VALUE)
+    ;(async () => {
+      const cached = typeof window !== 'undefined'
+        ? localStorage.getItem(LOCAL_CASE_KEY)
+        : null
+
+      if (cached) {
+        const r = await fetch(`/api/case/${cached}`)
+        if (r.ok) {
+          const data = await r.json()
+          setCaseId(data.case.id)
+          setCaseStatus(data.case.status)
+          setState(data.case.state ?? {})
+          setMessages(data.case.messages ?? [])
+          return
+        }
+      }
+
+      const r = await fetch('/api/case', { method: 'POST' })
+      const data = await r.json()
+      if (r.ok) {
+        setCaseId(data.case.id)
+        setCaseStatus(data.case.status)
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(LOCAL_CASE_KEY, data.case.id)
+        }
+        setMessages([
+          makeMsg(
+            'assistant',
+            "Hey — I'll help you fill out your I-864. Upload a photo of your license, green card, passport, or tax transcript. I'll extract what I can and then walk through anything missing."
+          ),
+        ])
+      }
+    })()
+  }, [])
+
+  // Poll for case status so the immigrant UI reacts when the rep approves.
+  useEffect(() => {
+    if (!caseId) return
+    if (caseStatus !== 'pending_review') return
+    const t = setInterval(async () => {
+      const r = await fetch(`/api/case/${caseId}`)
+      if (!r.ok) return
+      const data = await r.json()
+      if (data.case?.status && data.case.status !== caseStatus) {
+        setCaseStatus(data.case.status)
+      }
+    }, 2500)
+    return () => clearInterval(t)
+  }, [caseId, caseStatus])
+
+  // Autosave state + messages to the case.
+  const saveDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  useEffect(() => {
+    if (!caseId || caseStatus !== 'drafting') return
+    if (saveDebounceRef.current) clearTimeout(saveDebounceRef.current)
+    saveDebounceRef.current = setTimeout(async () => {
+      await fetch(`/api/case/${caseId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          state,
+          messages,
+          displayName: deriveDisplayName(state),
+        }),
+      })
+    }, 400)
+    return () => {
+      if (saveDebounceRef.current) clearTimeout(saveDebounceRef.current)
+    }
+    // intentionally omit deps we don't want to trigger on
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state, messages, caseId, caseStatus])
 
   // Auto-kickoff: once the first extraction lands and uploads settle, send a
   // silent "start" message so the assistant proactively asks the first question.
@@ -310,6 +381,7 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <span className="text-lg font-semibold tracking-tight">formcutter</span>
             <span className="text-xs text-neutral-500">I-864 Affidavit of Support</span>
+            <StatusBadge status={caseStatus} />
           </div>
           <div className="flex items-center gap-3 text-xs text-neutral-500">
             <span>not a law firm · does not provide legal advice</span>
@@ -441,30 +513,88 @@ export default function Home() {
             </pre>
           </div>
 
+          {/* Status banner — changes with case lifecycle. */}
+          {caseStatus === 'pending_review' && (
+            <div className="rounded-lg border border-amber-300 bg-amber-50 p-3 text-xs">
+              <div className="font-semibold text-amber-900">Waiting on reviewer</div>
+              <p className="mt-1 text-amber-800">
+                An accredited representative is reviewing your case. Your PDF will unlock once they approve.
+              </p>
+            </div>
+          )}
+
+          {caseStatus === 'approved' && (
+            <div className="rounded-lg border border-emerald-300 bg-emerald-50 p-3 text-xs">
+              <div className="font-semibold text-emerald-900">Approved ✓</div>
+              <p className="mt-1 text-emerald-800">
+                Your reviewer signed off. Download the filled I-864 below.
+              </p>
+            </div>
+          )}
+
+          {caseStatus === 'drafting' ? (
+            <button
+              type="button"
+              disabled={submitting || filledCount < 3 || !caseId}
+              onClick={async () => {
+                if (!caseId) return
+                setSubmitting(true)
+                try {
+                  const r = await fetch(`/api/case/${caseId}/submit`, { method: 'POST' })
+                  if (r.ok) {
+                    setCaseStatus('pending_review')
+                  } else {
+                    alert('Submit failed. Check server logs.')
+                  }
+                } finally {
+                  setSubmitting(false)
+                }
+              }}
+              className="w-full rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:bg-neutral-300"
+            >
+              {submitting ? 'Submitting...' : 'Submit for reviewer'}
+            </button>
+          ) : (
+            <button
+              type="button"
+              disabled={caseStatus !== 'approved' || !caseId}
+              onClick={async () => {
+                const res = await fetch('/api/pdf', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ state }),
+                })
+                if (!res.ok) return
+                const blob = await res.blob()
+                const url = URL.createObjectURL(blob)
+                const a = document.createElement('a')
+                a.href = url
+                a.download = 'i-864-filled.pdf'
+                a.click()
+                URL.revokeObjectURL(url)
+              }}
+              className={`w-full rounded-lg px-4 py-2 text-sm font-medium text-white ${
+                caseStatus === 'approved'
+                  ? 'bg-emerald-700 hover:bg-emerald-800'
+                  : 'cursor-not-allowed bg-neutral-300'
+              }`}
+            >
+              {caseStatus === 'approved' ? 'Download filled PDF' : 'Locked until reviewer approves'}
+            </button>
+          )}
+
+          {/* Reset case — useful for demo resets without losing dev-server state. */}
           <button
             type="button"
             onClick={async () => {
-              const res = await fetch('/api/pdf', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ state }),
-              })
-              if (!res.ok) {
-                alert('PDF generation not yet wired up')
-                return
+              if (typeof window !== 'undefined') {
+                localStorage.removeItem(LOCAL_CASE_KEY)
               }
-              const blob = await res.blob()
-              const url = URL.createObjectURL(blob)
-              const a = document.createElement('a')
-              a.href = url
-              a.download = 'i-864-filled.pdf'
-              a.click()
-              URL.revokeObjectURL(url)
+              window.location.reload()
             }}
-            disabled={filledCount < 3}
-            className="w-full rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:bg-neutral-300"
+            className="w-full rounded-lg border border-neutral-200 bg-white px-4 py-1.5 text-[11px] font-medium text-neutral-500 hover:bg-neutral-50"
           >
-            Generate filled PDF
+            Start a new case
           </button>
         </section>
 
@@ -613,13 +743,19 @@ export default function Home() {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder={sending ? 'thinking...' : 'type your answer...'}
-                disabled={sending}
+                placeholder={
+                  caseStatus !== 'drafting'
+                    ? 'Case locked — start a new case to edit'
+                    : sending
+                      ? 'thinking...'
+                      : 'type your answer...'
+                }
+                disabled={sending || caseStatus !== 'drafting'}
                 className="flex-1 rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-neutral-900 focus:outline-none disabled:bg-neutral-100"
               />
               <button
                 type="submit"
-                disabled={sending || !input.trim()}
+                disabled={sending || !input.trim() || caseStatus !== 'drafting'}
                 className="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:bg-neutral-300"
               >
                 Send
@@ -656,6 +792,31 @@ function mergeFields(
     cursor[keys[keys.length - 1]] = value
   }
   return next
+}
+
+function StatusBadge({ status }: { status: CaseStatus }) {
+  const meta = {
+    drafting: { label: 'Drafting', cls: 'bg-neutral-100 text-neutral-700' },
+    pending_review: { label: 'Pending review', cls: 'bg-amber-100 text-amber-800' },
+    approved: { label: 'Approved', cls: 'bg-emerald-100 text-emerald-800' },
+    released: { label: 'Released', cls: 'bg-emerald-100 text-emerald-800' },
+  }[status]
+  return (
+    <span
+      className={`rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ${meta.cls}`}
+    >
+      {meta.label}
+    </span>
+  )
+}
+
+function deriveDisplayName(state: Record<string, unknown>): string | null {
+  const family = ((state as Record<string, Record<string, Record<string, unknown>>>)
+    .part4?.name?.familyName as string | undefined)
+  const given = ((state as Record<string, Record<string, Record<string, unknown>>>)
+    .part4?.name?.givenName as string | undefined)
+  if (!family && !given) return null
+  return [given, family].filter(Boolean).join(' ')
 }
 
 // Schema paths whose value should be masked in the UI unless "show sensitive" is on.
