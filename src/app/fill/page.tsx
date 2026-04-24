@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, type FormEvent } from 'react'
+import { useSearchParams } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
 import { useI18n } from '@/lib/i18n/provider'
 import { LanguagePicker } from '@/components/LanguagePicker'
@@ -12,6 +13,7 @@ import {
   type DocType,
   type UploadedDoc,
 } from '@/lib/evidence'
+import { FORM_REGISTRY, type FormId } from '@/lib/forms'
 
 type Msg = {
   id: string
@@ -103,10 +105,13 @@ const LOCAL_CASE_KEY = 'formcutter:caseId'
 
 export default function Home() {
   const { t, lang } = useI18n()
+  const searchParams = useSearchParams()
+  const requestedFormId = searchParams?.get('formId') as FormId | null
   const [state, setState] = useState<Record<string, unknown>>({})
   const [buildStamp, setBuildStamp] = useState<string>('')
   const [caseId, setCaseId] = useState<string | null>(null)
   const [caseStatus, setCaseStatus] = useState<CaseStatus>('drafting')
+  const [formId, setFormId] = useState<FormId>('i-864')
   const [submitting, setSubmitting] = useState(false)
   // Messages start empty to avoid SSR/hydration timestamp drift. Initial
   // greeting is added after mount so Date.now() only runs client-side.
@@ -132,23 +137,35 @@ export default function Home() {
         ? localStorage.getItem(LOCAL_CASE_KEY)
         : null
 
-      if (cached) {
+      // If a specific form is requested via ?formId and a cached case exists
+      // for a DIFFERENT form, drop the cache and start fresh for that form.
+      const formRequested =
+        requestedFormId && FORM_REGISTRY[requestedFormId] ? requestedFormId : null
+
+      if (cached && !formRequested) {
         const r = await fetch(`/api/case/${cached}`)
         if (r.ok) {
           const data = await r.json()
           setCaseId(data.case.id)
           setCaseStatus(data.case.status)
+          setFormId((data.case.formType as FormId) ?? 'i-864')
           setState(data.case.state ?? {})
           setMessages(data.case.messages ?? [])
           return
         }
       }
 
-      const r = await fetch('/api/case', { method: 'POST' })
+      const targetForm: FormId = formRequested ?? 'i-864'
+      const r = await fetch('/api/case', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ formType: targetForm }),
+      })
       const data = await r.json()
       if (r.ok) {
         setCaseId(data.case.id)
         setCaseStatus(data.case.status)
+        setFormId(targetForm)
         if (typeof window !== 'undefined') {
           localStorage.setItem(LOCAL_CASE_KEY, data.case.id)
         }
@@ -444,7 +461,12 @@ export default function Home() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
           <div className="flex items-center gap-3">
             <span className="text-lg font-semibold tracking-tight">{t('header.brand')}</span>
-            <span className="text-xs text-neutral-500">{t('header.subtitle')}</span>
+            <span className="text-xs text-neutral-500">
+              {FORM_REGISTRY[formId]?.name.replace(`${formId.toUpperCase()} `, '') ?? t('header.subtitle')}
+            </span>
+            <span className="rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-neutral-600">
+              {formId}
+            </span>
             <StatusBadge status={caseStatus} />
           </div>
           <div className="flex items-center gap-3 text-xs text-neutral-500">
@@ -633,14 +655,14 @@ export default function Home() {
                 const res = await fetch('/api/pdf', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ state }),
+                  body: JSON.stringify({ state, formId }),
                 })
                 if (!res.ok) return
                 const blob = await res.blob()
                 const url = URL.createObjectURL(blob)
                 const a = document.createElement('a')
                 a.href = url
-                a.download = 'i-864-filled.pdf'
+                a.download = `${formId}-filled.pdf`
                 a.click()
                 URL.revokeObjectURL(url)
               }}

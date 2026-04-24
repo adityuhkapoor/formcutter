@@ -3,9 +3,15 @@ import { createCase, listCases } from '@/lib/case-store'
 
 export const runtime = 'nodejs'
 
-/** POST /api/case → creates a new drafting case and returns its id. */
-export async function POST() {
-  const c = createCase()
+/** POST /api/case → creates a new drafting case. Body may include { formType }. */
+export async function POST(req: Request) {
+  let body: { formType?: string } = {}
+  try {
+    body = await req.json()
+  } catch {
+    // empty body is fine
+  }
+  const c = createCase({ formType: body.formType })
   return NextResponse.json({ ok: true, case: c })
 }
 

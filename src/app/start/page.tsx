@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useI18n } from '@/lib/i18n/provider'
 import { LanguagePicker } from '@/components/LanguagePicker'
+import { FORM_REGISTRY, type FormId } from '@/lib/forms'
 import {
   IMMIGRATION_STATUS_OPTIONS,
   ENTRY_METHOD_OPTIONS,
@@ -299,6 +300,16 @@ function QuestionDate({
 
 // ─── Results ────────────────────────────────────────────────────────────
 
+/** Normalize various USCIS form references ("I-864", "i-864", "Form I-864")
+ * into our FormId lowercase kebab-case id. Returns null if unrecognizable. */
+function normalizeFormId(raw: string): FormId | null {
+  const m = raw.match(/([iI]-?\d{3,4}[a-zA-Z]?|[nN]-?\d{3})/)
+  if (!m) return null
+  const normalized = m[1].toLowerCase().replace(/^([in])/, '$1-').replace(/^([in])-+/, '$1-')
+  const candidates: FormId[] = ['i-864', 'i-130', 'i-485', 'n-400', 'i-589', 'i-765', 'i-821']
+  return candidates.find((c) => c === normalized) ?? null
+}
+
 const VERDICT_STYLE: Record<ReliefVerdict, { label: string; cls: string }> = {
   likely: { label: 'Likely eligible', cls: 'bg-emerald-100 text-emerald-800' },
   possibly: { label: 'Possibly eligible', cls: 'bg-amber-100 text-amber-800' },
@@ -398,18 +409,35 @@ function ResultsPage({ result }: { result: WizardResult }) {
                   </div>
                 )}
                 <p className="mt-3 text-xs text-neutral-500 italic">{r.reasoning}</p>
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <span className="text-xs font-medium text-neutral-800">
                     Next step: {r.nextStep}
                   </span>
-                  {r.forms.includes('I-864') && (
-                    <Link
-                      href="/fill"
-                      className="rounded-lg bg-neutral-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-neutral-800"
-                    >
-                      Start the I-864 →
-                    </Link>
-                  )}
+                  <div className="flex flex-wrap gap-2">
+                    {r.forms.map((rawForm) => {
+                      const formId = normalizeFormId(rawForm)
+                      if (formId && FORM_REGISTRY[formId]) {
+                        return (
+                          <Link
+                            key={rawForm}
+                            href={`/fill?formId=${formId}`}
+                            className="rounded-lg bg-neutral-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-neutral-800"
+                          >
+                            Start {rawForm} →
+                          </Link>
+                        )
+                      }
+                      return (
+                        <span
+                          key={rawForm}
+                          className="rounded-lg border border-neutral-300 bg-neutral-100 px-3 py-1.5 text-xs font-medium text-neutral-500"
+                          title="This form is not yet supported by Formcutter. Consult an accredited rep or attorney."
+                        >
+                          {rawForm} · not yet supported
+                        </span>
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
             )

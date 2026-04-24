@@ -14,8 +14,18 @@
 import { AUTO_I_130_MAP } from './i-130-widget-map.generated'
 import { AUTO_I_485_MAP } from './i-485-widget-map.generated'
 import { AUTO_N_400_MAP } from './n-400-widget-map.generated'
+import { AUTO_I_589_MAP } from './i-589-widget-map.generated'
+import { AUTO_I_765_MAP } from './i-765-widget-map.generated'
+import { AUTO_I_821_MAP } from './i-821-widget-map.generated'
 
-export type FormId = 'i-864' | 'i-130' | 'i-485' | 'n-400'
+export type FormId =
+  | 'i-864'
+  | 'i-130'
+  | 'i-485'
+  | 'n-400'
+  | 'i-589'
+  | 'i-765'
+  | 'i-821'
 
 export type FormMeta = {
   id: FormId
@@ -55,6 +65,27 @@ export const FORM_REGISTRY: Record<FormId, FormMeta> = {
     pdfPath: 'public/forms/n-400.pdf',
     mappedFieldCount: Object.keys(AUTO_N_400_MAP).length,
   },
+  'i-589': {
+    id: 'i-589',
+    name: 'I-589 Application for Asylum',
+    shortDescription: 'Asylum and withholding of removal. Must be filed within 1 year of entry for most cases.',
+    pdfPath: 'public/forms/i-589.pdf',
+    mappedFieldCount: Object.keys(AUTO_I_589_MAP).length,
+  },
+  'i-765': {
+    id: 'i-765',
+    name: 'I-765 Application for Employment Authorization',
+    shortDescription: 'Work permit (EAD). Often filed alongside other applications like asylum or adjustment of status.',
+    pdfPath: 'public/forms/i-765.pdf',
+    mappedFieldCount: Object.keys(AUTO_I_765_MAP).length,
+  },
+  'i-821': {
+    id: 'i-821',
+    name: 'I-821 Application for Temporary Protected Status',
+    shortDescription: 'Lawful status for nationals of TPS-designated countries during emergencies.',
+    pdfPath: 'public/forms/i-821.pdf',
+    mappedFieldCount: Object.keys(AUTO_I_821_MAP).length,
+  },
 }
 
 /** Get the auto-generated widget map for forms that use it. */
@@ -63,6 +94,9 @@ export function getAutoMap(formId: FormId): Record<string, string> {
     case 'i-130': return AUTO_I_130_MAP
     case 'i-485': return AUTO_I_485_MAP
     case 'n-400': return AUTO_N_400_MAP
+    case 'i-589': return AUTO_I_589_MAP
+    case 'i-765': return AUTO_I_765_MAP
+    case 'i-821': return AUTO_I_821_MAP
     case 'i-864': return {} // uses hand-written map via resolveSchemaPath
   }
 }

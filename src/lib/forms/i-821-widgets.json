@@ -1,0 +1,5738 @@
+[
+  {
+    "page": 0,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 0,
+    "name": "G28CheckBox[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      169.03,
+      469,
+      179.03,
+      479
+    ],
+    "tooltip": "To be completed by an Attorney \\ror Accredited Representative (if any). Select this box if Form G-28 or G-28 I is  attached."
+  },
+  {
+    "page": 0,
+    "name": "BarNumber_Txt[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      264.532,
+      438.004,
+      384.534,
+      456.001
+    ],
+    "tooltip": "To be completed by an Attorney \\ror Accredited Representative (if any). Enter Attorney State Bar Number (if applicable)."
+  },
+  {
+    "page": 0,
+    "name": "USCISNumber_Txt[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      396.53,
+      438.001,
+      570.54,
+      456.001
+    ],
+    "tooltip": "To be completed by an Attorney \\ror Accredited Representative (if any). Enter Attorney or Accredited Representative U S C I S Online Account Number (if any).    "
+  },
+  {
+    "page": 0,
+    "name": "Part1_Item1_ApplicationType[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.867,
+      325,
+      70.867,
+      335
+    ],
+    "tooltip": "Part 1. Type of Application (Select one). NOTE:  Select the box for Item Number 1. A., 1. B., or 2.  If applicable, select the box for Item Number 3. A. or 3. B.  For Item Number 4., enter the name of the designated T P S country.  1. A. Select This is my initial (first time) application for Temporary Protected Status (T P S). I do not currently have T P S. "
+  },
+  {
+    "page": 0,
+    "name": "Part1_Item1_ApplicationType[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.867,
+      283.002,
+      70.867,
+      293.002
+    ],
+    "tooltip": "Part 1. Type of Application (Select one).  1. B. Select This is my re-registration application for T P S. I currently have TPS, and am applying to re-register. NOTE:  If you have previously applied or have a pending application for T P S, but do not currently have T P S, select Item Number 1. A. and describe each time that you previously applied, including the receipt number (if available) and the outcome (if any) of each application.  If you currently have a pending T P S application, please also describe when you filed it and the application receipt number (if available) in Part 11. Additional Information.  If you do not recall or have incomplete information on your prior T P S applications, please provide the information you can, even if incomplete."
+  },
+  {
+    "page": 0,
+    "name": "Part1_Item2_GrantedTPSU[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      61,
+      73,
+      71,
+      83
+    ],
+    "tooltip": "Part 1. Type of Application (Select one).  2. If you selected Item Number 1. B., please indicate who granted you T P S. Select U S C I S."
+  },
+  {
+    "page": 0,
+    "name": "Part1_Item2_GrantedTPSI[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      61,
+      55,
+      71,
+      65
+    ],
+    "tooltip": "Part 1. Type of Application (Select one).  2. If you selected Item Number 1. B., please indicate who granted you T P S. Select Immigration Judge/Board of Immigration Appeals."
+  },
+  {
+    "page": 0,
+    "name": "Part1_Item3_EADApp[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342.866,
+      373.002,
+      352.866,
+      383.002
+    ],
+    "tooltip": "Part 1. Type of Application (Select one). Are you also filing a request for employment authorization? 3. A. Select Yes, I am requesting an Employment Authorization Document (E. A. D), and I am filing Form I-7 65, Application for Employment Authorization, together with my Form I-8 21."
+  },
+  {
+    "page": 0,
+    "name": "Part1_Item3_EADApp[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      342.866,
+      319.002,
+      352.866,
+      329.002
+    ],
+    "tooltip": "Part 1. Type of Application (Select one).  Are you also filing a request for employment authorization? 3. B. Select No, I am not currently requesting an E. A. D."
+  },
+  {
+    "page": 0,
+    "name": "Part2_Item1_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      186.001,
+      576,
+      204.001
+    ],
+    "tooltip": "Part 2. Information About You. Your Full Name. 1. A. Enter Family Name (Last Name). "
+  },
+  {
+    "page": 0,
+    "name": "Part2_Item1_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      162,
+      576,
+      180
+    ],
+    "tooltip": "Part 2. Information About You. Your Full Name. 1. B. Enter Given Name (First Name). "
+  },
+  {
+    "page": 0,
+    "name": "Part2_Item1_MiddleName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      138.002,
+      576,
+      156.002
+    ],
+    "tooltip": "Part 2. Information About You. Your Full Name. 1. C. Enter Middle Name."
+  },
+  {
+    "page": 0,
+    "name": "Part1_TPScountry[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      263.999,
+      576,
+      281.999
+    ],
+    "tooltip": "Part 1. Type of Application (Select one).  4. Enter Name of designated T P S country under which you are applying."
+  },
+  {
+    "page": 1,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item3_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120.002,
+      534.002,
+      294.001,
+      552.002
+    ],
+    "tooltip": "Part 2. Information About You. Other Names Used. 3. A. Enter Family Name (Last Name). "
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item3_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120.002,
+      510.001,
+      294.001,
+      528.001
+    ],
+    "tooltip": "Part 2. Information About You. Other Names Used. 3. B. Enter Given Name (First Name). "
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item3_MiddleName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120.002,
+      486.003,
+      294.001,
+      504.003
+    ],
+    "tooltip": "Part 2. Information About You. Other Names Used. 3. C. Enter Middle Name."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item2_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      612.003,
+      293.998,
+      630.003
+    ],
+    "tooltip": "Part 2. Information About You. Other Names Used. Provide all other names you have used since birth, including aliases, maiden name, and nicknames.  If you need extra space to complete this section, use the space provided in Part 11. Additional Information. 2. A. Enter Family Name (Last Name). "
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item2_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      588.002,
+      293.998,
+      606.002
+    ],
+    "tooltip": "Part 2. Information About You. Other Names Used.  2. B. Enter Given Name (First Name). "
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item2_MiddleName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      564.001,
+      293.998,
+      582.001
+    ],
+    "tooltip": "Part 2. Information About You. Other Names Used. 2. C. Enter Middle Name."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item4_InCareofName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.092,
+      420.001,
+      294.092,
+      438.001
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Mailing Address. 4. A. Enter In Care Of Name."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item4_StreetNumberName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      396,
+      293.998,
+      414
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Mailing Address. 4. B. Enter Street Number and Name.  "
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item4_Unit[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.001,
+      376.002,
+      70.001,
+      386.002
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Mailing Address. 4. C. Select Apartment."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item4_Unit[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      101.999,
+      376.002,
+      111.999,
+      386.002
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Mailing Address. 4. C. Select Suite."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item4_Unit[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      144,
+      376.002,
+      154,
+      386.002
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Mailing Address. 4. C. Select Floor."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item4_AptSteFlrNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      186.092,
+      372.002,
+      294.092,
+      390.002
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Mailing Address. 4. C. Enter Apartment, Suite or Floor Number."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item4_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      348.001,
+      294.094,
+      366.001
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Mailing  Address. 4. D. Enter City or Town."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item4_State[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      84.09,
+      324.003,
+      120.09,
+      342.003
+    ],
+    "tooltip": "Part 2. Information About You. Physical Address. 4. E. Select State from a List of States."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item4_ZipCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      192.09,
+      324.003,
+      294.089,
+      342.003
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Mailing  Address. 4. F. Enter ZIP Code. "
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item5_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.1,
+      292.182,
+      228.1,
+      302.182
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Mailing  Address. 5. Is your current mailing address the same as your physical address (where you live)? Select Yes."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item5_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.243,
+      292.003,
+      270.243,
+      302.003
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Mailing  Address. 5. Is your current mailing address the same as your physical address (where you live)? Select No. If you answered \"No\" to Item Number 5., please provide your physical address below. "
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item6_StreetNumberName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      204.001,
+      293.998,
+      222.001
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Physical Address. 6. A. Enter Street Number and Name.  "
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item6_Unit[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.001,
+      184.003,
+      70.001,
+      194.003
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Physical Address. 6. B. Select Apartment."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item6_Unit[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      101.999,
+      184.003,
+      111.999,
+      194.003
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Physical Address. 6. B. Select Suite."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item6_Unit[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      144,
+      184.003,
+      154,
+      194.003
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Physical Address. 6. B. Select Floor."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item6_AptSteFlrNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      186.001,
+      180.003,
+      294.001,
+      198.003
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Physical Address. 6. B. Enter Apartment, Suite or Floor Number."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item6_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      156.002,
+      293.998,
+      174.002
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Physical Address. 6. C. Enter City or Town."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item6_State[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      83.999,
+      132.001,
+      119.999,
+      150.001
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Physical Address. 6. D. Select State from a List of States."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item6_ZipCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      132.001,
+      293.998,
+      150.001
+    ],
+    "tooltip": "Part 2. Information About You. U. S. Physical Address. 6. E. Enter ZIP Code. "
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item8_AcctIdentifier[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.18,
+      648,
+      576.19,
+      666
+    ],
+    "tooltip": "Part 2. Information About You. Other Information. 8. Enter U S C I S Online Account Number (if any). "
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item10_DateOfBirth[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.639,
+      587.999,
+      576.638,
+      605.999
+    ],
+    "tooltip": "Part 2. Information About You. Other Information. 10. Enter Date of Birth. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item11_DateOfBirth[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.639,
+      461.999,
+      576.638,
+      479.999
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any). 11. B. Enter Other Date of Birth. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item11_DateOfBirth[1]",
+    "fieldType": "/Tx",
+    "rect": [
+      491.78,
+      492.001,
+      575.779,
+      510.001
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any).  Provide all other dates of birth you have ever used.  If you need extra space to complete this section, use the space provided in Part 11. Additional Information. 11. A. Enter Other Date of Birth. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item12_Sex[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      386.436,
+      436,
+      396.436,
+      446
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any). 12. Sex. Select Male."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item12_Sex[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      437.196,
+      435.388,
+      447.196,
+      445.388
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any). 12. Sex. Select Female."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item13_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      396,
+      576,
+      414
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any). 13. Enter City/Town/Village of Birth."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item14_CountryofBirth[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342.088,
+      360,
+      576.088,
+      378
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any). 14. Enter Country of Birth."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item17_MaritalStatus[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      341.986,
+      101.795,
+      351.986,
+      111.795
+    ],
+    "tooltip": "Part 2. Information About You. Your Marital Information. 17. Current Marital Status (Select only one box). Select Single, never married."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item17_MaritalStatus[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      461.999,
+      102.999,
+      471.999,
+      112.999
+    ],
+    "tooltip": "Part 2. Information About You. Your Marital Information. 17. Current Marital Status (Select only one box). Select Married."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item17_MaritalStatus[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      341.989,
+      85.002,
+      351.989,
+      95.002
+    ],
+    "tooltip": "Part 2. Information About You. Your Marital Information. 17. Current Marital Status (Select only one box). Select Divorced."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item17_MaritalStatus[3]",
+    "fieldType": "/Btn",
+    "rect": [
+      461.999,
+      85.002,
+      471.999,
+      95.002
+    ],
+    "tooltip": "Part 2. Information About You. Your Marital Information. 17. Current Marital Status (Select only one box). Select Widowed."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item17_MaritalStatus[4]",
+    "fieldType": "/Btn",
+    "rect": [
+      341.989,
+      67,
+      351.989,
+      77
+    ],
+    "tooltip": "Part 2. Information About You. Your Marital Information. 17. Current Marital Status (Select only one box). Select Separated."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item17_MaritalStatus[5]",
+    "fieldType": "/Btn",
+    "rect": [
+      461.999,
+      66.999,
+      471.999,
+      76.999
+    ],
+    "tooltip": "Part 2. Information About You. Your Marital Information. 17. Current Marital Status (Select only one box). Select Marriage Annulled."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item17_MaritalStatus[6]",
+    "fieldType": "/Btn",
+    "rect": [
+      341.989,
+      49.002,
+      351.989,
+      59.002
+    ],
+    "tooltip": "Part 2. Information About You. Your Marital Information. 17. Current Marital Status (Select only one box). Select Other."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item17_MaritalStatusOther[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      384.001,
+      42.001,
+      551.999,
+      60.001
+    ],
+    "tooltip": "Part 2. Information About You. Your Marital Information. 17. Current Marital Status (Select only one box). Specify Other. "
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item7_AlienNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      450.099,
+      684,
+      576,
+      702
+    ],
+    "tooltip": "Part 2. Information About You. Other Information. 7. Enter Alien Registration Number (A. Number) (if any)."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item9_SocialSecurityNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      447.18,
+      612,
+      576.19,
+      630
+    ],
+    "tooltip": "Part 2. Information About You. Other Information. 9. Enter U. S. Social Security Number (if any). "
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item15a[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      324,
+      576,
+      342
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any). 15. A. Enter Countries of Residence (Before entering the U.S.)."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item15b[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      306,
+      576,
+      324
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any). 15. B. Enter Countries of Residence (Before entering the U.S.)."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item15c[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      288,
+      576,
+      306
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any). 15. C. Enter Countries of Residence (Before entering the U.S.)."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item15d[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      270,
+      576,
+      288
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any). 15. D. Enter Countries of Residence (Before entering the U.S.)."
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item16a[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      216,
+      576,
+      234
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any). 16. A. Enter Country or Countries of Citizenship or Nationality (if any) (List all countries that apply.)"
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item16b[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      198,
+      576,
+      216
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any). 16. B. Enter Country or Countries of Citizenship or Nationality (if any) (List all countries that apply.)"
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item16c[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      180,
+      576,
+      198
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any). 16. C. Enter Country or Countries of Citizenship or Nationality (if any) (List all countries that apply.)"
+  },
+  {
+    "page": 1,
+    "name": "Part2_Item16d[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      162,
+      576,
+      180
+    ],
+    "tooltip": "Part 2. Information About You. Other Dates of Birth Used (if any). 16. D. Enter Country or Countries of Citizenship or Nationality (if any) (List all countries that apply.)"
+  },
+  {
+    "page": 2,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item10_DateOfBirth[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      684,
+      293.998,
+      702
+    ],
+    "tooltip": "Part 2. Information About You. Your Marital Information. 18. Enter Date of Current Marriage (if currently married). Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 2,
+    "name": "P2_Line7_DateOfBirth[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      618.001,
+      293.998,
+      636.001
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Entry Information. 19. Enter Date of Last Entry into the United States. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item19_ImmigrationStatus[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      558,
+      294.001,
+      576
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Entry Information. 20. Enter Immigration Status (or Lack of Status) When You Last Entered the United States (for example, visitor, student, no status)."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item20_PortofEntry[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      497.999,
+      294.001,
+      515.999
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Entry Information. Place of Last Entry into the United States. 21. Enter U.S. Port of Entry (if any)."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item20_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      461.999,
+      294.001,
+      479.999
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Entry Information. Place of Last Entry into the United States. 22. A. Enter City or Town."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item20_State[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      83.999,
+      438.001,
+      119.999,
+      456.001
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Entry Information. Place of Last Entry into the United States. 22. B. Select State from a List of States."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item21_AuthorizedPdofStay[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      340.999,
+      293.998,
+      358.999
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Entry Information. Place of Last Entry into the United States. 24. Enter Date Your Authorized Period of Stay in the United States Expired or Will Expire (as shown on Form I-94 or Crewman's Landing Permit (Form I-95)) (mm/dd/yyyy or duration of status (D/S). Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item22_Passport[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      270,
+      294.001,
+      288
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Entry Information. Place of Last Entry into the United States. 25. Enter Passport Number (most recent passport) (if any) (If you have other expired or valid passports, please list all of them and provide all information requested below about each passport.)"
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item23a_AddlPassport[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      198,
+      294.001,
+      216
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Entry Information. Place of Last Entry into the United States. 27. Enter Additional Passport or Travel Document Number."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item23b_AddlPassport[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      162,
+      294.001,
+      180
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Entry Information. Place of Last Entry into the United States. 28. Enter Additional Passport or Travel Document Number."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item24_CountryofIssuance[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      114.001,
+      294.001,
+      132.001
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Entry Information. Place of Last Entry into the United States. 29. Enter Country of Issuance for most recent Passport or Travel Document."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item24_PassportExpiration[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      78.001,
+      293.998,
+      96.001
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Entry Information. Place of Last Entry into the United States. 30. Enter Expiration Date for most recent Passport or Travel Document. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item22_Passport[1]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      234,
+      294.001,
+      252
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Entry Information. Place of Last Entry into the United States. 26. Enter Travel Document Number (if any)."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item25_ImmigrationStatus[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      684,
+      576,
+      702
+    ],
+    "tooltip": "Part 2. Information About You. Your Current Immigration Status. 31. Enter Current Immigration Status or Lack of Status."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item25_ImmigrationProceedings[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.828,
+      652,
+      510.828,
+      662
+    ],
+    "tooltip": "Part 2. Information About You. Your Current Immigration Status. 32. Are you now or were you EVER in immigration proceedings?  Select Yes."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item25_ImmigrationProceedings[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.826,
+      652,
+      552.826,
+      662
+    ],
+    "tooltip": "Part 2. Information About You. Your Current Immigration Status. 32. Are you now or were you EVER in immigration proceedings?  Select No."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item27_ProceedingType[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342.999,
+      583.001,
+      352.999,
+      593.001
+    ],
+    "tooltip": "Part 2. Information About You. Your Current Immigration Status. If you answered \"Yes\" to Item Number 32., provide the following information. Type of Proceedings (Select all boxes that apply). 33. A. Select Immigration Court (before an Immigration Judge)."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item27_ProceedingType[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      342.999,
+      565.001,
+      352.999,
+      575.001
+    ],
+    "tooltip": "Part 2. Information About You. Your Current Immigration Status. If you answered \"Yes\" to Item Number 32., provide the following information. Type of Proceedings (Select all boxes that apply). 33. B. Select Board of Immigration Appeals (B I. A.)."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item27_ProceedingType[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      342.999,
+      547.001,
+      352.999,
+      557.001
+    ],
+    "tooltip": "Part 2. Information About You. Your Current Immigration Status. If you answered \"Yes\" to Item Number 32., provide the following information. Type of Proceedings (Select all boxes that apply). 33. C. Select I am no longer in Department of Justice (D O J) or Department of Homeland Security (D H S) immigration proceedings, but I am or was in Federal court proceedings regarding immigration issues."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item28_LocDOJProceedings[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      461.999,
+      576,
+      479.999
+    ],
+    "tooltip": "Part 2. Information About You. Your Current Immigration Status. 34. Enter Locations Where Your D O J and/or D H S Proceedings were Held (or are currently being held) (if applicable)."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item29_LocFedCtProceedings[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      402.001,
+      576,
+      420.001
+    ],
+    "tooltip": "Part 2. Information About You. Your Current Immigration Status. 35. Enter Locations Where Your Federal Court Proceedings Regarding Immigration Issues were Held (or are currently being held) (if applicable)."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item31a_ProceedingDateFrom[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.001,
+      311.998,
+      576,
+      329.998
+    ],
+    "tooltip": "Part 2. Information About You. Your Current Immigration Status. Dates for Your Proceedings. NOTE:  If your proceedings are ongoing, leave the \\215To\\216 date blank.  If you have been in more than one type of proceedings, or in Federal Court, list dates for each time period. 36. A. Enter From Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item31b_ProceedingDateTo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.001,
+      287.997,
+      576,
+      305.997
+    ],
+    "tooltip": "Part 2. Information About You. Your Current Immigration Status. Dates for Your Proceedings. NOTE:  If your proceedings are ongoing, leave the \\215To\\216 date blank.  If you have been in more than one type of proceedings, or in Federal Court, list dates for each time period. 36. B. Enter To Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 2,
+    "name": "Part3_Item1_Ethnicity[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      199,
+      352,
+      209
+    ],
+    "tooltip": "Part 3.  Biographic Information. 1. Ethnicity (Select only one box). Select Hispanic or Latino."
+  },
+  {
+    "page": 2,
+    "name": "Part3_Item1_Ethnicity[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      181,
+      352,
+      191
+    ],
+    "tooltip": "Part 3.  Biographic Information. 1. Ethnicity (Select only one box). Select Not Hispanic or Latino."
+  },
+  {
+    "page": 2,
+    "name": "Part3_Item2_RaceW[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      145,
+      352,
+      155
+    ],
+    "tooltip": "Part 3.  Biographic Information. 2. Race (Select all applicable boxes). Select White."
+  },
+  {
+    "page": 2,
+    "name": "Part3_Item2_RaceA[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      127,
+      352,
+      137
+    ],
+    "tooltip": "Part 3.  Biographic Information. 2. Race (Select all applicable boxes). Select Asian."
+  },
+  {
+    "page": 2,
+    "name": "Part3_Item2_RaceB[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      109,
+      352,
+      119
+    ],
+    "tooltip": "Part 3.  Biographic Information. 2. Race (Select all applicable boxes). Select Black or African American."
+  },
+  {
+    "page": 2,
+    "name": "Part3_Item2_RaceI[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      91,
+      352,
+      101
+    ],
+    "tooltip": "Part 3.  Biographic Information. 2. Race (Select all applicable boxes). Select American Indian or Alaska Native."
+  },
+  {
+    "page": 2,
+    "name": "Part3_Item2_RaceH[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      73,
+      352,
+      83
+    ],
+    "tooltip": "Part 3.  Biographic Information. 2. Race (Select all applicable boxes). Select Native Hawaiian or Other Pacific Islander."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item31e_Present[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342.071,
+      271,
+      352.071,
+      281
+    ],
+    "tooltip": "Part 2. Information About You. Your Current Immigration Status. Dates for Your Proceedings. NOTE:  If your proceedings are ongoing, leave the \\215To\\216 date blank.  If you have been in more than one type of proceedings, or in Federal Court, list dates for each time period. 36. C. Select Present."
+  },
+  {
+    "page": 2,
+    "name": "Part2_Item22_I94[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      133.705,
+      402.001,
+      294.222,
+      420.001
+    ],
+    "tooltip": "Part 2. Information About You. U.S. Entry Information. Place of Last Entry into the United States. 23. Enter the I 94 Arrival Departure record number (if any)."
+  },
+  {
+    "page": 3,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item5_Eyecolor[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.236,
+      637.001,
+      70.236,
+      647.001
+    ],
+    "tooltip": "Part 2.  Biographic Information. 5. Eye Color (Select only one box). Select Black."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item5_Eyecolor[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      132.219,
+      637.001,
+      142.219,
+      647.001
+    ],
+    "tooltip": "Part 2.  Biographic Information. 5. Eye Color (Select only one box). Select Blue."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item5_Eyecolor[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      204.219,
+      637.001,
+      214.219,
+      647.001
+    ],
+    "tooltip": "Part 2.  Biographic Information. 5. Eye Color (Select only one box). Select Brown."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item5_Eyecolor[3]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.239,
+      619.001,
+      70.239,
+      629.001
+    ],
+    "tooltip": "Part 2.  Biographic Information. 5. Eye Color (Select only one box). Select Gray."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item5_Eyecolor[4]",
+    "fieldType": "/Btn",
+    "rect": [
+      132.219,
+      619.001,
+      142.219,
+      629.001
+    ],
+    "tooltip": "Part 2.  Biographic Information. 5. Eye Color (Select only one box). Select Green."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item5_Eyecolor[5]",
+    "fieldType": "/Btn",
+    "rect": [
+      204.219,
+      619.001,
+      214.219,
+      629.001
+    ],
+    "tooltip": "Part 2.  Biographic Information. 5. Eye Color (Select only one box). Select Hazel."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item5_Eyecolor[6]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.239,
+      601.001,
+      70.239,
+      611.001
+    ],
+    "tooltip": "Part 2.  Biographic Information. 5. Eye Color (Select only one box). Select Maroon."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item5_Eyecolor[7]",
+    "fieldType": "/Btn",
+    "rect": [
+      132.219,
+      601.001,
+      142.219,
+      611.001
+    ],
+    "tooltip": "Part 2.  Biographic Information. 5. Eye Color (Select only one box). Select Pink."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item5_Eyecolor[8]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.239,
+      580,
+      70.239,
+      590
+    ],
+    "tooltip": "Part 2.  Biographic Information. 5. Eye Color (Select only one box). Select Unknown/Other."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item6_Haircolor[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.001,
+      541,
+      70.001,
+      551
+    ],
+    "tooltip": "Part 2.  Biographic Information. 6. Hair Color (Select only one box). Select Bald (No hair)."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item6_Haircolor[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      144.218,
+      541,
+      154.218,
+      551
+    ],
+    "tooltip": "Part 2.  Biographic Information. 6. Hair Color (Select only one box). Select Black."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item6_Haircolor[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      216.218,
+      541,
+      226.218,
+      551
+    ],
+    "tooltip": "Part 2.  Biographic Information. 6. Hair Color (Select only one box). Select Blond."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item6_Haircolor[3]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.001,
+      523,
+      70.001,
+      533
+    ],
+    "tooltip": "Part 2.  Biographic Information. 6. Hair Color (Select only one box). Select Brown."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item6_Haircolor[4]",
+    "fieldType": "/Btn",
+    "rect": [
+      144.218,
+      523,
+      154.218,
+      533
+    ],
+    "tooltip": "Part 2.  Biographic Information. 6. Hair Color (Select only one box). Select Gray."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item6_Haircolor[5]",
+    "fieldType": "/Btn",
+    "rect": [
+      216.218,
+      523,
+      226.218,
+      533
+    ],
+    "tooltip": "Part 2.  Biographic Information. 6. Hair Color (Select only one box). Select Red."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item6_Haircolor[6]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.001,
+      505,
+      70.001,
+      515
+    ],
+    "tooltip": "Part 2.  Biographic Information. 6. Hair Color (Select only one box). Select Sandy."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item6_Haircolor[7]",
+    "fieldType": "/Btn",
+    "rect": [
+      144.218,
+      505,
+      154.218,
+      515
+    ],
+    "tooltip": "Part 2.  Biographic Information. 6. Hair Color (Select only one box). Select White."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Item6_Haircolor[8]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.001,
+      483.999,
+      70.001,
+      493.999
+    ],
+    "tooltip": "Part 2.  Biographic Information. 6. Hair Color (Select only one box). Select Unknown/Other."
+  },
+  {
+    "page": 3,
+    "name": "Pt2Line3_HeightFeet[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      186.001,
+      695.999,
+      221.998,
+      713.999
+    ],
+    "tooltip": "Part 2.  Biographic Information. 3. Height. Feet (select from list). "
+  },
+  {
+    "page": 3,
+    "name": "Pt2Line3_HeightInches[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      258.001,
+      695.999,
+      293.998,
+      713.999
+    ],
+    "tooltip": "Part 2.  Biographic Information. 3. Height. Inches (select from list)."
+  },
+  {
+    "page": 3,
+    "name": "Pt2Line4_HeightInches2[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      264.249,
+      672.001,
+      276.248,
+      690.001
+    ],
+    "tooltip": "Part 2.  Biographic Information. 4. Weight. Enter your weight in pounds.  If you do not know your weight, or need to enter a weight under 30 pounds or over 699 pounds, enter \"000\".  Do not enter your weight in kilograms. Pounds. Enter second digit."
+  },
+  {
+    "page": 3,
+    "name": "Pt2Line4_HeightInches1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      246.249,
+      672.001,
+      258.248,
+      690.001
+    ],
+    "tooltip": "Part 2.  Biographic Information. 4. Weight. Enter your weight in pounds.  If you do not know your weight, or need to enter a weight under 30 pounds or over 699 pounds, enter \"000\".  Do not enter your weight in kilograms. Pounds. Enter first digit."
+  },
+  {
+    "page": 3,
+    "name": "Pt2Line4_HeightInches3[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      282.249,
+      672.001,
+      294.248,
+      690.001
+    ],
+    "tooltip": "Part 2.  Biographic Information. 4. Weight. Enter your weight in pounds.  If you do not know your weight, or need to enter a weight under 30 pounds or over 699 pounds, enter \"000\".  Do not enter your weight in kilograms. Pounds. Enter third digit."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item1_USCISNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120,
+      288,
+      294.01,
+      306
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Complete this section only if you are filing a late initial application for T P S.  See the form instructions for information on requirements for late initial filing for T P S.  If you need extra space to complete this section on all former spouses and all of your children, please use the space provided in Part 11. Additional Information. Provide the following information about your current spouse (if married). 1. Enter U S C I S Online Account Number, (if any and if known). "
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item3_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      227.999,
+      293.998,
+      245.999
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any).  3. A. Enter Family Name (Last Name). "
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item3_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      204.001,
+      293.998,
+      222.001
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). 3. B. Enter Given Name (First Name). "
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item3_MiddleName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      180,
+      293.998,
+      198
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). 3. C. Enter Middle Name."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item4_StreetNumberName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      695.999,
+      576,
+      713.999
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Mailing Address of Spouse. 4. A. Enter Street Number and Name.  "
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item4_Unit[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      676.001,
+      352,
+      686.001
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Mailing Address of Spouse. 4. B. Select Apartment."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item4_Unit[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      384.001,
+      676.001,
+      394.001,
+      686.001
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Mailing Address of Spouse. 4. B. Select Suite."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item4_Unit[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      425.999,
+      676.001,
+      435.999,
+      686.001
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Mailing Address of Spouse. 4. B. Select Floor."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item4_AptSteFlrNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      468.003,
+      672.001,
+      576.003,
+      690.001
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Mailing Address of Spouse. 4. B. Enter Apartment, Suite or Floor Number."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item4_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      648,
+      576.003,
+      666
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Mailing Address of Spouse. 4. C. Enter City or Town."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item4_State[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      366.001,
+      623.999,
+      402.001,
+      641.999
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Mailing Address of Spouse. 4. D. Select State from a List of States."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item4_ZipCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      474.001,
+      623.999,
+      576,
+      641.999
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Mailing Address of Spouse. 4. E. Enter ZIP Code. "
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item4_Province[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      600.001,
+      576,
+      618.001
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Mailing Address of Spouse. 4. F. Enter the Province."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item4_PostalCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      576,
+      576,
+      594
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Mailing Address of Spouse. 4. G. Enter the Postal Code."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item4_Country[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      341.997,
+      540,
+      576,
+      558
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Mailing Address of Spouse. 4. H. Enter the Country."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item5_DateOfBirth[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.001,
+      486,
+      576,
+      504
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any).  Other Information About Your Current Spouse. 5. Enter Your Spouse's Date of Birth. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item6_DateOfMarriage[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.001,
+      443.999,
+      576,
+      461.999
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any).  Other Information About Your Current Spouse. 6. Enter Date of Marriage to Your Current Spouse. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item7_PlaceofMarriage[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      402.001,
+      576,
+      420.001
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any).  Other Information About Your Current Spouse. 7. Enter Place of Marriage to Your Current Spouse."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item8_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      425.999,
+      378,
+      576,
+      396
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Other Information About Your Current Spouse. 8. A. Enter City or Town."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item8_Province[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      425.999,
+      330.001,
+      576,
+      348.001
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Other Information About Your Current Spouse. 8. C. Enter the Province (if any)."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item8_Country[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      294.001,
+      576,
+      312.001
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Other Information About Your Current Spouse. 8. D. Enter the Country."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item9_TPSY[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      262.001,
+      510.159,
+      272.001
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Other Information About Your Current Spouse. 9. If you know, has your current spouse EVER had TPS? Select Yes."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item9_TPSN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.157,
+      262.001,
+      552.157,
+      272.001
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Other Information About Your Current Spouse. 9. If you know, has your current spouse EVER had TPS? Select No."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item10b_DateFrom[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      491.817,
+      216.893,
+      575.816,
+      234.893
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Other Information About Your Current Spouse. If yes, what dates did he or she have T P S? 10. A. Enter From Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item10c_DateTo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      491.598,
+      192.002,
+      575.597,
+      210.002
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Other Information About Your Current Spouse. If yes, what dates did he or she have T P S? 10. B. Enter To Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item10d_Present[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      175.002,
+      352,
+      185.002
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Other Information About Your Current Spouse. If yes, what dates did he or she have T P S? 10. C. Select Present."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item10e_IDK[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      157.002,
+      352,
+      167.002
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Other Information About Your Current Spouse. If yes, what dates did he or she have T P S? 10. D. Select I do not know the dates."
+  },
+  {
+    "page": 3,
+    "name": "_YesNoDontKnow[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      415.607,
+      124.002,
+      425.607,
+      134.002
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Other Information About Your Current Spouse. 11. Is your spouse's T P S still valid? (if known). Select Yes."
+  },
+  {
+    "page": 3,
+    "name": "_YesNoDontKnow[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      456.914,
+      124.002,
+      466.914,
+      134.002
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Other Information About Your Current Spouse. 11. Is your spouse's T P S still valid? (if known).  Select No."
+  },
+  {
+    "page": 3,
+    "name": "_YesNoDontKnow[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      495.567,
+      124.002,
+      505.567,
+      134.002
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Other Information About Your Current Spouse. 11. Is your spouse's T P S still valid? (if known). Select I Do Not Know."
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item2_AlienNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      168.001,
+      252,
+      293.902,
+      270
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). 2. Enter. A. Number (if any and if known). "
+  },
+  {
+    "page": 3,
+    "name": "Part4_Item8_State[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      365.998,
+      353.999,
+      401.998,
+      371.999
+    ],
+    "tooltip": "Part 4.  Information About Your Current Spouse (if any). Other Information About Your Current Spouse. 8. B. Select State from a List of States."
+  },
+  {
+    "page": 4,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item1_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      558,
+      293.998,
+      576
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Complete this section only if you are filing a late initial application for TPS.  See the form instructions for information on requirements for late initial filing for TPS.  If you need extra space to complete this section on all former spouses or all of your children, please use the space provided in Part 11. Additional Information. Names of All Your Former Spouses (if any). First Marriage. 1. A. Enter Family Name (Last Name). "
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item1_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      533.999,
+      293.998,
+      551.999
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. 1. B. Enter Given Name (First Name). "
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item1_MiddleName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      510.001,
+      293.998,
+      528.001
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Names of All Your Former Spouses (if any). First Marriage. 1. C. Enter Middle Name."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item2_FSpouseNationalities[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      474.001,
+      294.001,
+      492.001
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any).  Names of All Your Former Spouses (if any). First Marriage. 2. Enter Nationalities of Former Spouse."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item4_FSpouseDOB[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      407.999,
+      293.998,
+      425.999
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. 4. Enter Date of Birth of Former Spouse. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item5_FSpouseDOD[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      366.001,
+      293.998,
+      384.001
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any).  Names of All Your Former Spouses (if any). First Marriage. 5. Enter Date of Death if Former Spouse Deceased. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item6_MarriageFrom[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      324,
+      293.998,
+      342
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. Dates of Marriage to Former Spouse. 6. A. Enter From Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item6_MarriageTo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      299.999,
+      293.998,
+      317.999
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. Dates of Marriage to Former Spouse. 6. B. Enter To Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item7_MarriageEnded[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      252,
+      294.001,
+      270
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. 7. Enter How Marriage Ended (for example, divorce, widowed, annulled)."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item8_YDI[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      134.161,
+      213.999,
+      144.161,
+      223.999
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage.  8. Did or does this former spouse have TPS (if known)? Select Yes."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item8_YDI[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      176.723,
+      213.891,
+      186.723,
+      223.891
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. 8. Did or does this former spouse have TPS (if known)? Select No."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item8_YDI[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      215.461,
+      213.999,
+      225.461,
+      223.999
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage.  8. Did or does this former spouse have TPS (if known)? Select I Don't Know."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item9a_DateFrom[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      167.998,
+      293.998,
+      185.998
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. If yes, what dates did he or she have TPS (if known)? 9. A. Enter From Date. Enter as 2 digit month, 2 digit day and 4 digit year."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item9b_DateTo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      143.997,
+      293.998,
+      161.997
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. If yes, what dates did he or she have TPS (if known)? 9. B. Enter To Date. Enter as 2 digit month, 2 digit day and 4 digit year."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item9c_Present[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      59.868,
+      127,
+      69.868,
+      137
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. If yes, what dates did he or she have TPS (if known)? 9. C. Select Present."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item9d_IDK[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.001,
+      109,
+      70.001,
+      119
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. If yes, what dates did he or she have TPS (if known)? 9. D. Select I do not know the dates."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item10_YNI[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      133.914,
+      64.001,
+      143.914,
+      74.001
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. 10. Is this former spouse currently applying for or re-registering for TPS (if known)? Select Yes."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item10_YNI[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      178.277,
+      64.001,
+      188.277,
+      74.001
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. 10. Is this former spouse currently applying for or re-registering for TPS (if known)? Select No."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item10_YNI[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      215.215,
+      64.001,
+      225.215,
+      74.001
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. 10. Is this former spouse currently applying for or re-registering for TPS (if known)? Select I Do Not Know."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item11_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      702,
+      576,
+      720
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 11. A. Enter Family Name (Last Name). "
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item11_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      677.999,
+      576,
+      695.999
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 11. B. Enter Given Name (First Name). "
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item11_MiddleName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      654.001,
+      576,
+      672.001
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 11. C. Enter Middle Name."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item12_FSpouseNationalities[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      617.391,
+      576,
+      635.391
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 12. Enter Nationalities of Former Spouse."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item14_FSpouseDOB[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.001,
+      551.999,
+      576,
+      569.999
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 14. Enter Date of Birth of Former Spouse. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item15_FSpouseDOD[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.001,
+      509.998,
+      576,
+      527.998
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 15. Enter Date of Death if Former Spouse Deceased. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item16_MarriageFrom[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.001,
+      468,
+      576,
+      486
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. Dates of Marriage to Former Spouse. 16. A. Enter From Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item16_MarriageTo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      493.421,
+      438.375,
+      577.42,
+      456.375
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. Dates of Marriage to Former Spouse. 16. B. Enter To Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item17_MarriageEnded[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      396,
+      576,
+      414
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 17. Enter How Marriage Ended (for example, divorce, widowed, annulled)."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item18_YNI[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      416.16,
+      363.997,
+      426.16,
+      373.997
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 18. Did or does this former spouse have TPS (if known)? Select Yes."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item18_YNI[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      458.158,
+      363.997,
+      468.158,
+      373.997
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 18. Did or does this former spouse have TPS (if known)? Select No."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item18_YNI[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      497.46,
+      363.997,
+      507.46,
+      373.997
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 18. Did or does this former spouse have TPS (if known)? Select I Don't Know."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item19a_DateFrom[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.001,
+      317.996,
+      576,
+      335.996
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. If yes, what dates did he or she have TPS (if known)? 19. A. Enter From Date. Enter as 2 digit month, 2 digit day and 4 digit year."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item19b_DateTo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.001,
+      293.998,
+      576,
+      311.998
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. If yes, what dates did he or she have TPS (if known)? 19. B. Enter To Date. Enter as 2 digit month, 2 digit day and 4 digit year."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item19c_Present[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      277.001,
+      352,
+      287.001
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. If yes, what dates did he or she have TPS (if known)? 19. C. Second Present."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item19d_IDK[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      259.001,
+      352,
+      269.001
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. If yes, what dates did he or she have TPS (if known)? 19. D. Select I do not know the dates."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item20_YNI[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      416.157,
+      213.999,
+      426.157,
+      223.999
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 20. Is this former spouse currently applying for or re-registering for TPS (if known)? Select Yes."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item20_YNI[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      458.155,
+      213.999,
+      468.155,
+      223.999
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 20. Is this former spouse currently applying for or re-registering for TPS (if known)?  Select No."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item20_YNI[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      497.458,
+      213.999,
+      507.458,
+      223.999
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 20. Is this former spouse currently applying for or re-registering for TPS (if known)?  Select I Do Not Know."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item3_AlienNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      168.001,
+      432,
+      293.902,
+      450
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). First Marriage. 3. Enter A. Number of former spouse (if any and if known)."
+  },
+  {
+    "page": 4,
+    "name": "Part5_Item13_AlienNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      450.397,
+      576,
+      576.298,
+      594
+    ],
+    "tooltip": "Part 5.  Information About Your Former \\rSpouses (if any). Names of All Your Former Spouses (if any). Second Marriage. 13. Enter A-Number of former spouse (if any and if known). "
+  },
+  {
+    "page": 5,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item1_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120.223,
+      545.998,
+      294.222,
+      563.998
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Complete this section only if you are filing a late initial application for TPS.  See the form instructions for information on requirements for late initial filing for TPS.  If you need extra space to complete this section on all former spouses or all of your children, please use the space provided in Part 11. Additional Information. Provide the following information about each of your children (if any).  If you need extra space to complete this section, use the space provided in Part 11. Additional Information. Child 1. 1. A. Enter Family Name (Last Name). "
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item1_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120.223,
+      522,
+      294.222,
+      540
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. 1. B. Enter Given Name (First Name). "
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item1_MiddleName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120.223,
+      497.999,
+      294.222,
+      515.999
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. 1. C. Enter Middle Name."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item2_USCISNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      461.999,
+      294.009,
+      479.999
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any).  Child 1. 2. Enter U S C I S Online Account Number (if any and if known). "
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item4_DateOfBirth[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      396,
+      293.998,
+      414
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. 4. Enter Date of Birth. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item5_StreetNumberName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      342,
+      294.469,
+      360
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. 5. A. Enter Street Number and Name.  "
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item5_Unit[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.001,
+      321.999,
+      70.001,
+      331.999
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. 5. B. Select Apartment."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item5_Unit[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      101.999,
+      321.999,
+      111.999,
+      331.999
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. 5. B. Select Suite."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item5_Unit[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      144,
+      321.999,
+      154,
+      331.999
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. 5. B. Select Floor."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item5_AptSteFlrNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      186.001,
+      317.999,
+      294.001,
+      335.999
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. 5. B. Enter Apartment, Suite or Floor Number."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item5_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      294.001,
+      293.998,
+      312.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. 5. C. Enter City or Town."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item5_State[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      83.999,
+      270,
+      119.999,
+      288
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. 5. D. Select State from a List of States."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item5_ZipCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      270,
+      293.998,
+      288
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. 5. E. Enter ZIP Code. "
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item5_Province[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      245.999,
+      293.998,
+      263.999
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. 5. F. Enter the Province."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item5_PostalCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      222.001,
+      293.998,
+      240.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. 5. G. Enter the Postal Code."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item5_Country[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      186.001,
+      294.001,
+      204.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. 5. H. Enter the Country."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item6_ChildTPSFrom[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      132.001,
+      293.998,
+      150.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. If this child has or had TPS, please provide the dates of his or her TPS (if known). 6. A. Enter From Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item6_ChildTPSTo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      108,
+      293.998,
+      126
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. If this child has or had TPS, please provide the dates of his or her TPS (if known). 6. B. Enter To Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 5,
+    "name": "Part5_Item7_ChildAppTPS[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.381,
+      79.001,
+      228.381,
+      89.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. If this child has or had TPS, please provide the dates of his or her TPS (if known). 7. If you know, is this child currently applying for or re-registering for TPS (if known)? Select Yes."
+  },
+  {
+    "page": 5,
+    "name": "Part5_Item7_ChildAppTPS[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.379,
+      79.001,
+      270.379,
+      89.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. Mailing Address. If this child has or had TPS, please provide the dates of his or her TPS (if known). 7. If you know, is this child currently applying for or re-registering for TPS (if known)? Select No."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item8_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      702,
+      576,
+      720
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. 8. A. Enter Family Name (Last Name). "
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item8_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      678.002,
+      576,
+      696.002
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. 8. B. Enter Given Name (First Name). "
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item8_MiddleName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      654.001,
+      576,
+      672.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. 8. C. Enter Middle Name."
+  },
+  {
+    "page": 5,
+    "name": "Part4_Item1_USCISNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.69,
+      618.001,
+      576.7,
+      636.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. 9. Enter U S C I S Online Account Number (if any and if known). "
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item11_DateOfBirth[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.718,
+      552.002,
+      576.717,
+      570.002
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. 11. Enter Date of Birth. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item12_StreetNumberName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      497.999,
+      576,
+      515.999
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. 12. A. Enter Street Number and Name.  "
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item12_Unit[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      472,
+      352,
+      482
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. 12. B. Select Apartment."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item12_Unit[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      384.001,
+      472,
+      394.001,
+      482
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. 12. B. Select Suite."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item12_Unit[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      425.999,
+      472,
+      435.999,
+      482
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. 12. B. Select Floor."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item12_AptSteFlrNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      468,
+      468,
+      576,
+      486
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. 12. B. Enter Apartment, Suite or Floor Number."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item12_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      443.999,
+      576,
+      461.999
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. 12. C. Enter City or Town."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item12_State[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      366.001,
+      420.001,
+      402.001,
+      438.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. 12. D. Select State from a List of States."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item12_ZipCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      474.148,
+      420.001,
+      576.147,
+      438.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. 12. E. Enter ZIP Code. "
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item12_Province[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.148,
+      396,
+      576.022,
+      414
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. 12. F. Enter the Province."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item12_PostalCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      371.999,
+      576,
+      389.999
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. 12. G. Enter the Postal Code."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item12_Country[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      335.999,
+      576,
+      353.999
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. 12. H. Enter the Country."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item13_ChildTPSFrom[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.001,
+      281.999,
+      576,
+      299.999
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. If this child has or had TPS, please provide the dates of his or her TPS (if known). 13. A. Enter From Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item12_ChildTPSTo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.001,
+      258.001,
+      576,
+      276.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any).  Child 2. Mailing Address. If this child has or had TPS, please provide the dates of his or her TPS (if known). 13. B. Enter To Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item14_ChildAppTPS[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.879,
+      226.001,
+      510.879,
+      236.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. If this child has or had TPS, please provide the dates of his or her TPS (if known). 14. If you know, is this child currently applying for or re-registering for TPS (if known)? Select Yes."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item14_ChildAppTPS[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.877,
+      226.001,
+      552.877,
+      236.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. Mailing Address. If this child has or had TPS, please provide the dates of his or her TPS (if known). 14. If you know, is this child currently applying for or re-registering for TPS (if known)? Select No."
+  },
+  {
+    "page": 5,
+    "name": "Part7_Item1_CountryResidence[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      96.001,
+      576,
+      114.001
+    ],
+    "tooltip": "Part 7.  Eligibility Standards. Basis for Eligibility. Provide the following information. 1. A. I am a national of (or a person having no nationality who last habitually resided in the country of). Enter Country."
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item3_AlienNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      168.46,
+      420.001,
+      294.361,
+      438.001
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 1. 3. Enter Alien Registration Number (A. -Number) (if any and if known). "
+  },
+  {
+    "page": 5,
+    "name": "Part6_Item10_AlienNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      450.187,
+      576,
+      576.088,
+      594
+    ],
+    "tooltip": "Part 6.  Information About Your Children (if any). Child 2. 10. Enter Alien Registration Number (A. -Number) (if any and if known). "
+  },
+  {
+    "page": 6,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item1_EnterUS[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.999,
+      672.001,
+      293.998,
+      690.001
+    ],
+    "tooltip": "Part 7.  Eligibility Standards. Basis for Eligibility. Provide the following information. 1. B. I entered the United States on the following date, and have resided in the United States since that time. Enter Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item1_Travel[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.812,
+      627.999,
+      228.812,
+      637.999
+    ],
+    "tooltip": "Part 7.  Eligibility Standards. Basis for Eligibility. Provide the following information. 1. C. Have you EVER traveled to and entered another country, other than the one listed in Item Number 1. A. before you last entered the United States? Select Yes."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item1_Travel[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      627.999,
+      270.161,
+      637.999
+    ],
+    "tooltip": "Part 7.  Eligibility Standards. Basis for Eligibility. Provide the following information. 1. C. Have you EVER traveled to and entered another country, other than the one listed in Item Number 1. A. before you last entered the United States? Select No."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item2_CountriesTraveled[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      504,
+      294.001,
+      522
+    ],
+    "tooltip": "Part 7.  Eligibility Standards. Basis for Eligibility. Provide the following information. If you answered \"Yes\" to Item Number 1. C., provide the information requested in Item Numbers 2. through 5. for EACH country you traveled to and entered prior to entering the United States.  If you need extra space to complete this section, use the space provided in Part 11. Additional Information. 2. Enter Name of All the Other Countries to Which You Traveled and Entered Prior to Entering the United States."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item2_CountriesTraveledFrom[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      209.778,
+      455.695,
+      293.777,
+      473.695
+    ],
+    "tooltip": "Part 7.  Eligibility Standards. Basis for Eligibility. Provide the following information. Dates That You Were in the Other Country or Countries. 3. A. Enter From Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item2_CountriesTraveledTo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      210.002,
+      432.003,
+      294.001,
+      450.003
+    ],
+    "tooltip": "Part 7.  Eligibility Standards. Basis for Eligibility. Provide the following information. Dates That You Were in the Other Country or Countries. 3. B. Enter To Date. Enter as 2-digit Month, 2-digit Day, and 4-digit Year."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item2_ImmigrationStatus[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      372.002,
+      294.001,
+      390.002
+    ],
+    "tooltip": "Part 7.  Eligibility Standards. Basis for Eligibility. Provide the following information. 4. Enter Your Immigration Status, if Any, in the Other Country (for example, citizen, legal permanent resident, refugee, asylee, visitor, student, temporary resident, or no status)."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item2_ImmigrationOffer[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.333,
+      328.003,
+      228.333,
+      338.003
+    ],
+    "tooltip": "Part 7.  Eligibility Standards. Basis for Eligibility. Provide the following information. 5. Have you EVER been offered any immigration status by another country that you did not accept? Select Yes."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item2_ImmigrationOffer[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      328.003,
+      270.161,
+      338.003
+    ],
+    "tooltip": "Part 7.  Eligibility Standards. Basis for Eligibility. Provide the following information. 5. Have you EVER been offered any immigration status by another country that you did not accept? Select No."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item2_DescribeCountries[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      216.003,
+      294.001,
+      270.003
+    ],
+    "tooltip": "Part 7.  Eligibility Standards. Basis for Eligibility. Provide the following information. 6. If you answered \"Yes\" to Item Number 5., please describe the country or countries, the nature of the immigration status you were offered, and the dates when it was offered."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item2_DidNotAccept[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      120.002,
+      294.001,
+      174.002
+    ],
+    "tooltip": "Part 7.  Eligibility Standards. Basis for Eligibility. Provide the following information. 7. If you answered \\215Yes\\216 to Item Number 5., please describe why you chose not to accept the immigration status offered to you by the other country or countries."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item4a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.233,
+      82.001,
+      510.233,
+      92.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. If you have ever engaged in, ordered, incited, assisted, or otherwise participated in any human rights violations, you must provide information about the events, including the place and date, and a description of the event regardless of the country where the events occurred. Have you EVER been convicted of. 8. A. Any felony committed in the United States? Select Yes."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item4a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      82.001,
+      552.16,
+      92.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of. 8. A. Any felony committed in the United States? Select No."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item4b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      46.001,
+      510.159,
+      56.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of. 8. B. Any misdemeanor committed in the United States? Select Yes."
+  },
+  {
+    "page": 6,
+    "name": "Part7_Item4b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      46.001,
+      552.16,
+      56.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of. 8. B. Any misdemeanor committed in the United States? Select No."
+  },
+  {
+    "page": 7,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item4c_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      688,
+      228.16,
+      698
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of. 8. C. Any particularly serious crime committed in the United States? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item4c_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      688,
+      270.161,
+      698
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of. 8. C. Any particularly serious crime committed in the United States? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item5a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      627.999,
+      228.16,
+      637.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of. 9. A. Have you EVER ordered, incited, assisted, or otherwise participated in the persecution of any person on account of race, religion, nationality, membership in a particular social group, or political opinion? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item5a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      627.999,
+      270.161,
+      637.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of. 9. A. Have you EVER ordered, incited, assisted, or otherwise participated in the persecution of any person on account of race, religion, nationality, membership in a particular social group, or political opinion? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item5b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      580,
+      228.16,
+      590
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of. 9. B. Have you EVER committed serious nonpolitical crimes outside of the United States prior to your arrival in the United States? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item5b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      580,
+      270.161,
+      590
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of. 9. B. Have you EVER committed serious nonpolitical crimes outside of the United States prior to your arrival in the United States? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item5c_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      519.999,
+      228.16,
+      529.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of. 9. C.  Have you EVER or are you NOW engaged in activities that could be reasonable grounds for concluding that you are a danger to the security of the United States? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item5c_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      519.999,
+      270.161,
+      529.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of. 9. C.  Have you EVER or are you NOW engaged in activities that could be reasonable grounds for concluding that you are a danger to the security of the United States? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item7a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      454,
+      228.16,
+      464
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of.10. A. A crime (other than a purely political offense)? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item7a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      454,
+      270.161,
+      464
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 10. A. A crime (other than a purely political offense)? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item7b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      406.001,
+      228.16,
+      416.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 10. B. A violation of any law relating to a controlled substance as defined in section 102 of the Controlled Substances Act?  Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item7b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      406.001,
+      270.161,
+      416.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 10. B. A violation of any law relating to a controlled substance as defined in section 102 of the Controlled Substances Act? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item7c_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      357.999,
+      228.16,
+      367.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 10. C. A conspiracy to violate any law relating to a controlled substance as defined in section 102 of the Controlled Substances Act? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item7c_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      357.999,
+      270.161,
+      367.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 10. C. A conspiracy to violate any law relating to a controlled substance as defined in section 102 of the Controlled Substances Act? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item8_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      298.001,
+      228.16,
+      308.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 11. Have you EVER been convicted of two or more criminal offenses (other than purely political offenses) for which you received sentences to confinement that, when combined, total five years or more? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item8_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      298.001,
+      270.161,
+      308.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 11. Have you EVER been convicted of two or more criminal offenses (other than purely political offenses) for which you received sentences to confinement that, when combined, total five years or more? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item9a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      249.999,
+      228.16,
+      259.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. If you have ever engaged in, ordered, incited, assisted, or otherwise participated in any human rights violations, you must provide information about the events, including the place and date, and a description of the event regardless of the country where the events occurred. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 12. A. Have you EVER trafficked in or are you NOW trafficking in any controlled substance? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item9a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      249.999,
+      270.161,
+      259.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. If you have ever engaged in, ordered, incited, assisted, or otherwise participated in any human rights violations, you must provide information about the events, including the place and date, and a description of the event regardless of the country where the events occurred. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 12. A. Have you EVER trafficked in or are you NOW trafficking in any controlled substance? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item9b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      190.001,
+      228.16,
+      200.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 12. B. Are you NOW or have you EVER knowingly assisted, abetted, conspired, or colluded with others in the unlawful trafficking of any controlled substance?  Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item9b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      190.001,
+      270.161,
+      200.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 12. B. Are you NOW or have you EVER knowingly assisted, abetted, conspired, or colluded with others in the unlawful trafficking of any controlled substance?  Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item9c_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      141.999,
+      228.16,
+      151.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 12. C. Are you the spouse or child of an alien who unlawfully trafficked in any controlled substance? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item9c_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      141.999,
+      270.161,
+      151.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 12. C. Are you the spouse or child of an alien who unlawfully trafficked in any controlled substance? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item9d_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      82.001,
+      228.16,
+      92.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 12. D. Are you the spouse or child of an alien who assisted, abetted, conspired, or colluded with others in the unlawful trafficking of any controlled substance?  Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item9d_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      261.079,
+      82.231,
+      271.079,
+      92.231
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 12. D. Are you the spouse or child of an alien who assisted, abetted, conspired, or colluded with others in the unlawful trafficking of any controlled substance?  Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item9e_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      663.999,
+      510.159,
+      673.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 12. E. Within the previous five years, have you EVER obtained any financial or other benefit from the unlawful activity of your spouse (including former spouses) or parents, and you knew, or reasonably should have known, that the financial or other benefit was the product of such illicit activity? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item9e_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      663.999,
+      552.16,
+      673.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER been convicted of or have you EVER committed acts which constitute the essential elements of. 12. E. Within the previous five years, have you EVER obtained any financial or other benefit from the unlawful activity of your spouse (including former spouses) or parents, and you knew, or reasonably should have known, that the financial or other benefit was the product of such illicit activity? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item11a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      598,
+      510.159,
+      608
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following. 13. A. Any activity to violate any law of the United States relating to espionage or sabotage? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item11a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      598,
+      552.16,
+      608
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following.  13. A. Any activity to violate any law of the United States relating to espionage or sabotage? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item11b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      549.998,
+      510.159,
+      559.998
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following.  13. B. Any activity to violate or evade any law prohibiting the export from the United States of goods, technology, or sensitive information? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item11b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      549.998,
+      552.16,
+      559.998
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following. 13. B. Any activity to violate or evade any law prohibiting the export from the United States of goods, technology, or sensitive information? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item11c_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      513.998,
+      510.159,
+      523.998
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following. 13. C. Any other unlawful activity in the United States? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item11c_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      513.998,
+      552.16,
+      523.998
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following. 13. C. Any other unlawful activity in the United States? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item11d_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      418,
+      510.159,
+      428
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following. 13. D. Any activity in which a purpose is to oppose, control, or overthrow the Government of the United States by force, violence, or other unlawful means, including but not limited to participating in such activities, giving support to others involved in such activities, or being a member or representative of a terrorist organization? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item11d_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      418,
+      552.16,
+      428
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following. 13. D. Any activity in which a purpose is to oppose, control, or overthrow the Government of the United States by force, violence, or other unlawful means, including but not limited to participating in such activities, giving support to others involved in such activities, or being a member or representative of a terrorist organization? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item12a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      382,
+      510.159,
+      392
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following. 14. A. Have you EVER or are you NOW engaged in terrorist activities? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item12a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      382,
+      552.16,
+      392
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following. 14. A. Have you EVER or are you NOW engaged in terrorist activities? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item12b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      321.999,
+      510.159,
+      331.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following. 14. B. Have you EVER or are you NOW engaged in or plan to engage in activities in the United States that would have potentially serious adverse foreign policy consequences for the United States? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item12b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      321.999,
+      552.16,
+      331.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following.  14. B. Have you EVER or are you NOW engaged in or plan to engage in activities in the United States that would have potentially serious adverse foreign policy consequences for the United States? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item12c_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      274,
+      510.159,
+      284
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following.  14. C. Have you EVER been or are you NOW a member of the Communist or other totalitarian party, except when membership was involuntary? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item12c_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      274,
+      552.16,
+      284
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following.  14. C. Have you EVER been or are you NOW a member of the Communist or other totalitarian party, except when membership was involuntary? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item12d_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      238,
+      510.159,
+      248
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following. 14. D. Have you EVER participated in Nazi persecution or genocide? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item12d_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      238,
+      552.16,
+      248
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER engaged, or do you plan to engage, solely, principally, or incidentally, in any of the following. 14. D. Have you EVER participated in Nazi persecution or genocide? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item13a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      171.998,
+      510.159,
+      181.998
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 15. A. Arrested, for breaking or violating any law or ordinance, excluding minor traffic violations? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item13a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      171.998,
+      552.16,
+      181.998
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 15. A. Arrested, for breaking or violating any law or ordinance, excluding minor traffic violations? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item13b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      123.999,
+      510.159,
+      133.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been.  15. B. Cited, charged, or indicted, for breaking or violating any law or ordinance, excluding minor traffic violations? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item13b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      123.999,
+      552.16,
+      133.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 15. B. Cited, charged, or indicted, for breaking or violating any law or ordinance, excluding minor traffic violations? Select No."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item13c_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      63.998,
+      510.159,
+      73.998
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 15. C. Been convicted, fined, imprisoned, placed on probation, received a suspended sentence or deferral of adjudication for breaking or violating any law or ordinance, excluding minor traffic violations? Select Yes."
+  },
+  {
+    "page": 7,
+    "name": "Part7_Item13c_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      63.998,
+      552.16,
+      73.998
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 15. C. Been convicted, fined, imprisoned, placed on probation, received a suspended sentence or deferral of adjudication for breaking or violating any law or ordinance, excluding minor traffic violations? Select No."
+  },
+  {
+    "page": 8,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item17_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      436.006,
+      228.16,
+      446.006
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 19. Have you EVER been or do you intend to be involved in any other commercial vice? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item17_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      436.006,
+      270.161,
+      446.006
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 19. Have you EVER been or do you intend to be involved in any other commercial vice? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item18a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      400.003,
+      228.16,
+      410.003
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 20. A. Have you EVER been ordered removed, and been deported from the United States? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item18a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      400.003,
+      270.161,
+      410.003
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 20. A. Have you EVER been ordered removed, and been deported from the United States? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item18b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      364.006,
+      228.16,
+      374.006
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 20. B. Have you EVER voluntarily departed the United States under an order of removal? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item18b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      364.006,
+      270.161,
+      374.006
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 20. B. Have you EVER voluntarily departed the United States under an order of removal? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item18c_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      304.005,
+      228.16,
+      314.005
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 20. C. If you answered \"Yes\" to either Item Number 20. A. or 20.b. above, have you re-entered the United States unlawfully at any time after you were deported or you voluntarily departed? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item18c_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      304.005,
+      270.161,
+      314.005
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 20. C. If you answered \"Yes\" to either Item Number 20. A. or 20.b. above, have you re-entered the United States unlawfully at any time after you were deported or you voluntarily departed? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item18d_YND[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      135.159,
+      256.006,
+      145.159,
+      266.006
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 20. D. If you answered \"Yes\" to Item Number 20.c. above, has DHS reinstated your prior order of removal? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item18d_YND[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      177.16,
+      256.006,
+      187.16,
+      266.006
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 20. D. If you answered \"Yes\" to Item Number 20.c. above, has DHS reinstated your prior order of removal? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item18e_YND[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      208.004,
+      228.16,
+      218.004
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 20. E. Have you EVER failed to attend or remain in attendance at any immigration proceedings to determine your admissibility or deportability? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item18e_YND[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      208.004,
+      270.161,
+      218.004
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 20. E. Have you EVER failed to attend or remain in attendance at any immigration proceedings to determine your admissibility or deportability? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item18d_YND[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      256.006,
+      228.16,
+      266.006
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 20. D. If you answered \"Yes\" to Item Number 20.c. above, has DHS reinstated your prior order of removal? Select I Do Not Know."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item19_YND[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      148.006,
+      228.16,
+      158.006
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 21. Have you EVER, by fraud or willfully misrepresenting a material fact, sought to obtain a visa or other documentation, admission to the United States, or any other immigration benefit? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item19_YND[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      148.006,
+      270.161,
+      158.006
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 21. Have you EVER, by fraud or willfully misrepresenting a material fact, sought to obtain a visa or other documentation, admission to the United States, or any other immigration benefit? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item20_YND[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      112.003,
+      228.16,
+      122.003
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. Part 7. Eligibility Standards. Human Rights Violations. If you have ever engaged in, ordered, incited, assisted, or otherwise participated in any human rights violations, you must provide information about the events, including the place and date, and a description of the event regardless of the country where the events occurred. 22. Have you EVER assisted any other person to enter the United States in violation of the law? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item20_YND[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      112.003,
+      270.161,
+      122.003
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 22. Have you EVER assisted any other person to enter the United States in violation of the law? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item21a_YND[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      712.001,
+      510.159,
+      722.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 23. A. Do you NOW have a communicable disease of public health significance? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item21a_YND[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      712.001,
+      552.16,
+      722.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 23. A. Do you NOW have a communicable disease of public health significance? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item21b_YND[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      640.001,
+      510.159,
+      650.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 23. B. Do you NOW have or have you EVER had a physical or mental disorder and behavior (or a history of behavior that is likely to recur) associated with the disorder which has posed or may pose a threat to the property, safety, or welfare of yourself or others?  Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item21b_YND[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      640.001,
+      552.16,
+      650.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 23. B. Do you NOW have or have you EVER had a physical or mental disorder and behavior (or a history of behavior that is likely to recur) associated with the disorder which has posed or may pose a threat to the property, safety, or welfare of yourself or others?  Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item21c_YND[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      604.001,
+      510.159,
+      614.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 23. C. Are you NOW or have you EVER been a drug abuser or drug addict?  Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item21c_YND[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      604.001,
+      552.16,
+      614.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 23. C. Are you NOW or have you EVER been a drug abuser or drug addict?  Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item22_YND[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      568.001,
+      510.159,
+      578.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 24. Have you EVER entered the United States as a stowaway? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item22_YND[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      568.001,
+      552.16,
+      578.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 24. Have you EVER entered the United States as a stowaway? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item23_YND[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      496.001,
+      510.159,
+      506.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 25. Did the former Immigration and Naturalization Service (I N S) EVER impose, or has DHS EVER imposed, civil monetary penalties on you for producing or using false documentation to obtain an immigration benefit? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item23_YND[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      496.001,
+      552.16,
+      506.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 25. Did the former Immigration and Naturalization Service (I N S) EVER impose, or has DHS EVER imposed, civil monetary penalties on you for producing or using false documentation to obtain an immigration benefit? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item24_YND[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      436,
+      510.159,
+      446
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 26. Are you NOW subject to a final order for violation of section 274C (producing and/or using false documentation to unlawfully satisfy a requirement of the Immigration and Nationality Act)? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item24_YND[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      436,
+      552.16,
+      446
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 26. Are you NOW subject to a final order for violation of section 274C (producing and/or using false documentation to unlawfully satisfy a requirement of the Immigration and Nationality Act)? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item25_YND[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      411.999,
+      510.159,
+      421.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 27. Do you NOW practice polygamy? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item25_YND[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      411.999,
+      552.16,
+      421.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 27. Do you NOW practice polygamy? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item26_YND[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      339.999,
+      510.159,
+      349.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 28. Are you NOW the guardian of, and are you accompanying, another individual who has been found to be inadmissible and who has been certified by a medical examiner to be helpless due to sickness, physical or mental disability, or infancy? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item26_YND[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      339.999,
+      552.16,
+      349.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 28. Are you NOW the guardian of, and are you accompanying, another individual who has been found to be inadmissible and who has been certified by a medical examiner to be helpless due to sickness, physical or mental disability, or infancy? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item16c_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      472.006,
+      228.16,
+      482.006
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 18. C. Have you EVER, within the past 10 years, received, in whole or in part, the proceeds of prostitution? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item16c_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      472.006,
+      270.161,
+      482.006
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 18. C. Have you EVER, within the past 10 years, received, in whole or in part, the proceeds of prostitution? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item16b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      520.005,
+      228.16,
+      530.005
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 18. B. Have you EVER, within the past 10 years (either directly or indirectly) procured or attempted to procure or import prostitutes or persons for the purpose of prostitution? 18. B. Have you EVER, within the past 10 years (either directly or indirectly) procured or attempted to procure or import prostitutes or persons for the purpose of prostitution? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item16b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      520.005,
+      270.161,
+      530.005
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been.18. B. Have you EVER, within the past 10 years (either directly or indirectly) procured or attempted to procure or import prostitutes or persons for the purpose of prostitution? 18. B. Have you EVER, within the past 10 years (either directly or indirectly) procured or attempted to procure or import prostitutes or persons for the purpose of prostitution? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item27_YND[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      280.001,
+      510.159,
+      290.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 29. Have you EVER detained, retained, or withheld the custody of a child having a lawful claim to U.S. citizenship, outside the United States, from a U.S. citizen granted custody? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item27_YND[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      280.001,
+      552.16,
+      290.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 29. Have you EVER detained, retained, or withheld the custody of a child having a lawful claim to U.S. citizenship, outside the United States, from a U.S. citizen granted custody? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item29a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      213.999,
+      510.159,
+      223.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER ordered, incited, called for, committed, assisted, helped with, or otherwise participated in any of the following. 30. A. Acts involving torture or genocide? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item29a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.667,
+      213.999,
+      552.667,
+      223.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER ordered, incited, called for, committed, assisted, helped with, or otherwise participated in any of the following. 30. A. Acts involving torture or genocide? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item29b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      190.001,
+      510.159,
+      200.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER ordered, incited, called for, committed, assisted, helped with, or otherwise participated in any of the following.  30. B. Killing any person? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item29b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      190.001,
+      552.16,
+      200.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER ordered, incited, called for, committed, assisted, helped with, or otherwise participated in any of the following.  30. B. Killing any person? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item29c_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      502.569,
+      153.998,
+      512.569,
+      163.998
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER ordered, incited, called for, committed, assisted, helped with, or otherwise participated in any of the following. 30. C. Intentionally and severely injuring any person? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item29c_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      154.001,
+      552.16,
+      164.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER ordered, incited, called for, committed, assisted, helped with, or otherwise participated in any of the following.  30. C. Intentionally and severely injuring any person? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item29d_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      105.999,
+      510.159,
+      115.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER ordered, incited, called for, committed, assisted, helped with, or otherwise participated in any of the following.  30. D. Engaging in any kind of sexual contact or relations with any person who was being forced or threatened? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item29d_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      105.999,
+      552.16,
+      115.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER ordered, incited, called for, committed, assisted, helped with, or otherwise participated in any of the following.  30. D. Engaging in any kind of sexual contact or relations with any person who was being forced or threatened? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item29e_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      69.999,
+      510.159,
+      79.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER ordered, incited, called for, committed, assisted, helped with, or otherwise participated in any of the following.  30. E. Limiting or denying any person's ability to exercise religious beliefs? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item29e_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      69.999,
+      552.16,
+      79.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER ordered, incited, called for, committed, assisted, helped with, or otherwise participated in any of the following.  30. E. Limiting or denying any person's ability to exercise religious beliefs? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item14_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      676.001,
+      228.16,
+      686.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 16. Have you EVER been the beneficiary of a pardon, amnesty, rehabilitation decree, other act of clemency, or similar action? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item14_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      676.001,
+      270.161,
+      686.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 16. Have you EVER been the beneficiary of a pardon, amnesty, rehabilitation decree, other act of clemency, or similar action? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item15_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      627.999,
+      228.16,
+      637.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 17. Have you EVER committed a serious criminal offense in the United States and asserted immunity from prosecution? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item15_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      627.999,
+      270.161,
+      637.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 17. Have you EVER committed a serious criminal offense in the United States and asserted immunity from prosecution? Select No."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item16a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      580,
+      228.16,
+      590
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 18. A. Have you EVER, within the past 10 years, or are you NOW engaged in prostitution or procurement of prostitution? Select Yes."
+  },
+  {
+    "page": 8,
+    "name": "Part7_Item16a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      580,
+      270.161,
+      590
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER, whether in the United States or any other country been. 18. A. Have you EVER, within the past 10 years, or are you NOW engaged in prostitution or procurement of prostitution? Select No."
+  },
+  {
+    "page": 9,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item33_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      454,
+      228.16,
+      464
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 33. Have you EVER assisted with or participated in selling or providing weapons to any person who to your knowledge used them against another person, or in transporting weapons to any person who to your knowledge used them against another person?  Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item33_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      454,
+      270.161,
+      464
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 33. Have you EVER assisted with or participated in selling or providing weapons to any person who to your knowledge used them against another person, or in transporting weapons to any person who to your knowledge used them against another person?  Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item34_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      418,
+      228.16,
+      428
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 34. Have you EVER received any type of military, paramilitary, or weapons training? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item34_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      418,
+      270.161,
+      428
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 34. Have you EVER received any type of military, paramilitary, or weapons training? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item35_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      382,
+      228.16,
+      392
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 35. Have you EVER unlawfully voted in a United States Federal, state, or local election? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item35_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      382,
+      270.161,
+      392
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 35. Have you EVER unlawfully voted in a United States Federal, state, or local election? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item36_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      346,
+      228.16,
+      356
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 36. Have you EVER claimed to be a U. S. citizen (in writing or in any other way)? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item36_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      346,
+      270.161,
+      356
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 36. Have you EVER claimed to be a U. S. citizen (in writing or in any other way)? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item37a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      298.001,
+      228.16,
+      308.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 37. A. Have you EVER recruited, enlisted, conscripted, or used any person under 15 years of age to serve in or help an armed force or group?  Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item37a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      298.001,
+      270.161,
+      308.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 37. A. Have you EVER recruited, enlisted, conscripted, or used any person under 15 years of age to serve in or help an armed force or group?  Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item37b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      249.999,
+      228.16,
+      259.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 37. B. Have you EVER used any person under 15 years of age to take part in hostilities or to help or provide services to people in combat? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item37b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      249.999,
+      270.161,
+      259.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 37. B. Have you EVER used any person under 15 years of age to take part in hostilities or to help or provide services to people in combat? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item38a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      177.999,
+      228.16,
+      187.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 38. A. Have you EVER committed or conspired to commit human trafficking offenses, as defined in the section 103 of the Victims of Trafficking and Violence Protection Act of 2000, in the United States or outside the United States? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item38a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      177.999,
+      270.161,
+      187.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 38. A. Have you EVER committed or conspired to commit human trafficking offenses, as defined in the section 103 of the Victims of Trafficking and Violence Protection Act of 2000, in the United States or outside the United States? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item38b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      130,
+      228.16,
+      140
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 38. B. Have you EVER knowingly aided, abetted, assisted, conspired, or colluded with a human trafficker? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item38b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      130,
+      270.161,
+      140
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 38. B. Have you EVER knowingly aided, abetted, assisted, conspired, or colluded with a human trafficker? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item38c_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      82.001,
+      228.16,
+      92.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 38. C. Are you NOW the spouse or child of an alien who committed or conspired to commit human trafficking offenses? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item38c_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      82.001,
+      270.161,
+      92.001
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 38. C. Are you NOW the spouse or child of an alien who committed or conspired to commit human trafficking offenses? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item38d_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      688,
+      510.159,
+      698
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 38. D. Are you NOW the spouse or child of, or are you yourself, an alien who knowingly aided, abetted, assisted, conspired, or colluded with a human trafficker? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item38d_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      688,
+      552.16,
+      698
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 38. D. Are you NOW the spouse or child of, or are you yourself, an alien who knowingly aided, abetted, assisted, conspired, or colluded with a human trafficker? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item38e_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      592.002,
+      510.159,
+      602.002
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 38. E. Within the previous five years, have you EVER obtained any financial or other benefit from the human trafficking activity of your spouse (including former spouses) or parents, and you knew, or reasonably should have known, that the financial or other benefit that you received resulted from such human trafficking? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item38e_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      592.002,
+      552.16,
+      602.002
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 38. E. Within the previous five years, have you EVER obtained any financial or other benefit from the human trafficking activity of your spouse (including former spouses) or parents, and you knew, or reasonably should have known, that the financial or other benefit that you received resulted from such human trafficking? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item39a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      544.003,
+      510.159,
+      554.003
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 39. A. Are you NOW or have you EVER engaged in money laundering as described in section 1956 or 1957 of Title 18, United States Code? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item39a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      544.003,
+      552.16,
+      554.003
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 39. A. Are you NOW or have you EVER engaged in money laundering as described in section 1956 or 1957 of Title 18, United States Code? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item39b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      495.998,
+      510.159,
+      505.998
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 39. B. Are you NOW or have you EVER been a knowing aider, abettor, assister, conspirator, or colluder with others in money laundering? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item39b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      495.998,
+      552.16,
+      505.998
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 39. B. Are you NOW or have you EVER been a knowing aider, abettor, assister, conspirator, or colluder with others in money laundering? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item40a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      411.999,
+      510.159,
+      421.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations.  40. Have you EVER been responsible for or directly carried out particularly severe violations of religious freedom, as defined in section 3 of the International Religious Freedom Act of 1998 (22 U.S.C. section 6402) while serving as a foreign government official? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item40a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      411.999,
+      552.16,
+      421.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations.  40. Have you EVER been responsible for or directly carried out particularly severe violations of religious freedom, as defined in section 3 of the International Religious Freedom Act of 1998 (22 U.S.C. section 6402) while serving as a foreign government official? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item41_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      364,
+      510.159,
+      374
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER.  41. Has an immigration judge or the Board of Immigration Appeals EVER determined that you filed a frivolous asylum application in the past? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item41_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.16,
+      364,
+      552.16,
+      374
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 41. Has an immigration judge or the Board of Immigration Appeals EVER determined that you filed a frivolous asylum application in the past? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part8_Item1_AppStmt[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342.999,
+      199,
+      352.999,
+      209
+    ],
+    "tooltip": "Part 8.  Applicant's Statement, Contact Information, Certification, and Signature. NOTE:  Read the Penalties section of the Form I-8 21 Instructions before completing this part.  You must file Form I-8 21 while in the United States. Applicant's Statement. NOTE:  Select the box for either Item Number 1. A. or 1. B. If applicable, select the box for Item Number 2. 1. A. Select I can read and understand English, and I have read and understand every question and instruction on this application and my answer to every question."
+  },
+  {
+    "page": 9,
+    "name": "Part8_Item2_Preparer[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342.999,
+      85.002,
+      352.999,
+      95.002
+    ],
+    "tooltip": "Part 8.  Applicant's Statement, Contact Information, Certification, and Signature. Applicant's Statement. 2. Select At my request, the preparer named in Part 10., prepared this application for me based only upon information I provided or authorized.  "
+  },
+  {
+    "page": 9,
+    "name": "Part8_Item2_PrepName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      360,
+      65.999,
+      558,
+      83.999
+    ],
+    "tooltip": "Part 8.  Applicant's Statement, Contact Information, Certification, and Signature. Applicant's Statement.  2. Enter the preparer name in Part 10."
+  },
+  {
+    "page": 9,
+    "name": "Part8_Item1_AppStmt[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      342.999,
+      157.002,
+      352.999,
+      167.002
+    ],
+    "tooltip": "Part 8.  Applicant's Statement, Contact Information, Certification, and Signature. Applicant's Statement. 1. B. Select The interpreter named in Part 9. read to me every question and instruction on this application and my answer to every question in a language in which I am fluent, and I understood everything."
+  },
+  {
+    "page": 9,
+    "name": "Part8_Item1_Language[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      474.001,
+      125.697,
+      576,
+      143.697
+    ],
+    "tooltip": "Part 8.  Applicant's Statement, Contact Information, Certification, and Signature.  Applicant's Statement.  1. B. The interpreter named in Part 9. read to me every question and instruction on this application and my  answer to every question in. Enter Language."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item31a_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      645.999,
+      228.16,
+      655.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 31. A. Served in, been a member of, assisted in, or participated in any military unit, paramilitary unit, police unit, self-defense unit, vigilante unit, rebel group, guerrilla group, militia, or insurgent organization? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item31a_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      645.999,
+      270.161,
+      655.999
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 31. A. Served in, been a member of, assisted in, or participated in any military unit, paramilitary unit, police unit, self-defense unit, vigilante unit, rebel group, guerrilla group, militia, or insurgent organization? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item31b_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      598,
+      228.16,
+      608
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 31. B. Served or worked in any prison, jail, prison camp, detention facility, labor camp, or any other situation that involved detaining persons? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item31b_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      598,
+      270.161,
+      608
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. Have you EVER. 31. B. Served or worked in any prison, jail, prison camp, detention facility, labor camp, or any other situation that involved detaining persons? Select No."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item32_YN[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      526,
+      228.16,
+      536
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 32. Have you EVER been a member of, assisted in, or participated in any group, unit, or organization of any kind in which you or other persons used any type of weapon against any person or threatened to do so? Select Yes."
+  },
+  {
+    "page": 9,
+    "name": "Part7_Item32_YN[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      526,
+      270.161,
+      536
+    ],
+    "tooltip": "Part 7. Eligibility Standards. Human Rights Violations. 32. Have you EVER been a member of, assisted in, or participated in any group, unit, or organization of any kind in which you or other persons used any type of weapon against any person or threatened to do so? Select No."
+  },
+  {
+    "page": 10,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item1_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      623.999,
+      576,
+      641.999
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Full Name. 1. A. Enter Interpreter's Family Name (Last Name)."
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item1_GivenName[1]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      587.999,
+      576,
+      605.999
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Full Name. 1. B. Enter Interpreter's Given Name (First Name)."
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item2_OrgName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      551.951,
+      576,
+      569.951
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Full Name. 2. Enter Interpreter's Business or Organization Name (if any)."
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item3_StreetNumberName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      497.999,
+      576.003,
+      515.999
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Mailing Address. 3. A. Enter Street Number and Name.  "
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item3_Unit[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      477.998,
+      352,
+      487.998
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Mailing Address. 3. B. Select Apartment."
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item3_Unit[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      384.001,
+      477.998,
+      394.001,
+      487.998
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Mailing Address. 3. B.  Select Suite."
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item3_Unit[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      425.999,
+      477.998,
+      435.999,
+      487.998
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Mailing Address. 3. B.  Select Floor."
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item3_AptSteFlrNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      468,
+      473.998,
+      576,
+      491.998
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Mailing Address. 3. B.  Enter Apartment, Suite or Floor Number."
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item3_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      450,
+      576.003,
+      468
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Mailing Address. 3. C.  Enter City or Town."
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item3_State[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      366.001,
+      425.999,
+      402.001,
+      443.999
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Mailing Address. 3. D.  Select State from a List of States."
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item3_ZipCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      474.001,
+      425.999,
+      576,
+      443.999
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Mailing Address. 3. E. Enter ZIP Code. "
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item3_Province[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      401.995,
+      401.998,
+      575.869,
+      419.998
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Mailing Address. 3. F. Enter the Province."
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item3_PostalCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      401.995,
+      378,
+      575.869,
+      396
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Mailing Address. 3. G. Enter the Postal Code."
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item3_Country[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      342,
+      576.003,
+      360
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Mailing Address. 3. H. Enter the Country."
+  },
+  {
+    "page": 10,
+    "name": "Part8_Item6a_Signature[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      137.999,
+      294.001,
+      155.999
+    ],
+    "tooltip": "Part 8.  Applicant's Statement, Contact Information, Certification, and Signature. Applicant's Signature. 6. A. Applicant's Signature. This signature field can not be signed with a digital signature and the signee's name can not be typewritten into this space. This is a protected field. Print and sign in ink."
+  },
+  {
+    "page": 10,
+    "name": "Part8_Item6b_DateofSignature[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      210.002,
+      114.001,
+      294.004,
+      132.001
+    ],
+    "tooltip": "Part 8.  Applicant's Statement, Contact Information, Certification, and Signature. Applicant's Signature. 6. B. Enter Date of Signature. Enter as 2 digit month, 2 digit day and 4 digit year. NOTE TO ALL APPLICANTS:  If you do not completely fill out this application or fail to submit required documents listed in the Instructions, U S C I S may deny your application. "
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item4_DaytimePhone[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      275.998,
+      576,
+      293.998
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Contact Information. 4. Enter Interpreter's Daytime Telephone Number."
+  },
+  {
+    "page": 10,
+    "name": "Part9_Item5_Email[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      203.998,
+      576,
+      221.998
+    ],
+    "tooltip": "Part 9.  Interpreter's Certification, Signature, and Contact Information. Provide the following information concerning the interpreter. Interpreter's Contact Information. 6. Enter Interpreter's Email Address (if any)."
+  },
+  {
+    "page": 10,
+    "name": "Part10_Item5_MobilePhone[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      239.998,
+      576,
+      257.998
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter. Interpreter's Contact Information. 5. Enter Interpreter's Mobile Telephone Number (if any)."
+  },
+  {
+    "page": 10,
+    "name": "Part8_Item3_DayPhone[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      636.001,
+      294.001,
+      654.001
+    ],
+    "tooltip": "Part 8.  Applicant's Statement, Contact Information, Certification, and Signature. Applicant's Contact Information. 3. Applicant's Daytime Telephone Number. Enter the telephone number including the area code or country code."
+  },
+  {
+    "page": 10,
+    "name": "Part8_Item4_MobilePhone[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      600.001,
+      294.001,
+      618.001
+    ],
+    "tooltip": "Part 8.  Applicant's Statement, Contact Information, Certification, and Signature. Applicant's Contact Information. 4. Applicant's Mobile Telephone Number ( if any). Enter the telephone number including the area code or country code."
+  },
+  {
+    "page": 10,
+    "name": "Part8_Item5_Email[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      564.001,
+      294.001,
+      582.001
+    ],
+    "tooltip": "Part 8.  Applicant's Statement, Contact Information, Certification, and Signature. Applicant's Contact Information. 5. Enter Applicant's Email Address (if any)."
+  },
+  {
+    "page": 10,
+    "name": "Part6_Item12_Province[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      426.237,
+      131.998,
+      570.481,
+      149.998
+    ],
+    "tooltip": "Part 6.  Interpreter's Certification, Signature, and Contact Information. Interpreter's Certification. I certify, under penalty of perjury, that I am fluent in English and which is the same language specified in Part 8., Item Number 1.b., and I have read to this applicant in the identified language every question and instruction on this application and his or her answer to every question.  The applicant informed me that he or she understands every instruction, question and answer on the application, including the Applicant's Certification, and has verified the accuracy of every answer. Enter Language."
+  },
+  {
+    "page": 11,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 11,
+    "name": "Part9_Item6_Signature[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.007,
+      648.003,
+      294.007,
+      666.003
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Signature. 7. A. Interpreter's Signature.  This signature field can not be signed with a digital signature and the signee's name can not be typewritten into this space. This is a protected field. Print and sign in ink."
+  },
+  {
+    "page": 11,
+    "name": "Part9_Item6_DateofSignature[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      210.008,
+      623.999,
+      294.01,
+      641.999
+    ],
+    "tooltip": "Part 9.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Signature. 7. B. Enter Date of Signature. Enter as 2 digit month, 2 digit day and 4 digit year."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item1_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      473.995,
+      294.001,
+      491.995
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Full Name. 1. A. Enter Preparer's Family Name (Last Name)."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item1_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      437.995,
+      294.001,
+      455.995
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Full Name. 1. B. Enter Preparer's Given Name (First Name)."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item2_OrgName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      402.001,
+      294.001,
+      420.001
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Full Name.  2. Enter Preparer's Business or Organization Name (if any)."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item3_StreetNumberName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      348.001,
+      293.998,
+      366.001
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Mailing Address. 3. A. Enter Street Number and Name.  "
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item3_Unit[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.001,
+      328,
+      70.001,
+      338
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Mailing Address. 3. B. Select Apartment."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item3_Unit[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      101.999,
+      328,
+      111.999,
+      338
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Mailing Address. 3. B. Select Suite."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item3_Unit[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      144,
+      328,
+      154,
+      338
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Mailing Address. 3. B. Select Floor."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item3_AptSteFlrNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      186.004,
+      324,
+      294.004,
+      342
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Mailing Address. 3. B. Enter Apartment, Suite or Floor Number."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item3_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      299.999,
+      293.998,
+      317.999
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Mailing Address. 3. C. Enter City or Town."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item3_State[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      84.002,
+      276.001,
+      120.002,
+      294.001
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Mailing Address. 3. D. Select State from a List of States."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item3_ZipCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      192.002,
+      276.001,
+      294.001,
+      294.001
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Mailing Address. 3. E. Enter ZIP Code. "
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item3_Province[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      252,
+      293.998,
+      270
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Mailing Address. 3. F. Enter the Province."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item3_PostalCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      227.999,
+      293.998,
+      245.999
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Mailing Address. 3. G. Enter the Postal Code."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item3_Country[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      191.999,
+      294.001,
+      209.999
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Mailing Address.  3. H. Enter the Country."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item7_PreparerStmt[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      343.237,
+      703,
+      353.237,
+      713
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Statement. 7. A. Select I am not an attorney or accredited representative but have prepared this application on behalf of the applicant and with the applicant's consent."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item7_PreparerStmt[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      343.237,
+      661.002,
+      353.237,
+      671.002
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Statement. 7. B. Select I am an attorney or accredited representative. NOTE:  If you are an attorney or accredited representative whose representation extends beyond preparation of this application, you may be obliged to submit a completed Form G-28, Notice of Entry of Appearance as Attorney or Accredited Representative, or G-28I, Notice of Entry of Appearance as Attorney In Matters Outside the Geographical Confines of the United States with this application."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item7b_Extend[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      361.237,
+      637.001,
+      371.237,
+      647.001
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Statement. 7. B.  Select I am an attorney or accredited representative and my representation of the applicant in this case extends beyond the preparation of this application."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item7b_NotExtend[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      409.236,
+      637.001,
+      419.236,
+      647.001
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Statement. 7. B.  Select I am an attorney or accredited representative and my representation of the applicant in this case does not extend beyond the preparation of this application."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item8a_Signature[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      324,
+      576,
+      342
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Preparer's Signature. 8. A. Preparer's Signature. This form can not be signed electronically.  The name of the preparer can not be typewritten into this space."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item8b_DateofSignature[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      493.061,
+      299.999,
+      576,
+      317.999
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Preparer's Signature. 8. B. Enter Date of Signature. Enter as 2 digit month, 2 digit day and 4 digit year."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item4_DaytimePhone[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      126,
+      294.001,
+      144
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Contact Information. 4. Preparer's Daytime Telephone Number. Enter the telephone number including the area code or country code."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item5_MobilePhone[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      90,
+      294.001,
+      108
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Contact Information. 5. Preparer's Mobile Telephone Number (if any). Enter the telephone number including the area code or country code."
+  },
+  {
+    "page": 11,
+    "name": "Part10_Item6_Email[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      54,
+      294.001,
+      72
+    ],
+    "tooltip": "Part 10.  Contact Information, Declaration, and Signature of the Person Preparing this Application, if Other Than the Applicant. Provide the following information concerning the preparer. Preparer's Contact Information. 6. Enter Preparer's Email Address."
+  },
+  {
+    "page": 12,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 12,
+    "name": "Part2_Item1_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.991,
+      587.999,
+      293.993,
+      605.999
+    ],
+    "tooltip": "Part 11.  Additional Information. If you need extra space to provide any additional information within this application, use the space below.  If you need more space than what is provided, you may make copies of this page to complete and file with this application or attach a separate sheet of paper.  Type or print your name and A-Number (if any) at the top of each sheet; indicate the Page Number, Part Number, and Item Number to which your answer refers; and sign and date each sheet. 1. A. Family Name (Last Name). (This field is pre-populated from Part 1.) "
+  },
+  {
+    "page": 12,
+    "name": "Part2_Item1_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.991,
+      564.001,
+      293.993,
+      582.001
+    ],
+    "tooltip": "Part 11.  Additional Information. 1. B. Given Name (First Name) (This field is pre-populated from Part 1.) "
+  },
+  {
+    "page": 12,
+    "name": "Part2_Item1_MiddleName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.991,
+      540,
+      293.99,
+      558
+    ],
+    "tooltip": "Part 11.  Additional Information. 1. C. Middle Name (This field is pre-populated from Part 1.) "
+  },
+  {
+    "page": 12,
+    "name": "AI_3a_PageNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      59.978,
+      474.001,
+      113.978,
+      492.001
+    ],
+    "tooltip": "Part 11.  Additional Information. 3. A. Enter Page Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_3b_PartNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      149.978,
+      474.001,
+      203.978,
+      492.001
+    ],
+    "tooltip": "Part 11.  Additional Information.  3. B. Enter Part Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_3c_ItemNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      239.978,
+      474.001,
+      293.978,
+      492.001
+    ],
+    "tooltip": "Part 11.  Additional Information. 3. C. Enter Item Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_3d_AdditionalInfo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      59.978,
+      288,
+      293.998,
+      468
+    ],
+    "tooltip": "Part 11.  Additional Information. 3. D. Enter additional information."
+  },
+  {
+    "page": 12,
+    "name": "AI_4a_PageNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      59.978,
+      245.999,
+      113.978,
+      263.999
+    ],
+    "tooltip": "Part 11.  Additional Information. 4. A. Enter Page Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_4b_PartNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      149.978,
+      245.999,
+      203.978,
+      263.999
+    ],
+    "tooltip": "Part 11.  Additional Information.  4. B. Enter Part Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_4c_ItemNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      239.978,
+      245.999,
+      293.978,
+      263.999
+    ],
+    "tooltip": "Part 11.  Additional Information. 4. C. Enter Item Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_4d_AdditionalInfo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      60.001,
+      294.001,
+      240.001
+    ],
+    "tooltip": "Part 11.  Additional Information. 4. D. Enter additional information."
+  },
+  {
+    "page": 12,
+    "name": "AI_5a_PageNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      341.991,
+      708.001,
+      395.991,
+      726.001
+    ],
+    "tooltip": "Part 11.  Additional Information. 5. A. Enter Page Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_5b_PartNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      431.991,
+      708.001,
+      485.991,
+      726.001
+    ],
+    "tooltip": "Part 11.  Additional Information. 5. B. Enter Part Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_5c_ItemNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      521.991,
+      708.001,
+      575.991,
+      726.001
+    ],
+    "tooltip": "Part 11.  Additional Information. 5. C. Enter Item Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_6a_PageNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      341.991,
+      474.001,
+      395.991,
+      492.001
+    ],
+    "tooltip": "Part 11.  Additional Information. 6. A. Enter Page Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_6b_PartNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      431.991,
+      474.001,
+      485.991,
+      492.001
+    ],
+    "tooltip": "Part 11.  Additional Information.  6. B. Enter Part Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_6c_ItemNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      521.991,
+      474.001,
+      575.991,
+      492.001
+    ],
+    "tooltip": "Part 11.  Additional Information. 6. C. Enter Item Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_7a_PageNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      341.991,
+      246.002,
+      395.991,
+      264.002
+    ],
+    "tooltip": "Part 11.  Additional Information.  7. A. Enter Page Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_7b_PartNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      431.991,
+      246.002,
+      485.991,
+      264.002
+    ],
+    "tooltip": "Part 11.  Additional Information.  7. B. Enter Part Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_7c_ItemNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      521.991,
+      246.002,
+      575.991,
+      264.002
+    ],
+    "tooltip": "Part 11.  Additional Information.  7. C. Enter Item Number."
+  },
+  {
+    "page": 12,
+    "name": "AI_7d_AdditionalInfo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      60.001,
+      576,
+      240.001
+    ],
+    "tooltip": "Part 11.  Additional Information. 7. D. Enter additional information."
+  },
+  {
+    "page": 12,
+    "name": "AI_5d_AdditionalInfo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      522,
+      576.02,
+      702
+    ],
+    "tooltip": "Part 11.  Additional Information.  5. D. Enter additional information."
+  },
+  {
+    "page": 12,
+    "name": "AI_6d_AdditionalInfo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      288,
+      576,
+      468
+    ],
+    "tooltip": "Part 11.  Additional Information.  6. D. Enter additional information."
+  },
+  {
+    "page": 12,
+    "name": "Part2_Item7_AlienNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      164.94,
+      515.999,
+      293.95,
+      533.999
+    ],
+    "tooltip": "Part 11.  Additional Information. 2.  A. Number (if any). (This field is pre-populated from Part 1.) "
+  }
+]

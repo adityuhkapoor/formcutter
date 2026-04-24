@@ -1,0 +1,1934 @@
+[
+  {
+    "page": 0,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 0,
+    "name": "Line1a_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120.002,
+      132.001,
+      294.001,
+      150.001
+    ],
+    "tooltip": "Part 2.  Information About You. Your Full Legal Name. 1. A. Enter Family Name, Last Name."
+  },
+  {
+    "page": 0,
+    "name": "Line1b_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120.002,
+      108.006,
+      294.001,
+      126.006
+    ],
+    "tooltip": "Part 2.  Information About You. Your Full Legal Name. 1.B. Enter Given Name, First Name."
+  },
+  {
+    "page": 0,
+    "name": "Line1c_MiddleName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120.002,
+      84.005,
+      294.001,
+      102.005
+    ],
+    "tooltip": "Part 2.  Information About You. Your Full Legal Name. 1.C. Enter Middle Name."
+  },
+  {
+    "page": 0,
+    "name": "Part1_Checkbox[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      61,
+      409.002,
+      71,
+      419.002
+    ],
+    "tooltip": "Part 1.  Reason for Applying. I am applying for (select only one box). 1. A. Select Initial Permission to accept employment."
+  },
+  {
+    "page": 0,
+    "name": "Part1_Checkbox[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      61,
+      391.002,
+      71,
+      401.002
+    ],
+    "tooltip": "Part 1.  Reason for Applying. I am applying for (select only one box). 1.B. Select Replacement of lost, stolen, or damaged employment authorization document, or correction of my employment authorization document NOT DUE to U.S. Citizenship and Immigration Services (USCIS) error. NOTE:  Replacement (correction) of an employment authorization document due to USCIS error does not require a new Form I-765 and filing fee.  Refer to  Replacement for Card Error in the What is the Filing Fee section of the Form I-765 Instructions for further details."
+  },
+  {
+    "page": 0,
+    "name": "Part1_Checkbox[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      61,
+      246.999,
+      71,
+      256.999
+    ],
+    "tooltip": "Part 1.  Reason for Applying. I am applying for (select only one box). 1.C. Select Renewal of my permission to accept employment. (Attach a copy of your previous employment authorization document.)"
+  },
+  {
+    "page": 0,
+    "name": "Line2a_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      366.001,
+      576,
+      384.001
+    ],
+    "tooltip": "Part 2.  Information About You. Other Names Used. Provide all other names you have ever used, including aliases, maiden name, and nicknames.  If you need extra space to complete this section, use the space provided in Part 6. Additional Information. 2. A. Enter  Family Name, Last Name."
+  },
+  {
+    "page": 0,
+    "name": "Line2b_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      342.006,
+      576,
+      360.006
+    ],
+    "tooltip": "Part 2.  Information About You. Other Names Used. Provide all other names you have ever used, including aliases, maiden name, and nicknames.  If you need extra space to complete this section, use the space provided in Part 6. Additional Information. 2.B. Enter  Given Name, First Name."
+  },
+  {
+    "page": 0,
+    "name": "Line2c_MiddleName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      318.005,
+      576,
+      336.005
+    ],
+    "tooltip": "Part 2.  Information About You. Other Names Used. Provide all other names you have ever used, including aliases, maiden name, and nicknames.  If you need extra space to complete this section, use the space provided in Part 6. Additional Information. 2.C. Enter Middle Name."
+  },
+  {
+    "page": 0,
+    "name": "Line3c_MiddleName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      162.003,
+      576,
+      180.003
+    ],
+    "tooltip": "Part 2.  Information About You. Other Names Used. Provide all other names you have ever used, including aliases, maiden name, and nicknames.  If you need extra space to complete this section, use the space provided in Part 6. Additional Information. 4.C. Enter Middle Name."
+  },
+  {
+    "page": 0,
+    "name": "Line3b_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      186.004,
+      576,
+      204.004
+    ],
+    "tooltip": "Part 2.  Information About You. Other Names Used. Provide all other names you have ever used, including aliases, maiden name, and nicknames.  If you need extra space to complete this section, use the space provided in Part 6. Additional Information. 4.B. Enter  Given Name, First Name."
+  },
+  {
+    "page": 0,
+    "name": "Line3a_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      209.999,
+      576,
+      227.999
+    ],
+    "tooltip": "Part 2.  Information About You. Other Names Used. Provide all other names you have ever used, including aliases, maiden name, and nicknames.  If you need extra space to complete this section, use the space provided in Part 6. Additional Information. 4. A. Enter  Family Name, Last Name."
+  },
+  {
+    "page": 0,
+    "name": "Line3a_FamilyName[1]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      288,
+      576,
+      306
+    ],
+    "tooltip": "Part 2.  Information About You. Other Names Used. Provide all other names you have ever used, including aliases, maiden name, and nicknames.  If you need extra space to complete this section, use the space provided in Part 6. Additional Information. 3. A. Enter  Family Name, Last Name."
+  },
+  {
+    "page": 0,
+    "name": "Line3b_GivenName[1]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      264.005,
+      576,
+      282.005
+    ],
+    "tooltip": "Part 2.  Information About You. Other Names Used. Provide all other names you have ever used, including aliases, maiden name, and nicknames.  If you need extra space to complete this section, use the space provided in Part 6. Additional Information. 3.B. Enter  Given Name, First Name."
+  },
+  {
+    "page": 0,
+    "name": "Line3c_MiddleName[1]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      240.004,
+      576,
+      258.004
+    ],
+    "tooltip": "Part 2.  Information About You. Other Names Used. Provide all other names you have ever used, including aliases, maiden name, and nicknames.  If you need extra space to complete this section, use the space provided in Part 6. Additional Information. 3.C. Enter Middle Name."
+  },
+  {
+    "page": 0,
+    "name": "CheckBox1[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      168.503,
+      529.001,
+      178.503,
+      539.001
+    ],
+    "tooltip": "To be completed by an attorney or Board of Immigration Appeals (B I. A.)-accredited representative (if any). Select this box if Form G-28 is attached."
+  },
+  {
+    "page": 0,
+    "name": "attorneyBarNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      264.005,
+      498.005,
+      384.007,
+      516.002
+    ],
+    "tooltip": "Attorney State Bar Number (if applicable)"
+  },
+  {
+    "page": 0,
+    "name": "USCISELISAcctNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      396.003,
+      498.002,
+      570.013,
+      516.002
+    ],
+    "tooltip": "To be completed by an attorney or Board of Immigration Appeals (B I. A.)-accredited representative (if any). Enter Attorney or Accredited Representative U S C I S Online Number (if any). Enter 12 characters."
+  },
+  {
+    "page": 1,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 1,
+    "name": "Part2Line5_Checkbox[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      260.161,
+      514.001,
+      270.161,
+      524.001
+    ],
+    "tooltip": "Part 2.  Information About You. Your U.S. Mailing Address. 6. Is your current mailing address the same as your physical address? Select No. NOTE:  If you answered \\215No\\216 to Item Number 6., provide your physical address below."
+  },
+  {
+    "page": 1,
+    "name": "Part2Line5_Checkbox[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      218.16,
+      514.001,
+      228.16,
+      524.001
+    ],
+    "tooltip": "Part 2.  Information About You. Your U.S. Mailing Address. 6. Is your current mailing address the same as your physical address? Select Yes."
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line7_Unit[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      101.999,
+      405.998,
+      111.999,
+      415.998
+    ],
+    "tooltip": "Part 2.  Information About You. U.S. Physical Address. 7. B. Select Suite.  "
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line7_Unit[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      144,
+      405.998,
+      154,
+      415.998
+    ],
+    "tooltip": "Part 2.  Information About You. U.S. Physical Address. 7. B. Select Designated Floor.  "
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line7_AptSteFlrNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      186.001,
+      401.998,
+      294.001,
+      419.998
+    ],
+    "tooltip": "Part 2.  Information About You. U.S. Physical Address. 7.B. Enter Apartment, Suite or Floor number."
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line7_Unit[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.001,
+      406.001,
+      70.001,
+      416.001
+    ],
+    "tooltip": "Part 2.  Information About You. U.S. Physical Address. 7. B. Select Apartment."
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line7_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      126,
+      378,
+      294.001,
+      396
+    ],
+    "tooltip": "Part 2.  Information About You. U.S. Physical Address. 7. C. Enter city or town."
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line7_State[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      84.002,
+      354.002,
+      120.002,
+      372.002
+    ],
+    "tooltip": "Part 2.  Information About You. U.S. Physical Address. 7. D. Select State from list of States."
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line7_ZipCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      192.002,
+      354.002,
+      294.001,
+      372.002
+    ],
+    "tooltip": "Part 2.  Information About You. U.S. Physical Address. 7. E. Enter ZIP Code."
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line7_StreetNumberName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      126,
+      426.002,
+      294.001,
+      444.002
+    ],
+    "tooltip": "Part 2.  Information About You. U.S. Physical Address. 7. A. Enter Street Number and Name."
+  },
+  {
+    "page": 1,
+    "name": "Line17b_CountryOfBirth[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      359.997,
+      576,
+      377.997
+    ],
+    "tooltip": "Part 2.  Information About You. Your Country or Countries of Citizenship or Nationality. List all countries where you are currently a citizen or national.  If you need extra space to complete this item, use the space provided in Part 6. Additional Information. 14. B. Enter the Country."
+  },
+  {
+    "page": 1,
+    "name": "Line17a_CountryOfBirth[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      395.997,
+      576,
+      413.997
+    ],
+    "tooltip": "Part 2.  Information About You. Your Country or Countries of Citizenship or Nationality. List all countries where you are currently a citizen or national.  If you need extra space to complete this item, use the space provided in Part 6. Additional Information. 14. A. Enter the Country."
+  },
+  {
+    "page": 1,
+    "name": "Line12b_SSN[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      446.947,
+      516.002,
+      575.957,
+      534.002
+    ],
+    "tooltip": "Part 2.  Information About You. Other Information. 13. Provide your Social Security Number (S S N) (if known). Enter 9 digit number."
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line5_Unit[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      102.002,
+      609.996,
+      112.002,
+      619.996
+    ],
+    "tooltip": "Part 2.  Information About You. Your U.S. Mailing Address. 5. C. Select Suite.  "
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line5_Unit[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      144,
+      609.996,
+      154,
+      619.996
+    ],
+    "tooltip": "Part 2.  Information About You. Your U.S. Mailing Address. 5. C. Select Designated Floor.  "
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line5_AptSteFlrNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      186.001,
+      605.996,
+      294.001,
+      623.996
+    ],
+    "tooltip": "Part 2.  Information About You. Your U.S. Mailing Address. 5. C. Enter Apartment, Suite or Floor Number."
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line5_Unit[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.001,
+      609.999,
+      70.001,
+      619.999
+    ],
+    "tooltip": "Part 2.  Information About You. Your U.S. Mailing Address. 5. C. Select Apartment."
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line5_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      126,
+      581.998,
+      294.001,
+      599.998
+    ],
+    "tooltip": "Part 2.  Information About You. Your U.S. Mailing Address. 5. D. Enter City or Town."
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line5_State[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      84.002,
+      558,
+      120.002,
+      576
+    ],
+    "tooltip": "Part 2.  Information About You. Your U.S. Mailing Address. 5. E Select state from list of states."
+  },
+  {
+    "page": 1,
+    "name": "Pt2Line5_ZipCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      192.002,
+      558,
+      294.001,
+      576
+    ],
+    "tooltip": "Part 2.  Information About You. Your U.S. Mailing Address. 5. F. Enter Zip Code."
+  },
+  {
+    "page": 1,
+    "name": "Line4b_StreetNumberName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      126,
+      630,
+      294.001,
+      648
+    ],
+    "tooltip": "Part 2.  Information About You. Your U.S. Mailing Address. 5. B. Enter Street Number and Name."
+  },
+  {
+    "page": 1,
+    "name": "Line4a_InCareofName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      653.998,
+      294.106,
+      671.998
+    ],
+    "tooltip": "Part 2.  Information About You. Your U.S. Mailing Address. 5. A. Enter In Care of Name, if any."
+  },
+  {
+    "page": 1,
+    "name": "Line7_AlienNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      445.19,
+      684,
+      575.83,
+      702
+    ],
+    "tooltip": "Part 2.  Information About You. Other Information. 8. Enter Alien Registration Number (A. number(, if any. Enter 9 digit number."
+  },
+  {
+    "page": 1,
+    "name": "Line8_ElisAccountNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.007,
+      648,
+      576.017,
+      666
+    ],
+    "tooltip": "Part 2.  Information About You. Other Information. 9. U SC I S Online Account Number, if any. Enter 12 characaters."
+  },
+  {
+    "page": 1,
+    "name": "Line9_Checkbox[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      527.998,
+      628.002,
+      537.998,
+      638.002
+    ],
+    "tooltip": "Part 2.  Information About You. Other Information. 10. Sex. Select Female."
+  },
+  {
+    "page": 1,
+    "name": "Line9_Checkbox[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      479.999,
+      628.002,
+      489.999,
+      638.002
+    ],
+    "tooltip": "Part 2.  Information About You. Other Information. 10. Sex. Select Male."
+  },
+  {
+    "page": 1,
+    "name": "Line10_Checkbox[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      522,
+      591.999,
+      532,
+      601.999
+    ],
+    "tooltip": "Part 2.  Information About You. Other Information. 11. Marital Status. Select Widowed."
+  },
+  {
+    "page": 1,
+    "name": "Line10_Checkbox[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      455.998,
+      591.999,
+      465.998,
+      601.999
+    ],
+    "tooltip": "Part 2.  Information About You. Other Information. 11. Marital Status. Select Divorced."
+  },
+  {
+    "page": 1,
+    "name": "Line10_Checkbox[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      591.999,
+      352,
+      601.999
+    ],
+    "tooltip": "Part 2.  Information About You. Other Information. 11. Marital Status. Select Single."
+  },
+  {
+    "page": 1,
+    "name": "Line10_Checkbox[3]",
+    "fieldType": "/Btn",
+    "rect": [
+      396,
+      591.999,
+      406,
+      601.999
+    ],
+    "tooltip": "Part 2.  Information About You. Other Information. 11. Marital Status. Select Married."
+  },
+  {
+    "page": 1,
+    "name": "Line19_Checkbox[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      542.157,
+      556.002,
+      552.157,
+      566.002
+    ],
+    "tooltip": "Part 2.  Information About You. Other Information. 12. Have you previously filed Form I - 7 65? Select No."
+  },
+  {
+    "page": 1,
+    "name": "Line19_Checkbox[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      555.857,
+      510.159,
+      565.857
+    ],
+    "tooltip": "Part 2.  Information About You. Other Information. 12. Have you previously filed Form I - 7 65? Select Yes."
+  },
+  {
+    "page": 2,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 2,
+    "name": "Line20c_TravelDoc[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      372.002,
+      294.001,
+      390.002
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Last Arrival in the United States. 19. Enter your Travel Document Number (if any)."
+  },
+  {
+    "page": 2,
+    "name": "Line21_DateOfLastEntry[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      198,
+      264.002,
+      294.001,
+      282.002
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Last Arrival in the United States. 22. Enter the Date of your Last Entry into the U.S. Enter the 2-digit Month, 2-digit Day and 4-digit Year."
+  },
+  {
+    "page": 2,
+    "name": "Line20e_ExpDate[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      198,
+      300.008,
+      294.001,
+      318.008
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Last Arrival in the United States. 21. Enter the Expiration Date for your Passport or Travel Document. Enter the 2-digit month, 2 digit-Day and 4-digit Year."
+  },
+  {
+    "page": 2,
+    "name": "Line20d_CountryOfIssuance[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      336.005,
+      294.001,
+      354.005
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Last Arrival in the United States. 20. Enter Country That Issued Your Passport or Travel Document."
+  },
+  {
+    "page": 2,
+    "name": "Line20b_Passport[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      408.008,
+      294.001,
+      426.008
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Last Arrival in the United States. 18. Enter Passport Number of Your Most Recently Issued Passport."
+  },
+  {
+    "page": 2,
+    "name": "Line23_StatusLastEntry[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      180,
+      294.001,
+      198
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Last Arrival in the United States. 24. Enter Immigration Status at Your Last Arrival (B - 2 visitor, F - 1 student or no status)."
+  },
+  {
+    "page": 2,
+    "name": "Line24_CurrentStatus[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      119.999,
+      294.001,
+      137.999
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Last Arrival in the United States. 25. Enter Your Current Immigration Status or Category (for example, B - 2 visitor, F - 1 student, parolee, deferred action, or no status or category)."
+  },
+  {
+    "page": 2,
+    "name": "Line26_SEVISnumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      162,
+      72,
+      294.001,
+      90
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Last Arrival in the United States. 26. Enter Student and Exchange Visitor Information System (SEVIS) number (if any)."
+  },
+  {
+    "page": 2,
+    "name": "Line27b_Everify[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      522.003,
+      576,
+      540.003
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Eligibility Category. 28. B. Enter your Employer's Name as Listed in E Verify."
+  },
+  {
+    "page": 2,
+    "name": "Line27c_EverifyIDNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      474.001,
+      576,
+      492.001
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Eligibility Category. 28.C. Enter your Employer's E Verify Company Identification Number or a valid E Verify Client Company Identification Number."
+  },
+  {
+    "page": 2,
+    "name": "PtLine29_YesNo[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      333.998,
+      510.159,
+      343.998
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Eligibility Category. 30. (c)(8) Eligibility Category.  If you entered the eligibility category (c)(8) in Item Number 27., have you EVER been arrested for and/or convicted of any crime? Select Yes. NOTE:  If you answered \\215Yes\\216 to Item Number 30., refer to Special Filing Instructions for Those With Pending Asylum Applications (c)(8) in the Required Documentation section of the Form I - 7 65 Instructions for information about providing court dispositions."
+  },
+  {
+    "page": 2,
+    "name": "PtLine29_YesNo[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      541.919,
+      333.998,
+      551.919,
+      343.998
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Eligibility Category. 30. (c)(8) Eligibility Category.  If you entered the eligibility category (c)(8) in Item Number 27., have you EVER been arrested for and/or convicted of any crime? Select No."
+  },
+  {
+    "page": 2,
+    "name": "Line30a_ReceiptNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      388.001,
+      155.999,
+      576.403,
+      173.999
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Eligibility Category. 31. A. (c)(35) and (c)(36) Eligibility Category.  If you entered the eligibility category (c)(35) in Item Number 27., please provide the receipt number of your Form I - 7 97 Notice for Form I - 1 40, Immigrant Petition for Alien Worker.  If you entered the eligibility category (c)(36) in Item Number 27., please provide the receipt number of your spouse's or parent's Form I - 7 97 Notice for Form I - 1 40. Enter 13 Characters."
+  },
+  {
+    "page": 2,
+    "name": "Line28_ReceiptNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      387.598,
+      389.996,
+      576,
+      407.996
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Eligibility Category. 29. (c)(26) Eligibility Category.  If you entered the eligibility category (c)(26) in Item Number 27., provide the receipt number of your H - 1 B spouse's most recent Form I - 7 97 Notice for Form I - 1 29, Petition for a Nonimmigrant Worker. Enter 13 Characters."
+  },
+  {
+    "page": 2,
+    "name": "Line27a_Degree[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      378,
+      558,
+      576,
+      576
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Eligibility Category. 28. (c)(3)(C) STEM OPT Eligibility Category.  If you entered the eligibility category (c)(3)(C) in Item Number 27., provide the information requested in Item Numbers 28. A. - 28. C. 28. A. Enter Degree,"
+  },
+  {
+    "page": 2,
+    "name": "Line20a_I94Number[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      132.001,
+      443.999,
+      292.107,
+      461.999
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Last Arrival in the United States. 17. Enter Form I - 94 Arrival-Departure Record Number, if any. Enter 11 digit number."
+  },
+  {
+    "page": 2,
+    "name": "Line19_DOB[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      210.002,
+      528.001,
+      294.004,
+      546.001
+    ],
+    "tooltip": "Part 2.  Information About You. Place of Birth. List the city / town / village, state / province, and country where you were born. 16.  Date of Birth . Enter the 2- digit Month, 2-digit Day and 4-digit Year."
+  },
+  {
+    "page": 2,
+    "name": "Line18c_CountryOfBirth[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      551.996,
+      294.001,
+      569.996
+    ],
+    "tooltip": "Part 2.  Information About You. Place of Birth . List the city / town / village, state / province, and country where you were born. 15. C. Enter Country of your Birth.  "
+  },
+  {
+    "page": 2,
+    "name": "Line18a_CityTownOfBirth[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      623.999,
+      293.817,
+      641.999
+    ],
+    "tooltip": "Part 2.  Information About You. Place of Birth. List the city / town / village, state / province, and country where you were born. 15. A. Enter City / Town / Village of Birth."
+  },
+  {
+    "page": 2,
+    "name": "Line18b_CityTownOfBirth[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.185,
+      587.996,
+      294.001,
+      605.996
+    ],
+    "tooltip": "Part 2.  Information About You. Place of Birth. List the city / town / village, state / province, and country where you were born. 15. B. Enter State / Province of Birth."
+  },
+  {
+    "page": 2,
+    "name": "section_1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      474.001,
+      636.001,
+      497.999,
+      654.001
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Eligibility Category. 27. Eligibility Category.   Refer to the Who May File Form I - 7 65 section of the Form I - 7 65 Instructions to determine the appropriate eligibility category for this application.  Enter the appropriate letter and number for your eligibility category below (for example, (A.)(8), (c)(17)(i i i )). Enter first four characters."
+  },
+  {
+    "page": 2,
+    "name": "section_2[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      510.001,
+      636.001,
+      533.999,
+      654.001
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Eligibility Category. 27. Eligibility Category.   Refer to the Who May File Form I - 7 65 section of the Form I - 7 65 Instructions to determine the appropriate eligibility category for this application.  Enter the appropriate letter and number for your eligibility category below (for example, (A.)(8), (c)(17)(i i i )). Enter middle three characters."
+  },
+  {
+    "page": 2,
+    "name": "section_3[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      546.001,
+      636.001,
+      569.999,
+      654.001
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Eligibility Category. 27. Eligibility Category.   Refer to the Who May File Form I - 7 65 section of the Form I - 7 65 Instructions to determine the appropriate eligibility category for this application.  Enter the appropriate letter and number for your eligibility category below (for example, (A.)(8), (c)(17)(i i i )). Enter Last three characters."
+  },
+  {
+    "page": 2,
+    "name": "PtLine30b_YesNo[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      500.159,
+      112,
+      510.159,
+      122
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Eligibility Category. 31. B. If you entered the eligibility category (c)(35) or (c)(36) in Item Number 27., have you EVER been arrested for and/or convicted of any crime? Select Yes. NOTE:  If you answered \\215Yes\\216 to Item Number 31. B., refer to Employment-Based Nonimmigrant Categories, Items 8. - 9., in the Who May File Form I - 7 65 section  of the Form I - 7 65 Instructions for information about providing court dispositions."
+  },
+  {
+    "page": 2,
+    "name": "PtLine30b_YesNo[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      541.919,
+      112,
+      551.919,
+      122
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Eligibility Category. 31. B. If you entered the eligibility category (c)(35) or (c)(36) in Item Number 27., have you EVER been arrested for and/or convicted of any crime? Select No."
+  },
+  {
+    "page": 2,
+    "name": "place_entry[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      227.999,
+      294.001,
+      245.999
+    ],
+    "tooltip": "Part 2.  Information About You. Information About Your Last Arrival in the United States. 23. Enter Place of Last Arrival into the United States."
+  },
+  {
+    "page": 3,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 3,
+    "name": "Pt3Line1Checkbox[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      61.003,
+      529.001,
+      71.003,
+      539.001
+    ],
+    "tooltip": "Part 3.  Applicant's Statement, Contact Information, Declaration, Certification, and Signature. Applicant's Statement. 1. B. Select The interpreter named in Part 4. read to me every question and instruction on this application and my answer to every question in a language in which I am fluent, and I understood everything."
+  },
+  {
+    "page": 3,
+    "name": "Pt3Line1Checkbox[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      61.003,
+      571.002,
+      71.003,
+      581.002
+    ],
+    "tooltip": "Part 3.  Applicant's Statement, Contact Information, Declaration, Certification, and Signature. NOTE:  Read the Penalties section of the Form I - 7 65 Instructions before completing this section.  You must file Form I - 7 65 while in the United States. Applicant's Statement. NOTE:  Select the box for either Item Number 1. A. or 1. B.  If applicable, select the box for Item Number 2. 1. A. Select I can read and understand English, and I have read and understand every question and instruction on this application and my answer to every question. "
+  },
+  {
+    "page": 3,
+    "name": "Pt3Line1b_Language[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      78.004,
+      486,
+      288.003,
+      504
+    ],
+    "tooltip": "Part 3.  Applicant's Statement, Contact Information, Declaration, Certification, and Signature. Applicant's Statement. 1. B. Enter the language in which you are fluent."
+  },
+  {
+    "page": 3,
+    "name": "Part3_Checkbox[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      61,
+      444.999,
+      71,
+      454.999
+    ],
+    "tooltip": "Part 3.  Applicant's Statement, Contact Information, Declaration, Certification, and Signature. Applicant's Statement. 2. Select At my request, the preparer named in Part 5., prepared this application for me based only upon information I provided or authorized."
+  },
+  {
+    "page": 3,
+    "name": "Pt3Line2_RepresentativeName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      78.001,
+      425.999,
+      288,
+      443.999
+    ],
+    "tooltip": "Part 3.  Applicant's Statement, Contact Information, Declaration, Certification, and Signature. Applicant's Statement. 2. Enter name of Preparer from Part 5."
+  },
+  {
+    "page": 3,
+    "name": "Pt3Line7b_DateofSignature[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      492.001,
+      306,
+      576.003,
+      324
+    ],
+    "tooltip": "Part 3.  Applicant's Statement, Contact Information, Declaration, Certification, and Signature. 7. B. Date of Signature. Enter the 2-digit Month, 2-digit Day and 4-digit Year. NOTE TO ALL APPLICANTS:  If you do not completely fill out this application or fail to submit required documents listed in the Instructions, U S C I S may deny your application."
+  },
+  {
+    "page": 3,
+    "name": "Pt3Line7a_Signature[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      330.001,
+      576,
+      348.001
+    ],
+    "tooltip": "Part 3.  Applicant's Statement, Contact Information, Declaration, Certification, and Signature. Applicant's Signature.  7. A. Applicant's Signature. Signature.  This form can not be signed electronically.  The name of the applicant can not be typewritten into this space."
+  },
+  {
+    "page": 3,
+    "name": "Pt3Line3_DaytimePhoneNumber1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      59.893,
+      335.999,
+      294.227,
+      353.999
+    ],
+    "tooltip": "Part 3.  Applicant's Statement, Contact Information, Declaration, Certification, and Signature. Applicant's Contact Information. 3. Enter Applicant's Daytime Telephone Number."
+  },
+  {
+    "page": 3,
+    "name": "Pt3Line4_MobileNumber1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      59.893,
+      300.002,
+      294.227,
+      318.002
+    ],
+    "tooltip": "Part 3.  Applicant's Statement, Contact Information, Declaration, Certification, and Signature. Applicant's Contact Information. 4. Enter Applicant's Mobile Telephone Number, (if any)."
+  },
+  {
+    "page": 3,
+    "name": "Pt3Line5_Email[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      263.999,
+      294.001,
+      281.999
+    ],
+    "tooltip": "Part 3.  Applicant's Statement, Contact Information, Declaration, Certification, and Signature. Applicant's Contact Information. 5. Enter Applicant's Email Address, (if any)."
+  },
+  {
+    "page": 3,
+    "name": "Pt4Line6_Checkbox[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      61,
+      246.999,
+      71,
+      256.999
+    ],
+    "tooltip": "Part 3.  Applicant's Statement, Contact Information, Declaration, Certification, and Signature. Applicant's Contact Information. 6. Select this box if you are a Salvadoran or Guatemalan national eligible for benefits under the. A. B C settlement agreement."
+  },
+  {
+    "page": 3,
+    "name": "Pt4Line2_InterpreterBusinessorOrg[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      54,
+      575.532,
+      72
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Provide the following information concerning the interpreter: Interpreter's Full Name. 2. Enter Interpreter's Business or Organization Name (if any)."
+  },
+  {
+    "page": 3,
+    "name": "Pt4Line1b_InterpreterGivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      90,
+      575.532,
+      108
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Provide the following information concerning the interpreter: Interpreter's Full Name. 1. B. Enter Interpreter's Given Name (First Name)."
+  },
+  {
+    "page": 3,
+    "name": "Pt4Line1a_InterpreterFamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342.468,
+      126,
+      576,
+      144
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Provide the following information about the interpreter: Interpreter's Full Name. 1. A. Enter Interpreter's Family Name (Last Name)."
+  },
+  {
+    "page": 4,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 4,
+    "name": "Pt4Line4_InterpreterDaytimeTelephone[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      426.002,
+      294.001,
+      444.002
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Contact Information.  4. Enter Interpreter's Daytime Telephone Number. "
+  },
+  {
+    "page": 4,
+    "name": "Pt4Line6_Email[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      354.002,
+      294.001,
+      372.002
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Contact Information. 6. Enter Interpreter's Email Address (if any)."
+  },
+  {
+    "page": 4,
+    "name": "Pt4Line5_MobileNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      59.893,
+      390.002,
+      294.227,
+      408.002
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Contact Information. 5. Enter Interpreter's Mobile Telephone Number, (if any)."
+  },
+  {
+    "page": 4,
+    "name": "Part4_NameofLanguage[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      144,
+      288,
+      289.998,
+      306
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Certification.  I certify, under penalty of perjury, that  I am fluent in English and (enter language) which is the same language specified in Part 3., Item Number 1.b., and I have read to this applicant in the identified language every question and instruction on this application and his or her answer to every question.  The applicant informed me that he or she understands every instruction, question, and answer on the application, including the Applicant's Certification, and has verified the accuracy of every answer."
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line1b_PreparerGivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      569.996,
+      576,
+      587.996
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Provide the following information about the preparer:  Preparer's Full Name. 1. B. Enter Preparer's Given Name (First Name)."
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line2_BusinessName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      533.999,
+      576,
+      551.999
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Provide the following information about the preparer.  Preparer's Full Name. 2. Enter Preparer's  Business or Organization Name, if any. "
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line1a_PreparerFamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      605.996,
+      576,
+      623.996
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant.  Provide the following information concerning the preparer:  Preparer's Full Name. 1. A. Enter Preparer's Family Name (Last Name). "
+  },
+  {
+    "page": 4,
+    "name": "Pt6Line3c_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.001,
+      431.997,
+      576,
+      449.997
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Mailing Address. 3. C. Enter the City or Town."
+  },
+  {
+    "page": 4,
+    "name": "Pt6Line3a_StreetNumberName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      407.999,
+      479.999,
+      576,
+      497.999
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Mailing Address. 3. A. Enter Street Number and Name."
+  },
+  {
+    "page": 4,
+    "name": "Pt6Line3b_Unit[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      425.999,
+      459.995,
+      435.999,
+      469.995
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Mailing Address. 3. B. Select Floor."
+  },
+  {
+    "page": 4,
+    "name": "Pt6Line3b_Unit[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      342,
+      459.995,
+      352,
+      469.995
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant.  Preparer's Mailing Address. 3. B. Select Apartment."
+  },
+  {
+    "page": 4,
+    "name": "Pt6Line3b_AptSteFlrNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      468,
+      455.995,
+      576,
+      473.995
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Mailing Address. 3. B. Enter Apartment, Suite or Floor number. "
+  },
+  {
+    "page": 4,
+    "name": "Pt6Line3b_Unit[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      384.001,
+      459.998,
+      394.001,
+      469.998
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Mailing Address. 3. B. Select Suite."
+  },
+  {
+    "page": 4,
+    "name": "Pt6Line3g_PostalCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.174,
+      359.997,
+      575.87,
+      377.997
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Mailing Address. 3. G. Enter the Postal Code."
+  },
+  {
+    "page": 4,
+    "name": "Pt6Line3e_ZipCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      473.998,
+      407.999,
+      575.997,
+      425.999
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Mailing Address. 3. E. Enter the ZIP code."
+  },
+  {
+    "page": 4,
+    "name": "Pt6Line3d_State[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      365.998,
+      407.999,
+      401.998,
+      425.999
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Mailing Address. 3. D. Select state from list of states."
+  },
+  {
+    "page": 4,
+    "name": "Pt6Line3h_Country[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      324,
+      576,
+      342
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Mailing Address. 3. H. Enter the Country."
+  },
+  {
+    "page": 4,
+    "name": "Pt6Line3f_Province[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      402.174,
+      383.998,
+      575.87,
+      401.998
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Mailing Address. 3. F. Enter the Province."
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line5_PreparerFaxNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      222.001,
+      576,
+      240.001
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Contact Information.  5. Enter Preparer's Mobile Telephone  Number (if any). "
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line4_DaytimePhoneNumber1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      258.001,
+      576,
+      276.001
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Contact Information.  4. Enter Preparer's Daytime Telephone Number. "
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line6_Email[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      186.004,
+      576,
+      204.004
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Contact Information.  6. Enter Preparer's Email Address, (if any)."
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line3c_CityOrTown[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      600.001,
+      294.001,
+      618.001
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Mailing Address. 3. C. Enter City or Town. "
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line3a_StreetNumberName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      126,
+      648.003,
+      294.001,
+      666.003
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Mailing Address. 3. A. Enter Street Number and Name."
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line3b_Unit[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      144,
+      627.999,
+      154,
+      637.999
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Mailing Address. 3. B. Select Floor. "
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line3b_Unit[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      60.001,
+      627.999,
+      70.001,
+      637.999
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Mailing Address. 3. B. Select Apartment."
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line3b_AptSteFlrNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      186.001,
+      623.999,
+      294.001,
+      641.999
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Mailing Address. 3. B. Enter the Apartment, Suite or Floor number."
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line3b_Unit[2]",
+    "fieldType": "/Btn",
+    "rect": [
+      101.999,
+      628.002,
+      111.999,
+      638.002
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and  Signature. Interpreter's Mailing Address. 3. B. Select Suite."
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line3g_PostalCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120.214,
+      528.001,
+      293.876,
+      546.001
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Mailing Address. 3. G. Enter the Postal Code."
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line3e_ZipCode[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      576.003,
+      293.998,
+      594.003
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Mailing Address. 3. E. Enter ZIP Code."
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line3d_State[0]",
+    "fieldType": "/Ch",
+    "rect": [
+      83.999,
+      576.003,
+      119.999,
+      594.003
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Mailing Address. 3. D. Select state from list of states."
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line3h_Country[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      492.001,
+      294.001,
+      510.001
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Mailing Address. 3. H. Enter the Country."
+  },
+  {
+    "page": 4,
+    "name": "Pt5Line3f_Province[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120.214,
+      552.002,
+      293.876,
+      570.002
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Mailing Address. 3. F. Enter the Province."
+  },
+  {
+    "page": 4,
+    "name": "Pt4Line6b_DateofSignature[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      210.002,
+      114.001,
+      294.004,
+      132.001
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature.  Interpreter's Signature. 7. B. Date of Signature. Enter the 2-digit Month, 2-digit Day and 4-digit Year."
+  },
+  {
+    "page": 4,
+    "name": "Pt4Line6a_Signature[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      138.002,
+      294.001,
+      156.002
+    ],
+    "tooltip": "Part 4.  Interpreter's Contact Information, Certification, and Signature. Interpreter's Signature. 7. A. Interpreter's Signature. This form can not be signed electronically.  The name of the applicant can not be typewritten into this space."
+  },
+  {
+    "page": 5,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 5,
+    "name": "Part5Line7_Checkbox[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      61,
+      637.001,
+      71,
+      647.001
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Statement.  7. A. Select I am not an attorney or accredited representative but have prepared this application on behalf of the applicant and with the applicant's consent."
+  },
+  {
+    "page": 5,
+    "name": "Part5Line7_Checkbox[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      61,
+      595,
+      71,
+      605
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Statement.  7. B. Select I am an attorney or accredited representative and my representation of the applicant in this case extends or does not extend beyond the preparation of this application. NOTE:  If you are an attorney or accredited you may need to submit a completed Form G - 28, Notice of Entry of Appearance as Attorney or Accredited Representative, with this application."
+  },
+  {
+    "page": 5,
+    "name": "Part5Line7b_Checkbox[0]",
+    "fieldType": "/Btn",
+    "rect": [
+      79,
+      570.999,
+      89,
+      580.999
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Statement.  7. B. Select I am an attorney or accredited representative and my representation of the applicant in this case extends beyond the preparation of this application."
+  },
+  {
+    "page": 5,
+    "name": "Part5Line7b_Checkbox[1]",
+    "fieldType": "/Btn",
+    "rect": [
+      126.999,
+      570.999,
+      136.999,
+      580.999
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Statement.  7. B. Select I am an attorney or accredited representative and my representation of the applicant in this case does not extend beyond the preparation of this application."
+  },
+  {
+    "page": 5,
+    "name": "Pt5Line8a_Signature[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      281.993,
+      294.001,
+      299.993
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant.  Preparer's Signature.  8. A. Preparer's Signature. This signature field can not be signed with a digital signature and the signee's name can not be typewritten into this space. This is a protected field. Print and sign in ink."
+  },
+  {
+    "page": 5,
+    "name": "Pt5Line8b_DateofSignature[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      210.002,
+      257.995,
+      294.004,
+      275.995
+    ],
+    "tooltip": "Part 5.  Contact Information, Declaration, and Signature of the Person Preparing this Application, If Other Than the Applicant. Preparer's Signature.  8. B. Date of Signature. Enter the  2-digit Month, 2-digit Day and 4-digit Year."
+  },
+  {
+    "page": 6,
+    "name": "PDF417BarCode1[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      191.999,
+      11.999,
+      461.999,
+      29.999
+    ],
+    "tooltip": "PDF417BarCode1"
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line3a_PageNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      479.999,
+      114.001,
+      497.999
+    ],
+    "tooltip": "Part 6.  Additional Information. 3. A. Enter Page Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line3b_PartNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      150.001,
+      479.999,
+      204.001,
+      497.999
+    ],
+    "tooltip": "Part 6.  Additional Information.  3. B. Enter Part Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line3c_ItemNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      240.001,
+      479.999,
+      294.001,
+      497.999
+    ],
+    "tooltip": "Part 6.  Additional Information.  3. C. Enter Item Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line4a_PageNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      246.002,
+      114.001,
+      264.002
+    ],
+    "tooltip": "Part 6.  Additional Information.  4. A. Enter Page Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line4b_PartNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      150.001,
+      246.002,
+      204.001,
+      264.002
+    ],
+    "tooltip": "Part 6.  Additional Information.  4. B. Enter Part Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line4c_ItemNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      240.001,
+      246.002,
+      294.001,
+      264.002
+    ],
+    "tooltip": "Part 6.  Additional Information.  4. C. Enter Item Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line4d_AdditionalInfo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      60.001,
+      294.021,
+      240.001
+    ],
+    "tooltip": "Part 6.  Additional Information.  4. D. Enter additional information."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line5a_PageNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      708.001,
+      396,
+      726.001
+    ],
+    "tooltip": "Part 6.  Additional Information.  5. A. Enter Page Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line5b_PartNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      432,
+      708.001,
+      486,
+      726.001
+    ],
+    "tooltip": "Part 6.  Additional Information.  5. B. Enter Part Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line5c_ItemNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      522,
+      708.001,
+      576,
+      726.001
+    ],
+    "tooltip": "Part 6.  Additional Information.  5. C. Enter Item Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line5d_AdditionalInfo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      576,
+      576,
+      702
+    ],
+    "tooltip": "Part 6.  Additional Information.  5. D. Enter additional information."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line6a_PageNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      528.001,
+      396,
+      546.001
+    ],
+    "tooltip": "Part 6.  Additional Information.  6. A. Enter Page Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line6b_PartNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      432,
+      528.001,
+      486,
+      546.001
+    ],
+    "tooltip": "Part 6.  Additional Information.  6. B. Enter Part Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line6c_ItemNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      522,
+      528.001,
+      576,
+      546.001
+    ],
+    "tooltip": "Part 6.  Additional Information.  6. C. Enter Item Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line6d_AdditionalInfo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      360,
+      576.02,
+      522
+    ],
+    "tooltip": "Part 6.  Additional Information.  6. D. Enter additional information."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line7a_PageNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      312.001,
+      396,
+      330.001
+    ],
+    "tooltip": "Part 6.  Additional Information.  7. A. Enter Page Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line7b_PartNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      432,
+      312.001,
+      486,
+      330.001
+    ],
+    "tooltip": "Part 6.  Additional Information.  7. B. Enter Part Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line7c_ItemNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      522,
+      312.001,
+      576,
+      330.001
+    ],
+    "tooltip": "Part 6.  Additional Information.  7. C. Enter Item Number."
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line7d_AdditionalInfo[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      342,
+      126,
+      576.02,
+      306
+    ],
+    "tooltip": "Part 6.  Additional Information.  7. D. Enter additional information."
+  },
+  {
+    "page": 6,
+    "name": "Line1a_FamilyName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120.013,
+      594,
+      294.015,
+      612
+    ],
+    "tooltip": "Part 6.  Additional Information. If you need extra space to provide any additional information within this application, use the space below.  If you need more space than what is provided, you may make copies of this page to complete and file with this application or attach a separate sheet of paper.  Type or print your name and A-Number (if any) at the top of each sheet; indicate the Page Number, Part Number, and Item Number to which your answer refers; and sign and date each sheet.  1. A. Family Name (Last Name). (This field is pre-populated from Part 1.) "
+  },
+  {
+    "page": 6,
+    "name": "Line1b_GivenName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      119.999,
+      569.999,
+      294.001,
+      587.999
+    ],
+    "tooltip": "Part 6.  Additional Information. 1. B. Given Name (First Name) (This field is pre-populated from Part 1.) "
+  },
+  {
+    "page": 6,
+    "name": "Line1c_MiddleName[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      120.013,
+      546.001,
+      294.012,
+      564.001
+    ],
+    "tooltip": "Part 6.  Additional Information. 1. C. Middle Name (This field is pre-populated from Part 1.) "
+  },
+  {
+    "page": 6,
+    "name": "Line7_AlienNumber[0]",
+    "fieldType": "/Tx",
+    "rect": [
+      164.962,
+      521.997,
+      293.972,
+      539.997
+    ],
+    "tooltip": "Part 6.  Additional Information. 2. A. Number, (if any). (This field is pre-populated from Part 1.) "
+  },
+  {
+    "page": 6,
+    "name": "Pt6Line4d_AdditionalInfo[1]",
+    "fieldType": "/Tx",
+    "rect": [
+      60.001,
+      294.001,
+      294.021,
+      474.001
+    ],
+    "tooltip": "Part 6.  Additional Information.  3. D. Enter additional information."
+  }
+]
