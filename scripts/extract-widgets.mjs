@@ -83,8 +83,19 @@ for (let i = 0; i < pages.length; i++) {
   }
 }
 
+// Also call getForm() to trigger pdf-lib's XFA strip, then enumerate fields
+// the "native" way — this gives us the fully-qualified names
+// (form1[0].#subform[X].WidgetName[Y]) that form.getField() accepts.
+const form = doc.getForm()
+const fieldNames = form.getFields().map((f) => ({
+  name: f.getName(),
+  type: f.constructor.name,
+}))
+
 await fs.writeFile('src/lib/i864-widgets.json', JSON.stringify(widgets, null, 2))
+await fs.writeFile('src/lib/i864-field-names.json', JSON.stringify(fieldNames, null, 2))
 console.log(`wrote ${widgets.length} widgets to src/lib/i864-widgets.json`)
+console.log(`wrote ${fieldNames.length} field names to src/lib/i864-field-names.json`)
 
 // Summary
 const byType = {}
