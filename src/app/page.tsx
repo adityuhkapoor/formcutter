@@ -416,6 +416,12 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-3 text-xs text-neutral-500">
             <span>{t('header.disclaimer')}</span>
+            <a
+              href="/start"
+              className="rounded-lg border border-neutral-300 bg-white px-2 py-1 text-[11px] font-medium text-neutral-700 hover:border-neutral-900 hover:bg-neutral-100"
+            >
+              Not sure which form you need?
+            </a>
             <LanguagePicker />
             {buildStamp && (
               <span className="font-mono text-[10px] text-neutral-400" suppressHydrationWarning>
