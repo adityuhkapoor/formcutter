@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { fillI864 } from '@/lib/pdf-fill'
+import { fillForm } from '@/lib/pdf-fill-generic'
 import { ipFromRequest, rateLimit } from '@/lib/rate-limit'
+import type { FormId } from '@/lib/forms'
 
 export const runtime = 'nodejs'
 export const maxDuration = 30
@@ -12,7 +14,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'rate_limited', resetAt: rl.resetAt }, { status: 429 })
   }
 
-  let body: { state?: Record<string, unknown> }
+  let body: { state?: Record<string, unknown>; formId?: FormId }
   try {
     body = await req.json()
   } catch {
@@ -20,14 +22,18 @@ export async function POST(req: Request) {
   }
 
   const state = body.state ?? {}
+  const formId: FormId = body.formId ?? 'i-864'
 
   try {
-    const bytes = await fillI864(state)
+    const bytes =
+      formId === 'i-864'
+        ? await fillI864(state)
+        : await fillForm(formId, state)
     return new Response(new Uint8Array(bytes), {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': 'attachment; filename="i-864-draft.pdf"',
+        'Content-Disposition': `attachment; filename="${formId}-draft.pdf"`,
       },
     })
   } catch (err) {

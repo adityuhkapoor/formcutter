@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# Refresh public/forms/i-864.pdf from USCIS and run it through qpdf so
-# pdf-lib can read the page tree. The raw USCIS PDF has broken object refs
-# (XFA/LiveCycle quirks) that crash pdf-lib on getPages().
+# Refresh USCIS form PDFs and preprocess them so pdf-lib can load the page tree
+# (XFA-encoded source PDFs ship with broken object refs; qpdf cleans them up).
 #
 # Requires: qpdf (brew install qpdf)
 set -euo pipefail
@@ -11,11 +10,21 @@ cd "$(dirname "$0")/.."
 mkdir -p public/forms
 TMP=$(mktemp -d)
 
-echo "downloading i-864..."
-curl -sSL -o "$TMP/i-864.pdf" "https://www.uscis.gov/sites/default/files/document/forms/i-864.pdf"
+FORMS=(
+  "i-864"
+  "i-130"
+  "i-485"
+  "n-400"
+)
 
-echo "decrypting + linearizing with qpdf..."
-qpdf --decrypt --object-streams=disable "$TMP/i-864.pdf" public/forms/i-864.pdf
+for form in "${FORMS[@]}"; do
+  echo "downloading $form..."
+  curl -sSL -o "$TMP/$form.pdf" "https://www.uscis.gov/sites/default/files/document/forms/$form.pdf"
+  echo "  preprocessing $form with qpdf..."
+  qpdf --decrypt --object-streams=disable "$TMP/$form.pdf" "public/forms/$form.pdf"
+  size=$(ls -la "public/forms/$form.pdf" | awk '{print $5}')
+  echo "  -> public/forms/$form.pdf ($size bytes)"
+done
 
-echo "done: $(ls -la public/forms/i-864.pdf | awk '{print $5}') bytes"
 rm -rf "$TMP"
+echo "done"
