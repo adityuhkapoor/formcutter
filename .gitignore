@@ -41,10 +41,12 @@ Thumbs.db
 # Claude Code local settings (personal overrides — not shared)
 .claude/settings.local.json
 
-# Prisma/SQLite
+# SQLite / local database
 *.db
 *.db-journal
-prisma/dev.db*
+*.db-shm
+*.db-wal
+/data/
 
 # Vercel
 .vercel
