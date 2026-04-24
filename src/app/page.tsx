@@ -85,13 +85,20 @@ export default function Home() {
   const [buildStamp, setBuildStamp] = useState<string>('')
   useEffect(() => {
     setBuildStamp(BUILD_STAMP_VALUE)
+    setMessages((prev) =>
+      prev.length > 0
+        ? prev
+        : [
+            makeMsg(
+              'assistant',
+              "Hey — I'll help you fill out your I-864. Upload a photo of your license, green card, passport, or tax transcript. I'll extract what I can and then walk through anything missing."
+            ),
+          ]
+    )
   }, [])
-  const [messages, setMessages] = useState<Msg[]>([
-    makeMsg(
-      'assistant',
-      "Hey — I'll help you fill out your I-864. Upload a photo of your license, green card, passport, or tax transcript. I'll extract what I can and then walk through anything missing."
-    ),
-  ])
+  // Messages start empty to avoid SSR/hydration timestamp drift. Initial
+  // greeting is added after mount so Date.now() only runs client-side.
+  const [messages, setMessages] = useState<Msg[]>([])
   const [uploads, setUploads] = useState<UploadEntry[]>([])
   const [input, setInput] = useState('')
   const [sending, setSending] = useState(false)
