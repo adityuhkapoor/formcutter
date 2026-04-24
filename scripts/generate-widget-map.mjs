@@ -211,6 +211,40 @@ const SCHEMAS = {
       'signature.date',
     ],
   },
+  'i-102': {
+    description:
+      'I-102 Application for Replacement/Initial Nonimmigrant Arrival-Departure Document (Form I-94) — filed to request a new or replacement I-94 record when the original was lost, stolen, destroyed, or never issued.',
+    paths: [
+      'applicant.name.familyName',
+      'applicant.name.givenName',
+      'applicant.name.middleName',
+      'applicant.otherNames',
+      'applicant.dateOfBirth',
+      'applicant.countryOfBirth',
+      'applicant.countryOfCitizenship',
+      'applicant.aNumber',
+      'applicant.ssn',
+      'applicant.gender',
+      'applicant.mailingAddress.inCareOf',
+      'applicant.mailingAddress.streetNumberAndName',
+      'applicant.mailingAddress.cityOrTown',
+      'applicant.mailingAddress.state',
+      'applicant.mailingAddress.zipCode',
+      'applicant.daytimePhone',
+      'applicant.mobilePhone',
+      'applicant.emailAddress',
+      'applicant.passportNumber',
+      'applicant.passportCountry',
+      'applicant.passportExpirationDate',
+      'applicant.dateOfLastEntry',
+      'applicant.placeOfLastEntry',
+      'applicant.i94Number',
+      'applicant.classOfAdmission',
+      'applicant.currentImmigrationStatus',
+      'applicant.reasonForApplication', // lost / stolen / replacement / initial
+      'signature.date',
+    ],
+  },
 }
 
 const formId = process.argv[2]

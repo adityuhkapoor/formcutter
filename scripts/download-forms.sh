@@ -18,6 +18,7 @@ FORMS=(
   "i-589"
   "i-765"
   "i-821"
+  "i-102"
 )
 
 for form in "${FORMS[@]}"; do

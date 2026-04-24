@@ -60,3 +60,6 @@ test-docs/
 
 # Translation cache (regenerate via scripts/translate-messages.mjs)
 .translation-cache.json
+
+# Ad-hoc design review screenshots (regenerate via Chrome DevTools MCP)
+design-review/

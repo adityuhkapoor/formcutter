@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, type FormEvent } from 'react'
 import { useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { useI18n } from '@/lib/i18n/provider'
 import { LanguagePicker } from '@/components/LanguagePicker'
@@ -107,6 +108,7 @@ export default function Home() {
   const { t, lang } = useI18n()
   const searchParams = useSearchParams()
   const requestedFormId = searchParams?.get('formId') as FormId | null
+  const debugMode = searchParams?.get('debug') === '1'
   const [state, setState] = useState<Record<string, unknown>>({})
   const [buildStamp, setBuildStamp] = useState<string>('')
   const [caseId, setCaseId] = useState<string | null>(null)
@@ -458,31 +460,25 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
       <header className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-          <div className="flex items-center gap-3">
-            <span className="text-lg font-semibold tracking-tight">{t('header.brand')}</span>
-            <span className="text-xs text-neutral-500">
-              {FORM_REGISTRY[formId]?.name.replace(`${formId.toUpperCase()} `, '') ?? t('header.subtitle')}
-            </span>
-            <span className="rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-neutral-600">
-              {formId}
-            </span>
-            <StatusBadge status={caseStatus} />
-          </div>
-          <div className="flex items-center gap-3 text-xs text-neutral-500">
-            <span>{t('header.disclaimer')}</span>
-            <a
-              href="/start"
-              className="rounded-lg border border-neutral-300 bg-white px-2 py-1 text-[11px] font-medium text-neutral-700 hover:border-neutral-900 hover:bg-neutral-100"
-            >
-              Not sure which form you need?
-            </a>
-            <LanguagePicker />
-            {buildStamp && (
-              <span className="font-mono text-[10px] text-neutral-400" suppressHydrationWarning>
-                build {buildStamp}
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-6 py-3">
+          {/* Left: brand + primary identity (form + status) */}
+          <div className="flex min-w-0 items-center gap-3">
+            <Link href="/" className="text-lg font-semibold tracking-tight hover:opacity-80">
+              {t('header.brand')}
+            </Link>
+            <div className="hidden items-center gap-2 sm:flex">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-neutral-600">
+                {formId}
               </span>
-            )}
+              <span className="text-neutral-300">·</span>
+              <StatusBadge status={caseStatus} />
+            </div>
+          </div>
+
+          {/* Right: language + overflow menu for everything secondary */}
+          <div className="flex items-center gap-2">
+            <LanguagePicker />
+            <HeaderMenu buildStamp={debugMode ? buildStamp : ''} />
           </div>
         </div>
       </header>
@@ -585,30 +581,32 @@ export default function Home() {
 
           <EvidenceChecklist items={evidence} />
 
-          <div className="rounded-xl border border-neutral-200 bg-white p-4">
-            <h2 className="mb-2 flex items-center justify-between text-sm font-semibold">
-              <span>{t('state.heading')}</span>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setShowSensitive((s) => !s)}
-                  className="rounded border border-neutral-300 px-1.5 py-0.5 text-[10px] font-medium text-neutral-600 hover:bg-neutral-100"
-                >
-                  {showSensitive ? t('state.hideSensitive') : t('state.showSensitive')}
-                </button>
-                <span className="text-xs font-normal text-neutral-500">
-                  {t('state.filledCount', { count: filledCount })}
-                </span>
-              </div>
-            </h2>
-            <pre className="max-h-64 overflow-auto rounded-md bg-neutral-50 p-2 text-[11px] leading-snug text-neutral-700">
-              {JSON.stringify(
-                showSensitive ? state : maskSensitiveForDisplay(state),
-                null,
-                2
-              )}
-            </pre>
-          </div>
+          {debugMode && (
+            <div className="rounded-xl border border-neutral-200 bg-white p-4">
+              <h2 className="mb-2 flex items-center justify-between text-sm font-semibold">
+                <span>{t('state.heading')}</span>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowSensitive((s) => !s)}
+                    className="rounded border border-neutral-300 px-1.5 py-0.5 text-[10px] font-medium text-neutral-600 hover:bg-neutral-100"
+                  >
+                    {showSensitive ? t('state.hideSensitive') : t('state.showSensitive')}
+                  </button>
+                  <span className="text-xs font-normal text-neutral-500">
+                    {t('state.filledCount', { count: filledCount })}
+                  </span>
+                </div>
+              </h2>
+              <pre className="max-h-64 overflow-auto rounded-md bg-neutral-50 p-2 text-[11px] leading-snug text-neutral-700">
+                {JSON.stringify(
+                  showSensitive ? state : maskSensitiveForDisplay(state),
+                  null,
+                  2
+                )}
+              </pre>
+            </div>
+          )}
 
           {/* Status banner — changes with case lifecycle. */}
           {caseStatus === 'pending_review' && (
@@ -965,4 +963,67 @@ function countFilledPaths(state: Record<string, unknown>, prefix = ''): number {
     }
   }
   return n
+}
+
+/** Overflow menu for /fill header. Collapses disclaimer, form-switcher link,
+ * and (in debug mode) build stamp into a single popover so the top bar can
+ * breathe. Click-outside to close, escape to close. */
+function HeaderMenu({ buildStamp }: { buildStamp: string }) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+    function onDoc(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('mousedown', onDoc)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onDoc)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        aria-label="More options"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+        className="rounded-md border border-neutral-300 bg-white px-2 py-1.5 text-xs font-medium text-neutral-700 hover:bg-neutral-100"
+      >
+        Help
+      </button>
+      {open && (
+        <div className="absolute right-0 top-full z-20 mt-2 w-72 rounded-lg border border-neutral-200 bg-white p-3 shadow-lg">
+          <Link
+            href="/start"
+            className="block rounded-md px-2 py-1.5 text-sm text-neutral-800 hover:bg-neutral-100"
+            onClick={() => setOpen(false)}
+          >
+            Not sure which form you need?
+          </Link>
+          <div className="my-2 border-t border-neutral-200" />
+          <p className="px-2 py-1 text-[11px] leading-relaxed text-neutral-500">
+            Formcutter is not a law firm and does not provide legal advice.
+            Legal-strategy questions are flagged for an accredited representative
+            reviewer.
+          </p>
+          {buildStamp && (
+            <>
+              <div className="my-2 border-t border-neutral-200" />
+              <div className="px-2 font-mono text-[10px] text-neutral-400">
+                build {buildStamp}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  )
 }

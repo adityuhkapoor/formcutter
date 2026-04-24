@@ -1,0 +1,462 @@
+[
+  {
+    "name": "form1[0].#pageSet[0].Page1[0].PDF417BarCode1[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#pageSet[0].Page1[1].PDF417BarCode1[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#pageSet[0].Page1[2].PDF417BarCode1[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#pageSet[0].Page1[3].PDF417BarCode1[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#pageSet[0].Page1[4].PDF417BarCode1[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].G28Attached[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[0].AttorneyStateLicenseNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line3a_FamilyName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line3b_GivenName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line3c_MiddleName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line7a_InCareofName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line7b_StreetNumberName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line7c_Unit[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line7c_Unit[1]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line7c_AptSteFlrNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line7c_Unit[2]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line7d_CityOrTown[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line7e_State[0]",
+    "type": "PDFDropdown"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line7f_ZipCode[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line2_USCISAcctNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line1_AlienNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].P1_L4c_MiddleName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].P1_L4b_FirstName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line4a_FamilyName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line5a_InCareofName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line8_DateOfBirth[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line9_CountryOfBirth[0]",
+    "type": "PDFDropdown"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line10_CountryOfCitiz[0]",
+    "type": "PDFDropdown"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line4b_StreetNumberName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line4c_Unit[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line4c_Unit[1]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line4c_AptSteFlrNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line4c_Unit[2]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line4d_CityOrTown[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line4e_State[0]",
+    "type": "PDFDropdown"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line4f_ZipCode[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line6_yes[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[0].Pt1Line6_no[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line12_DateLastAdmission[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line14_ClassofAdmission[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line15_Airport[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line15_LandBorder[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line15_Seaport[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line17_StatusExpires[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line18b_Passport[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line18c_TravelDoc[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line18e_ExpDate[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line16_NonimmigrantStatus[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line18a_ArrivalDeparture[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line19a_FamilyName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line19b_GivenName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line19c_MiddleName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt2Line1d_Reason[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt2Line1g_Reason[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt2Line1f_Reason[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt2Line1e_Reason[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[1].Line1a_No[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[1].Line1a_Yes[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt3Line1b_USCISFormNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt2Line1c_Reason[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line11_SSN[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt2Line1f_Explanation[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt2Line1b_Reason[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt2Line1a_Reason[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line13_POE[0]",
+    "type": "PDFDropdown"
+  },
+  {
+    "name": "form1[0].#subform[1].Pt1Line18d_CountryOfIssuance[0]",
+    "type": "PDFDropdown"
+  },
+  {
+    "name": "form1[0].#subform[2].Line2a_No[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[2].Line2a_Yes[0]",
+    "type": "PDFCheckBox"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt3Line2b_AddiitionalInfo[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt4Line2_MobilePhoneNumber1[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt4Line1_DaytimePhoneNumber1[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt4Line3_Email[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt4Line4_SignatureofApplicant[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt4Line4_DateOfSignature[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt5Line1_InterpreterGivenName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt5Line1_InterpreterFamilyName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt5Line2_NameofBusinessorOrgName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt5Line4_MobilePhoneNumber1[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt5Line3_DaytimePhoneNumber1[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt5Line5_Email[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt5FluentinLanguage[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt5Line6_DateofSignature[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[2].Pt5Line6_Signature[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[3].Pt6Line1_PreparerFamilyName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[3].Pt6Line1_PreparerGivenName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[3].Pt6Line2_BusinessName[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[3].Pt6Line5_EmailAddress[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[3].Pt6Line3_DaytimePhoneNumber1[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[3].Pt6Line4_DaytimePhoneNumber1[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[3].Pt6Line6_SignatureofPreparer[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[3].Pt6Line6_DateofSignature[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line3d_AdditionalInfo[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt1Line3a_FamilyName[1]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt1Line3b_GivenName[1]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt1Line3c_MiddleName[1]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line3a_PageNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line3b_PartNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line3c_ItemNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Line3_ANumber[0].Pt1Line1_AlienNumber[1]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line4d_AdditionalInfo[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line4a_PageNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line4b_PartNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line4c_ItemNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line5d_AdditionalInfo[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line5a_PageNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line5b_PartNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line5c_ItemNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line6d_AdditionalInfo[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line7c_ItemNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line7b_PartNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line7a_PageNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line7d_AdditionalInfo[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line6a_PageNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line6b_PartNumber[0]",
+    "type": "PDFTextField"
+  },
+  {
+    "name": "form1[0].#subform[4].Pt7Line6c_ItemNumber[0]",
+    "type": "PDFTextField"
+  }
+]

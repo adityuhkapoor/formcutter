@@ -194,7 +194,7 @@ function QuestionRadio<V extends string>({
 }: {
   questionKey: string
   value: string | undefined
-  options: readonly { value: V; label: string }[]
+  options: readonly { value: V; label: string; emoji?: string }[]
   onChange: (v: V) => void
 }) {
   const { t } = useI18n()
@@ -220,6 +220,7 @@ function QuestionRadio<V extends string>({
               onChange={() => onChange(o.value)}
               className="h-4 w-4"
             />
+            {o.emoji && <span className="text-lg leading-none">{o.emoji}</span>}
             <span>{o.label}</span>
           </label>
         ))}
@@ -236,7 +237,7 @@ function QuestionCheckboxes({
 }: {
   questionKey: string
   values: string[]
-  options: readonly { value: string; label: string }[]
+  options: readonly { value: string; label: string; emoji?: string }[]
   onChange: (v: string[]) => void
 }) {
   const { t } = useI18n()
@@ -265,6 +266,7 @@ function QuestionCheckboxes({
               onChange={() => toggle(o.value)}
               className="h-4 w-4"
             />
+            {o.emoji && <span className="text-lg leading-none">{o.emoji}</span>}
             <span>{o.label}</span>
           </label>
         ))}
@@ -306,7 +308,7 @@ function normalizeFormId(raw: string): FormId | null {
   const m = raw.match(/([iI]-?\d{3,4}[a-zA-Z]?|[nN]-?\d{3})/)
   if (!m) return null
   const normalized = m[1].toLowerCase().replace(/^([in])/, '$1-').replace(/^([in])-+/, '$1-')
-  const candidates: FormId[] = ['i-864', 'i-130', 'i-485', 'n-400', 'i-589', 'i-765', 'i-821']
+  const candidates: FormId[] = ['i-864', 'i-130', 'i-485', 'n-400', 'i-589', 'i-765', 'i-821', 'i-102']
   return candidates.find((c) => c === normalized) ?? null
 }
 

@@ -5,54 +5,54 @@
  */
 
 export const IMMIGRATION_STATUS_OPTIONS = [
-  { value: 'usc', label: 'U.S. citizen' },
-  { value: 'lpr', label: 'Green card holder (LPR)' },
-  { value: 'tps', label: 'Temporary Protected Status (TPS)' },
-  { value: 'parole', label: 'Paroled at the border or through a program' },
-  { value: 'asylee', label: 'Asylee / refugee' },
-  { value: 'student', label: 'Student visa (F-1 / M-1 / J-1)' },
-  { value: 'work', label: 'Work visa (H-1B, L-1, O-1, etc.)' },
-  { value: 'visitor', label: 'Visitor visa (B-1 / B-2) or ESTA' },
-  { value: 'overstay', label: 'Overstayed a visa' },
-  { value: 'uninspected', label: 'Entered without being inspected' },
-  { value: 'unsure', label: "I'm not sure" },
+  { value: 'usc', label: 'U.S. citizen', emoji: '🇺🇸' },
+  { value: 'lpr', label: 'Green card holder (LPR)', emoji: '🟢' },
+  { value: 'tps', label: 'Temporary Protected Status (TPS)', emoji: '🛡️' },
+  { value: 'parole', label: 'Paroled at the border or through a program', emoji: '🛂' },
+  { value: 'asylee', label: 'Asylee / refugee', emoji: '🕊️' },
+  { value: 'student', label: 'Student visa (F-1 / M-1 / J-1)', emoji: '🎓' },
+  { value: 'work', label: 'Work visa (H-1B, L-1, O-1, etc.)', emoji: '💼' },
+  { value: 'visitor', label: 'Visitor visa (B-1 / B-2) or ESTA', emoji: '✈️' },
+  { value: 'overstay', label: 'Overstayed a visa', emoji: '⏰' },
+  { value: 'uninspected', label: 'Entered without being inspected', emoji: '🚶' },
+  { value: 'unsure', label: "I'm not sure", emoji: '❓' },
 ] as const
 
 export const ENTRY_METHOD_OPTIONS = [
-  { value: 'visa', label: 'With a visa' },
-  { value: 'border-parole', label: 'Through a border checkpoint / got parole' },
-  { value: 'border-uninspected', label: 'Crossed the border without being checked' },
-  { value: 'born-here', label: 'I was born in the U.S.' },
-  { value: 'adjusted', label: "I'm already a green card holder" },
-  { value: 'unsure', label: "I'm not sure" },
+  { value: 'visa', label: 'With a visa', emoji: '📄' },
+  { value: 'border-parole', label: 'Through a border checkpoint / got parole', emoji: '🛂' },
+  { value: 'border-uninspected', label: 'Crossed the border without being checked', emoji: '🚶' },
+  { value: 'born-here', label: 'I was born in the U.S.', emoji: '🇺🇸' },
+  { value: 'adjusted', label: "I'm already a green card holder", emoji: '🟢' },
+  { value: 'unsure', label: "I'm not sure", emoji: '❓' },
 ] as const
 
 export const FAMILY_OPTIONS = [
-  { value: 'spouse-usc', label: 'Spouse who is a U.S. citizen' },
-  { value: 'spouse-lpr', label: 'Spouse who has a green card' },
-  { value: 'parent-usc', label: 'Parent who is a U.S. citizen (and I am over 21)' },
-  { value: 'parent-usc-under21', label: 'Parent who is a U.S. citizen (I am under 21)' },
-  { value: 'child-usc-21', label: 'Adult U.S. citizen child (over 21)' },
-  { value: 'sibling-usc', label: 'Sibling who is a U.S. citizen (and I am over 21)' },
-  { value: 'none', label: 'None of the above' },
-  { value: 'unsure', label: "I'm not sure" },
+  { value: 'spouse-usc', label: 'Spouse who is a U.S. citizen', emoji: '💍' },
+  { value: 'spouse-lpr', label: 'Spouse who has a green card', emoji: '💍' },
+  { value: 'parent-usc', label: 'Parent who is a U.S. citizen (and I am over 21)', emoji: '👨‍👩‍👧' },
+  { value: 'parent-usc-under21', label: 'Parent who is a U.S. citizen (I am under 21)', emoji: '👶' },
+  { value: 'child-usc-21', label: 'Adult U.S. citizen child (over 21)', emoji: '🧑' },
+  { value: 'sibling-usc', label: 'Sibling who is a U.S. citizen (and I am over 21)', emoji: '👫' },
+  { value: 'none', label: 'None of the above', emoji: '🚫' },
+  { value: 'unsure', label: "I'm not sure", emoji: '❓' },
 ] as const
 
 export const REMOVAL_OPTIONS = [
-  { value: 'yes-active', label: 'Yes, I have an active case / hearing scheduled' },
-  { value: 'yes-past', label: "I've been ordered removed / deported in the past" },
-  { value: 'no', label: 'No' },
-  { value: 'unsure', label: "I'm not sure" },
+  { value: 'yes-active', label: 'Yes, I have an active case / hearing scheduled', emoji: '⚖️' },
+  { value: 'yes-past', label: "I've been ordered removed / deported in the past", emoji: '📜' },
+  { value: 'no', label: 'No', emoji: '✅' },
+  { value: 'unsure', label: "I'm not sure", emoji: '❓' },
 ] as const
 
 export const GOAL_OPTIONS = [
-  { value: 'stay', label: 'Stay in the U.S. legally' },
-  { value: 'work', label: 'Get permission to work' },
-  { value: 'green-card', label: 'Get a green card' },
-  { value: 'citizen', label: 'Become a U.S. citizen' },
-  { value: 'family', label: 'Bring family from abroad' },
-  { value: 'asylum', label: 'Apply for asylum' },
-  { value: 'unsure', label: "I'm not sure" },
+  { value: 'stay', label: 'Stay in the U.S. legally', emoji: '🏠' },
+  { value: 'work', label: 'Get permission to work', emoji: '💼' },
+  { value: 'green-card', label: 'Get a green card', emoji: '🟢' },
+  { value: 'citizen', label: 'Become a U.S. citizen', emoji: '🇺🇸' },
+  { value: 'family', label: 'Bring family from abroad', emoji: '👨‍👩‍👧' },
+  { value: 'asylum', label: 'Apply for asylum', emoji: '🕊️' },
+  { value: 'unsure', label: "I'm not sure", emoji: '❓' },
 ] as const
 
 export type WizardAnswers = {
