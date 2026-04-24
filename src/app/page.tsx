@@ -45,8 +45,46 @@ export default function Home() {
   const [sending, setSending] = useState(false)
   const [docHint, setDocHint] = useState<(typeof DOC_HINTS)[number]['value']>('license')
   const [isDragging, setIsDragging] = useState(false)
+  const [showSensitive, setShowSensitive] = useState(false)
   const dragCounterRef = useRef(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const hasKickedOffRef = useRef(false)
+  const activeUploadsRef = useRef(0)
+
+  // Auto-kickoff: once the first extraction lands and uploads settle, send a
+  // silent "start" message so the assistant proactively asks the first question.
+  async function maybeKickoffChat(nextState: Record<string, unknown>) {
+    if (hasKickedOffRef.current) return
+    if (activeUploadsRef.current > 0) return
+    if (Object.keys(nextState).length === 0) return
+    hasKickedOffRef.current = true
+    setSending(true)
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          state: nextState,
+          messages: [
+            {
+              role: 'user',
+              content:
+                '(system kickoff) I just uploaded my documents. Please confirm what you extracted and ask me for the next highest-priority missing field.',
+            },
+          ],
+        }),
+      })
+      const data = await res.json()
+      if (res.ok && data.message) {
+        setMessages((m) => [...m, { role: 'assistant', content: data.message }])
+        if (data.state) setState(data.state)
+      }
+    } catch {
+      // Silently ignore — user can still type to advance.
+    } finally {
+      setSending(false)
+    }
+  }
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -55,6 +93,7 @@ export default function Home() {
   async function handleUpload(file: File) {
     const id = crypto.randomUUID()
     setUploads((u) => [...u, { id, fileName: file.name, status: 'uploading' }])
+    activeUploadsRef.current += 1
 
     const fd = new FormData()
     fd.append('file', file)
@@ -74,7 +113,11 @@ export default function Home() {
       const extraction = data.extraction as ExtractionResult
       const fieldCount = Object.keys(extraction.fields ?? {}).length
 
-      setState((prev) => mergeFields(prev, extraction.fields ?? {}))
+      let merged: Record<string, unknown> = {}
+      setState((prev) => {
+        merged = mergeFields(prev, extraction.fields ?? {})
+        return merged
+      })
 
       setUploads((u) =>
         u.map((x) =>
@@ -90,20 +133,11 @@ export default function Home() {
         )
       )
 
-      setMessages((m) => [
-        ...m,
-        {
-          role: 'assistant',
-          content: `Got it — extracted ${fieldCount} field${
-            fieldCount === 1 ? '' : 's'
-          } from your ${extraction.docType.replace('-', ' ')}. ${
-            extraction.warnings?.length
-              ? `Heads up: ${extraction.warnings.join('; ')}. `
-              : ''
-          }Tell me anything else or answer my next question below.`,
-        },
-      ])
+      activeUploadsRef.current = Math.max(0, activeUploadsRef.current - 1)
+      // Let state settle, then try kickoff.
+      setTimeout(() => maybeKickoffChat(merged), 300)
     } catch (err) {
+      activeUploadsRef.current = Math.max(0, activeUploadsRef.current - 1)
       setUploads((u) =>
         u.map((x) => (x.id === id ? { ...x, status: 'error', error: String(err) } : x))
       )
@@ -273,10 +307,23 @@ export default function Home() {
           <div className="rounded-xl border border-neutral-200 bg-white p-4">
             <h2 className="mb-2 flex items-center justify-between text-sm font-semibold">
               <span>Form state</span>
-              <span className="text-xs font-normal text-neutral-500">{filledCount} filled</span>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowSensitive((s) => !s)}
+                  className="rounded border border-neutral-300 px-1.5 py-0.5 text-[10px] font-medium text-neutral-600 hover:bg-neutral-100"
+                >
+                  {showSensitive ? 'hide sensitive' : 'show sensitive'}
+                </button>
+                <span className="text-xs font-normal text-neutral-500">{filledCount} filled</span>
+              </div>
             </h2>
             <pre className="max-h-64 overflow-auto rounded-md bg-neutral-50 p-2 text-[11px] leading-snug text-neutral-700">
-              {JSON.stringify(state, null, 2)}
+              {JSON.stringify(
+                showSensitive ? state : maskSensitiveForDisplay(state),
+                null,
+                2
+              )}
             </pre>
           </div>
 
@@ -373,6 +420,33 @@ function mergeFields(
     cursor[keys[keys.length - 1]] = value
   }
   return next
+}
+
+// Schema paths whose value should be masked in the UI unless "show sensitive" is on.
+const SENSITIVE_PATHS_UI = ['part4.ssn', 'part2.ssn', 'part4.aNumber', 'part2.aNumber']
+
+function maskSensitiveForDisplay(
+  state: Record<string, unknown>
+): Record<string, unknown> {
+  const clone = structuredClone(state) as Record<string, unknown>
+  for (const path of SENSITIVE_PATHS_UI) {
+    const keys = path.split('.')
+    let cursor: Record<string, unknown> | undefined = clone
+    for (let i = 0; i < keys.length - 1; i += 1) {
+      const next = cursor?.[keys[i]]
+      if (typeof next !== 'object' || next === null) { cursor = undefined; break }
+      cursor = next as Record<string, unknown>
+    }
+    if (cursor) {
+      const leaf = keys[keys.length - 1]
+      const v = cursor[leaf]
+      if (typeof v === 'string' && v.length > 0) {
+        const digits = v.replace(/\D/g, '')
+        cursor[leaf] = digits.length >= 4 ? `xxx-xx-${digits.slice(-4)}` : 'xxx-xx-xxxx'
+      }
+    }
+  }
+  return clone
 }
 
 function countFilledPaths(state: Record<string, unknown>, prefix = ''): number {

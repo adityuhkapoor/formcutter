@@ -187,68 +187,207 @@ export type I864Data = z.infer<typeof I864Schema>
 export type I864PartialData = z.input<typeof I864Schema>
 
 /**
- * Field metadata: pretty labels + source hints for the LLM extraction prompts
- * and chat UI. The LLM uses these to decide which document a field should
- * be extracted from and to explain the question in plain English when
- * asking the user.
+ * Field metadata: labels, tier, why-USCIS-needs-it, source hints.
+ *
+ * - `tier: required` → USCIS rejects without it. Gate submission.
+ * - `tier: conditional` → required only if a trigger matches (e.g. spouse info only
+ *   needed if married). Chat should ask only when the trigger condition is true.
+ * - `tier: optional` → strengthens case but isn't blocking.
+ *
+ * `why` is a one-line plain-English reason surfaced in chat when we ask for the
+ * field, so users understand the request. Modeled after Granted Health / Plaid
+ * KYC "why we need this" patterns.
+ *
+ * `sensitivity` flags fields that should be masked in chat bubbles (e.g. SSN →
+ * show only last 4). The form state panel displays full values with a
+ * show/hide toggle.
  */
-export const FIELD_META: Record<string, {
+export type FieldMeta = {
   label: string
+  tier: 'required' | 'conditional' | 'optional'
+  why: string
   docSource: Array<'license' | 'passport' | 'green-card' | 'tax-return' | 'paystub' | 'user-input'>
+  sensitivity?: 'high' | 'low'
+  /** If tier is "conditional", this is the dotted path whose truthy value triggers the field. */
+  conditionOn?: string
+  /** Optional prewritten question the assistant can open with. */
   askIfMissing?: string
-}> = {
+}
+
+export const FIELD_META: Record<string, FieldMeta> = {
+  // ─── Sponsor identity ───────────────────────────────────────────────
   'part4.name.familyName': {
     label: 'Sponsor family name (last name)',
+    tier: 'required',
+    why: 'USCIS matches the sponsor to their tax records and citizenship documents by legal name.',
     docSource: ['license', 'passport'],
   },
   'part4.name.givenName': {
     label: 'Sponsor given name (first name)',
+    tier: 'required',
+    why: 'Part of the sponsor\'s legal name on record with USCIS.',
+    docSource: ['license', 'passport'],
+  },
+  'part4.name.middleName': {
+    label: 'Sponsor middle name',
+    tier: 'optional',
+    why: 'Included if it appears on the sponsor\'s government ID; not required if they don\'t have one.',
     docSource: ['license', 'passport'],
   },
   'part4.dateOfBirth': {
     label: 'Sponsor date of birth',
+    tier: 'required',
+    why: 'USCIS confirms identity and matches the sponsor to their tax return and citizenship record.',
     docSource: ['license', 'passport'],
   },
   'part4.ssn': {
     label: 'Sponsor Social Security Number',
-    docSource: ['user-input'],
-    askIfMissing: 'What is your Social Security Number? (9 digits, with or without dashes)',
+    tier: 'required',
+    why: 'USCIS uses the SSN to verify the sponsor\'s tax return income. This is the single most checked field on the I-864.',
+    docSource: ['tax-return', 'user-input'],
+    sensitivity: 'high',
+    askIfMissing: 'What\'s your Social Security Number? We\'ll use it to match the tax return info to your name on record.',
   },
   'part4.mailingAddress.streetNumberAndName': {
     label: 'Sponsor mailing street address',
+    tier: 'required',
+    why: 'USCIS sends receipt notices, RFEs, and decisions to this address.',
+    docSource: ['license', 'user-input'],
+  },
+  'part4.mailingAddress.cityOrTown': {
+    label: 'Sponsor mailing city',
+    tier: 'required',
+    why: 'Part of the USCIS mailing address.',
+    docSource: ['license', 'user-input'],
+  },
+  'part4.mailingAddress.state': {
+    label: 'Sponsor mailing state',
+    tier: 'required',
+    why: 'Part of the USCIS mailing address.',
+    docSource: ['license', 'user-input'],
+  },
+  'part4.mailingAddress.zipCode': {
+    label: 'Sponsor ZIP code',
+    tier: 'required',
+    why: 'Part of the USCIS mailing address.',
     docSource: ['license', 'user-input'],
   },
   'part4.citizenshipStatus': {
     label: 'Sponsor citizenship status',
+    tier: 'required',
+    why: 'Only U.S. citizens, U.S. nationals, or lawful permanent residents can sponsor. USCIS checks this first.',
     docSource: ['passport', 'green-card', 'user-input'],
-    askIfMissing: 'Are you a U.S. citizen, U.S. national, or lawful permanent resident (green card holder)?',
+    askIfMissing: 'Are you a U.S. citizen, U.S. national, or a green card holder (lawful permanent resident)?',
+  },
+
+  // ─── Household composition (Part 5) ─────────────────────────────────
+  'part5.self': {
+    label: 'Count for yourself',
+    tier: 'required',
+    why: 'Household size determines the 125% poverty line your income must meet. Yourself counts as 1.',
+    docSource: ['user-input'],
+  },
+  'part5.spouse': {
+    label: 'Spouse count (0 or 1)',
+    tier: 'required',
+    why: 'Your spouse counts toward household size whether or not they earn income.',
+    docSource: ['tax-return', 'user-input'],
+    askIfMissing: 'Are you currently married? (If yes, your spouse is included in the household count.)',
+  },
+  'part5.dependentChildren': {
+    label: 'Number of dependent children',
+    tier: 'required',
+    why: 'Each dependent child raises the income threshold USCIS requires.',
+    docSource: ['tax-return', 'user-input'],
+    askIfMissing: 'How many dependent children do you have?',
+  },
+  'part5.otherDependentsOnTaxReturn': {
+    label: 'Other dependents on your tax return',
+    tier: 'optional',
+    why: 'Other people you claim as dependents on your 1040 (parents, in-laws, adult children) count toward household size.',
+    docSource: ['tax-return', 'user-input'],
+  },
+  'part5.priorI864Obligations': {
+    label: 'Prior I-864 obligations still active',
+    tier: 'conditional',
+    why: 'If you\'ve sponsored someone else in the past and they haven\'t naturalized / earned 40 quarters / died, they still count toward your household size.',
+    docSource: ['user-input'],
+    conditionOn: 'part4.hasPreviouslySponsored',
   },
   'part5.householdSizeTotal': {
-    label: 'Household size (Part 5 total)',
+    label: 'Total household size',
+    tier: 'required',
+    why: 'Computed total — USCIS uses this to check your income against the 125% poverty guideline.',
     docSource: ['user-input'],
-    askIfMissing: 'How many people are in your household? Include yourself, the immigrant you are sponsoring, your spouse, any dependent children, and anyone else you claim on your tax return.',
+  },
+
+  // ─── Employment + income (Part 6) ───────────────────────────────────
+  'part6.employment.employed': {
+    label: 'Currently employed',
+    tier: 'required',
+    why: 'USCIS needs to know the sponsor\'s current employment status to assess income stability.',
+    docSource: ['paystub', 'user-input'],
+    askIfMissing: 'Are you currently employed, self-employed, retired, or unemployed?',
+  },
+  'part6.employerOrBusinessName': {
+    label: 'Current employer name',
+    tier: 'conditional',
+    why: 'USCIS uses the employer name to verify your current income source.',
+    docSource: ['paystub', 'user-input'],
+    conditionOn: 'part6.employment.employed',
+  },
+  'part6.occupation': {
+    label: 'Occupation',
+    tier: 'optional',
+    why: 'Gives USCIS context about the sponsor\'s income type.',
+    docSource: ['paystub', 'user-input'],
   },
   'part6.currentIndividualAnnualIncome': {
     label: 'Current annual individual income',
+    tier: 'required',
+    why: 'This is the main number USCIS compares against the 125% poverty line. It can differ from last year\'s tax return if you\'ve gotten a raise or changed jobs.',
     docSource: ['paystub', 'user-input'],
-    askIfMissing: 'What is your current yearly income? (Estimate if variable — we will use pay stubs or an employer letter as proof.)',
+    askIfMissing: 'What is your current yearly income? (Estimate is fine — we\'ll back it up with pay stubs.)',
   },
   'part6.taxReturnIncome.mostRecentYear.totalIncome': {
-    label: 'Total income — most recent tax year (1040 line 9)',
+    label: 'Total income — most recent tax year',
+    tier: 'required',
+    why: 'USCIS cross-checks this against your IRS tax transcript. It\'s Line 9 (Total Income) on the 1040, not AGI.',
     docSource: ['tax-return'],
   },
   'part6.taxReturnIncome.mostRecentYear.taxYear': {
     label: 'Most recent tax year filed',
+    tier: 'required',
+    why: 'USCIS wants the most recent year\'s tax return attached to the packet.',
     docSource: ['tax-return'],
   },
+
+  // ─── Contact + signature (Part 8) ────────────────────────────────────
   'part8.sponsorEmail': {
     label: 'Sponsor email',
+    tier: 'required',
+    why: 'USCIS uses this for secondary communication and case status updates.',
     docSource: ['user-input'],
-    askIfMissing: 'What email address should USCIS use to contact you?',
+    askIfMissing: 'What email address can USCIS use to reach you?',
   },
   'part8.sponsorDaytimePhone': {
     label: 'Sponsor daytime phone',
+    tier: 'required',
+    why: 'USCIS may call to clarify during review.',
     docSource: ['user-input'],
-    askIfMissing: 'What is a good daytime phone number for you?',
+    askIfMissing: 'What\'s a good daytime phone number?',
+  },
+  'part8.signatureDate': {
+    label: 'Date signed',
+    tier: 'required',
+    why: 'Signature date cannot be more than 6 months before filing. We\'ll fill today\'s date at the end.',
+    docSource: ['user-input'],
   },
 }
+
+/** Schema paths whose full value must NOT appear in chat bubbles. */
+export const SENSITIVE_PATHS = new Set(
+  Object.entries(FIELD_META)
+    .filter(([, m]) => m.sensitivity === 'high')
+    .map(([p]) => p)
+)

@@ -2,32 +2,87 @@ import { NextResponse } from 'next/server'
 import type { Tool, MessageParam } from '@anthropic-ai/sdk/resources/messages'
 import { anthropic, MODEL, DEFAULTS } from '@/lib/anthropic'
 import { ipFromRequest, rateLimit } from '@/lib/rate-limit'
-import { FIELD_META } from '@/lib/i864-schema'
+import { FIELD_META, SENSITIVE_PATHS } from '@/lib/i864-schema'
 import { flattenPaths, mergeExtractionIntoState } from '@/lib/field-paths'
+
+/** Replace SSN / A-Number-shaped values with last-4 masks before sending to
+ * the LLM or returning to the client. */
+function maskSensitive(state: Record<string, unknown>): Record<string, unknown> {
+  const out: Record<string, unknown> = {}
+  for (const [k, v] of Object.entries(state)) {
+    if (SENSITIVE_PATHS.has(k) && typeof v === 'string') {
+      const digits = v.replace(/\D/g, '')
+      out[k] = digits.length >= 4 ? `xxx-xx-${digits.slice(-4)}` : 'xxx-xx-xxxx'
+    } else {
+      out[k] = v
+    }
+  }
+  return out
+}
+
+/** Redact SSN/A-Number patterns in a free-text message in case the LLM
+ * echoes one despite being told not to. Belt-and-suspenders. */
+function redactMessage(text: string): string {
+  return text
+    .replace(/\b(\d{3})-?(\d{2})-?(\d{4})\b/g, (_, _a, _b, c) => `xxx-xx-${c}`)
+    .replace(/\bA-?(\d{3})(\d{3})(\d{2,3})\b/g, (_, _a, _b, c) => `A-xxxxxx${c}`)
+}
 
 export const runtime = 'nodejs'
 export const maxDuration = 60
 
-const SYSTEM_PROMPT = `You are Formcutter's fill-in-the-blanks assistant for the U.S. I-864 Affidavit of Support.
+const SYSTEM_PROMPT = `You are Formcutter's assistant for the U.S. I-864 Affidavit of Support.
 
-You help a sponsor complete their I-864 by asking for ONE missing field at a time in plain, friendly English. You do NOT give legal advice.
+You guide a sponsor through completing their I-864. Your job is to gather missing fields conversationally after an initial document extraction has already pulled what it can.
 
-Your inputs each turn:
-- The current form state (what we've extracted from documents and previously discussed).
-- A list of still-missing fields with their plain-English labels.
-- The user's latest message.
+# Style
 
-Your outputs via the \`respond\` tool:
-- \`message\`: a short reply to the user. If you are asking for the next field, phrase it as a single friendly question. If the user volunteered something, acknowledge and record it. Keep it under 3 sentences.
-- \`updates\`: a flat map of dotted field paths → values, populated ONLY with values the user explicitly stated in this turn. Never invent values. Ask follow-ups for anything unclear.
-- \`needs_rep_review\`: set true if the user asked a legal-strategy question (joint sponsor eligibility, domicile, assets vs income, public charge, naturalization consequences, whether they qualify). In that case, your \`message\` should say you'll flag it for their reviewer.
+- Warm, concise, 2-4 sentences per turn. Never walls of text.
+- When you ask for a field, include a one-line "USCIS needs this because..." so the user understands why.
+- When the user volunteers new info, acknowledge it briefly, then move on to the next missing required field.
+- When extracted data is reflected back to the user for confirmation, cite the source document (e.g. "From your tax return, line 9, I got $95,120 for most-recent-year total income.").
+- Mask SSNs in your replies: show only last 4 digits as "xxx-xx-7102". Mask A-Numbers as "A-xxxxxx7890". Do not echo full SSN or A-Number in any message.
+- Infer liberally, but confirm before recording. If the user is clearly a married U.S. citizen and the tax return is joint-filed, it's fine to say "Based on the 1040 being married-filing-jointly, I'm assuming you have a spouse — that count is 1?" rather than making them re-state it from scratch.
 
-Hard rules:
-- Never advise whether they qualify, should use a joint sponsor, or any strategic question. Redirect to "I'll flag this for your reviewer."
+# Priority order for asking
+
+Each turn you see a MISSING list with a tier for each field. Ask in this order:
+1. tier="required" fields first — these gate USCIS submission.
+2. tier="conditional" fields only when their trigger is satisfied (you'll see the resolved list).
+3. tier="optional" fields last, and only if the user wants to strengthen the case.
+
+Ask ONE field per turn unless the user bundles multiple answers ("I'm married, no kids, employed"). In that case, record ALL the fields they gave you.
+
+# Handling "skip" / "I don't know"
+
+Users MUST be able to move past fields. If they say "skip," "I don't know," "unsure," "come back to it," etc.:
+- Record nothing for that field.
+- Move to the next field.
+- At session end, the unanswered-required fields will be surfaced to their accredited-rep reviewer. That's the safety net.
+
+Never loop on a field. Never refuse to continue because something is missing.
+
+# Outputs (via \`respond\` tool)
+
+- \`message\`: your reply to the user. Short. Include source citation OR why-USCIS-needs-it when appropriate.
+- \`updates\`: flat map of dotted schema paths → values. Include ONLY facts the user explicitly stated or confirmed in this turn. Never guess.
+- \`needs_rep_review\`: true when the user asked a legal-strategy question.
+- \`review_reason\`: short description of what to flag, required when \`needs_rep_review\` is true.
+
+# Hard rules
+
+- Never give legal advice. Do not tell the user whether they qualify, whether they need a joint sponsor, how to explain domicile, whether their income is "enough," whether using assets is "better." For any such question: set \`needs_rep_review: true\` and reply with something like "I'll flag this for your accredited-rep reviewer — they'll give you a straight answer. For reference, here's what the instructions say: [quote]." Then move on to the next unrelated missing field.
+- Topics that are ALWAYS legal-strategy (flag these):
+  - Joint sponsor eligibility or whether to use one
+  - Whether assets can substitute for income
+  - Domicile / re-establishing domicile
+  - Public charge / means-tested benefits
+  - Whether the sponsor qualifies at all
+  - Naturalization consequences of sponsoring
+  - Any "what should I do" or "is this enough" question
 - Dates → YYYY-MM-DD. Money → plain numbers, no commas/$.
-- If the user's answer is ambiguous (e.g. "about 95k") ask one clarifying question before committing it.
-- If a field they mention isn't in the missing list, still record it if it fits a known schema path.
-- If the missing list is empty, confirm the form is complete and tell them to hit Generate PDF.`
+- If the MISSING list is empty (all required filled), congratulate and tell them to hit Generate PDF.
+- Do not fabricate field paths — use only the paths shown in MISSING or already in state.`
 
 const TOOL_DEFINITION: Tool = {
   name: 'respond',
@@ -90,26 +145,49 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'invalid_message_count' }, { status: 400 })
   }
 
-  // Build the still-missing list by comparing schema meta against state.
+  // Build the still-missing list, sorted by tier priority, filtered against
+  // conditional triggers. The LLM uses tier + why to prioritize.
   const flatState = flattenPaths(state as Record<string, unknown>)
+  const tierRank = { required: 0, conditional: 1, optional: 2 } as const
+
   const missing = Object.entries(FIELD_META)
-    .filter(([path]) => flatState[path] === undefined || flatState[path] === '')
+    .filter(([path, meta]) => {
+      const filled = flatState[path] !== undefined && flatState[path] !== ''
+      if (filled) return false
+      if (meta.tier === 'conditional' && meta.conditionOn) {
+        const trigger = flatState[meta.conditionOn]
+        if (!trigger) return false
+      }
+      return true
+    })
     .map(([path, meta]) => ({
       path,
       label: meta.label,
+      tier: meta.tier,
+      why: meta.why,
+      docSource: meta.docSource,
       askIfMissing: meta.askIfMissing,
     }))
+    .sort((a, b) => tierRank[a.tier] - tierRank[b.tier])
+
+  // Mask sensitive values in what we echo back to the LLM — it never needs
+  // to see full SSNs to ask follow-up questions.
+  const maskedState = maskSensitive(flatState)
 
   const contextMessage = [
-    `Current form state (filled values):`,
+    `Current form state (values; sensitive fields shown masked):`,
     '```json',
-    JSON.stringify(flatState, null, 2),
+    JSON.stringify(maskedState, null, 2),
     '```',
     '',
-    `Still missing fields (${missing.length} of ${Object.keys(FIELD_META).length}):`,
+    `Still missing fields (${missing.length}, ordered by priority):`,
     '```json',
     JSON.stringify(missing, null, 2),
     '```',
+    '',
+    missing.length === 0
+      ? 'All required fields are filled. Tell the user the form is ready to generate.'
+      : `Ask for the highest-priority required field next, unless the user's latest message already gave you something specific to record.`,
   ].join('\n')
 
   const conversation: MessageParam[] = [
@@ -149,7 +227,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       ok: true,
-      message: out.message,
+      message: redactMessage(out.message),
       state: nextState,
       needsRepReview: out.needs_rep_review,
       reviewReason: out.review_reason,
