@@ -31,15 +31,19 @@ const DOC_HINTS = [
   { value: 'other', label: 'Other' },
 ] as const
 
-// Build stamp — bumps on every reload because Next dev rebuilds the module.
-// Lets us spot a stuck cache at a glance: if this number matches the last
-// refresh, the browser served stale JS.
-const BUILD_STAMP = typeof window === 'undefined'
-  ? new Date().toISOString().slice(11, 19)
-  : ''
+// Build stamp set once at module evaluation on the client. Because this
+// module reloads on every Next.js dev rebuild, the stamp bumps whenever
+// we actually ship a change. If the stamp doesn't move after refresh,
+// the browser served stale JS. Kept client-only to avoid SSR hydration
+// mismatch (#1 listed cause per Next.js docs).
+const BUILD_STAMP_VALUE = new Date().toISOString().slice(11, 19)
 
 export default function Home() {
   const [state, setState] = useState<Record<string, unknown>>({})
+  const [buildStamp, setBuildStamp] = useState<string>('')
+  useEffect(() => {
+    setBuildStamp(BUILD_STAMP_VALUE)
+  }, [])
   const [messages, setMessages] = useState<Msg[]>([
     {
       role: 'assistant',
@@ -211,9 +215,9 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-3 text-xs text-neutral-500">
             <span>not a law firm · does not provide legal advice</span>
-            {BUILD_STAMP && (
-              <span className="font-mono text-[10px] text-neutral-400">
-                build {BUILD_STAMP}
+            {buildStamp && (
+              <span className="font-mono text-[10px] text-neutral-400" suppressHydrationWarning>
+                build {buildStamp}
               </span>
             )}
           </div>
