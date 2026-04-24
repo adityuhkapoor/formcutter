@@ -1,9 +1,10 @@
 {
-  "name": "temp-scaffold",
+  "name": "formcutter",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "env -u ANTHROPIC_API_KEY -u OPENAI_API_KEY -u GITHUB_TOKEN next dev",
+    "dev:webpack": "env -u ANTHROPIC_API_KEY -u OPENAI_API_KEY -u GITHUB_TOKEN next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

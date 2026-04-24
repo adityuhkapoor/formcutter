@@ -1,8 +1,20 @@
 import Anthropic from '@anthropic-ai/sdk'
 
-// Singleton SDK client for all server routes.
+// Strip wrapping quotes if the env file has them. Turbopack's dotenv loader
+// in Next.js 16 passes quoted values through literally in some cases.
+function cleanKey(raw: string | undefined): string | undefined {
+  if (!raw) return undefined
+  const trimmed = raw.trim()
+  const unquoted =
+    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+    (trimmed.startsWith("'") && trimmed.endsWith("'"))
+      ? trimmed.slice(1, -1)
+      : trimmed
+  return unquoted || undefined
+}
+
 export const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
+  apiKey: cleanKey(process.env.ANTHROPIC_API_KEY),
 })
 
 export const MODEL = 'claude-sonnet-4-6'
