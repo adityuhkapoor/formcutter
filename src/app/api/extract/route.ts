@@ -64,7 +64,13 @@ HARD RULES:
 - Pay stubs and tax returns: use part6.* paths, and set \`taxYear\`/\`totalIncome\`/\`grossYTD\` top-level fields too.
 - Do NOT invent fields not present on the document. Returning an empty \`fields\` object is better than hallucinating.
 - Do NOT ask the user questions — another component handles that.
-- If the document looks unusual (expired, redacted, visibly tampered, watermark says "SPECIMEN"), note it in \`warnings\` but still extract.`
+
+DOC VETTING RULES (critical for reviewer):
+- ALWAYS set \`docType\` to what you actually see, even if the user's hint says something different. If your detected type differs from the user's hint, set \`mismatchReason\` to a short sentence like "User said 'license' but the document is clearly an IRS Form 1040."
+- For tax returns: if the 1040 visible but W-2(s), 1099(s), or any Schedule referenced (A/B/C/D/E) are NOT present in what you can see, list them in \`missingComponents\`. USCIS rejects for missing schedules more than any other reason.
+- Always populate \`docDate\` with the most relevant date: pay-stub pay-period-end for paystubs; Dec 31 of the tax year for 1040s; issue date for licenses/passports/green cards.
+- If watermarked "SAMPLE" / "SPECIMEN" / "NOT REAL", note in \`warnings\`. Don't reject — this is a dev/test document.
+- If the document is older than expected for its type (pay stub > 6 months, tax return > 2 years), mention in \`warnings\`.`
 
 const TOOL_DEFINITION: Tool = {
   name: 'extract_fields',
@@ -106,6 +112,22 @@ const TOOL_DEFINITION: Tool = {
         items: { type: 'string' },
         description: 'Anything unusual about the document (expired, unreadable, apparent tampering).',
       },
+      missingComponents: {
+        type: 'array',
+        items: { type: 'string' },
+        description:
+          'For tax returns: list any commonly-attached components that are NOT present (e.g. "W-2", "Schedule C", "1099"). USCIS requires every schedule filed.',
+      },
+      docDate: {
+        type: 'string',
+        description:
+          'Key date on the document in YYYY-MM-DD form. For pay stubs: the pay period end or pay date. For tax returns: December 31 of the tax year. Omit if not determinable.',
+      },
+      mismatchReason: {
+        type: 'string',
+        description:
+          'If docType differs from user-provided hint, explain why in one short sentence. Omit if they match.',
+      },
     },
     required: ['docType', 'fields'],
   },
@@ -118,6 +140,9 @@ type ExtractionResult = {
   totalIncome?: number
   grossYTD?: number
   warnings?: string[]
+  missingComponents?: string[]
+  docDate?: string
+  mismatchReason?: string
 }
 
 export async function POST(req: Request) {

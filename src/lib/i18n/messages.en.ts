@@ -71,11 +71,26 @@ export const MESSAGES_EN = {
   'date.today': 'Today',
   'date.yesterday': 'Yesterday',
 
-  'evidence.heading': 'Required evidence',
-  'evidence.collected': 'Collected',
-  'evidence.missing': 'Missing',
-  'evidence.stale': 'Too old',
-  'evidence.mismatch': 'Wrong type',
+  'evidence.heading': 'Evidence packet',
+  'evidence.subheading': 'Documents USCIS expects with your filing.',
+  'evidence.status.met': 'Got it',
+  'evidence.status.partial': 'Need more',
+  'evidence.status.stale': 'Too old',
+  'evidence.status.missing': 'Missing',
+  'evidence.tier.required': 'Required',
+  'evidence.tier.recommended': 'Recommended',
+  'evidence.tier.conditional': 'If applicable',
+  'evidence.citizenship': 'Proof of U.S. citizenship or LPR',
+  'evidence.taxReturn': 'Most recent tax return',
+  'evidence.payStubs': 'Pay stubs (last 6 months)',
+  'evidence.photoId': 'Government photo ID',
+  'evidence.domicile': 'Proof of U.S. domicile',
+  'evidence.vet.mismatch':
+    'You labeled this as {claimed} but it looks like a {detected}. I re-labeled it for you.',
+  'evidence.vet.missingSchedules':
+    'Your tax return may be missing supporting W-2s or schedules. USCIS requires every schedule you filed.',
+  'evidence.vet.stale':
+    'This document is older than USCIS prefers. Consider replacing with a more recent one.',
 
   'wizard.heading': "Let's figure out what you need",
   'wizard.subheading':

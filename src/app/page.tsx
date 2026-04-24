@@ -4,6 +4,13 @@ import { useState, useRef, useEffect, type FormEvent } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { useI18n } from '@/lib/i18n/provider'
 import { LanguagePicker } from '@/components/LanguagePicker'
+import { EvidenceChecklist } from '@/components/EvidenceChecklist'
+import {
+  evaluateEvidence,
+  I864_EVIDENCE,
+  type DocType,
+  type UploadedDoc,
+} from '@/lib/evidence'
 
 type Msg = {
   id: string
@@ -54,6 +61,9 @@ type ExtractionResult = {
   totalIncome?: number
   grossYTD?: number
   warnings?: string[]
+  missingComponents?: string[]
+  docDate?: string
+  mismatchReason?: string
 }
 type UploadEntry = {
   id: string
@@ -97,6 +107,7 @@ export default function Home() {
   // greeting is added after mount so Date.now() only runs client-side.
   const [messages, setMessages] = useState<Msg[]>([])
   const [uploads, setUploads] = useState<UploadEntry[]>([])
+  const [docs, setDocs] = useState<UploadedDoc[]>([])
   const [input, setInput] = useState('')
   const [sending, setSending] = useState(false)
   const [docHint, setDocHint] = useState<(typeof DOC_HINTS)[number]['value']>('license')
@@ -262,6 +273,20 @@ export default function Home() {
         return merged
       })
 
+      // Track the uploaded doc against our evidence requirements.
+      setDocs((prev) => [
+        ...prev,
+        {
+          id,
+          fileName: file.name,
+          claimedType: docHint as DocType,
+          detectedType: (extraction.docType as DocType) ?? 'other',
+          warnings: extraction.warnings ?? [],
+          docDate: extraction.docDate ? new Date(extraction.docDate) : undefined,
+          uploadedAt: new Date(),
+        },
+      ])
+
       setUploads((u) =>
         u.map((x) =>
           x.id === id
@@ -374,6 +399,11 @@ export default function Home() {
   }
 
   const filledCount = countFilledPaths(state)
+  const evidence = evaluateEvidence({
+    requirements: I864_EVIDENCE,
+    docs,
+    state,
+  })
 
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
@@ -491,6 +521,8 @@ export default function Home() {
               </ul>
             )}
           </div>
+
+          <EvidenceChecklist items={evidence} />
 
           <div className="rounded-xl border border-neutral-200 bg-white p-4">
             <h2 className="mb-2 flex items-center justify-between text-sm font-semibold">
