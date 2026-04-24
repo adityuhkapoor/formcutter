@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect, type FormEvent } from 'react'
 import ReactMarkdown from 'react-markdown'
+import { useI18n } from '@/lib/i18n/provider'
+import { LanguagePicker } from '@/components/LanguagePicker'
 
 type Msg = {
   id: string
@@ -64,13 +66,13 @@ type UploadEntry = {
 }
 
 const DOC_HINTS = [
-  { value: 'license', label: "Driver's license" },
-  { value: 'passport', label: 'Passport' },
-  { value: 'green-card', label: 'Green card' },
-  { value: 'tax-return', label: 'Tax return (1040)' },
-  { value: 'tax-transcript', label: 'IRS tax transcript' },
-  { value: 'paystub', label: 'Pay stub' },
-  { value: 'other', label: 'Other' },
+  { value: 'license', i18nKey: 'upload.docType.license' },
+  { value: 'passport', i18nKey: 'upload.docType.passport' },
+  { value: 'green-card', i18nKey: 'upload.docType.greenCard' },
+  { value: 'tax-return', i18nKey: 'upload.docType.taxReturn' },
+  { value: 'tax-transcript', i18nKey: 'upload.docType.taxTranscript' },
+  { value: 'paystub', i18nKey: 'upload.docType.paystub' },
+  { value: 'other', i18nKey: 'upload.docType.other' },
 ] as const
 
 // Build stamp set once at module evaluation on the client. Because this
@@ -85,6 +87,7 @@ type CaseStatus = 'drafting' | 'pending_review' | 'approved' | 'released'
 const LOCAL_CASE_KEY = 'formcutter:caseId'
 
 export default function Home() {
+  const { t, lang } = useI18n()
   const [state, setState] = useState<Record<string, unknown>>({})
   const [buildStamp, setBuildStamp] = useState<string>('')
   const [caseId, setCaseId] = useState<string | null>(null)
@@ -134,10 +137,7 @@ export default function Home() {
           localStorage.setItem(LOCAL_CASE_KEY, data.case.id)
         }
         setMessages([
-          makeMsg(
-            'assistant',
-            "Hey — I'll help you fill out your I-864. Upload a photo of your license, green card, passport, or tax transcript. I'll extract what I can and then walk through anything missing."
-          ),
+          makeMsg('assistant', t('chat.greeting')),
         ])
       }
     })()
@@ -195,6 +195,7 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           state: nextState,
+          language: lang,
           messages: [
             {
               role: 'user',
@@ -328,7 +329,7 @@ export default function Home() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ state, messages: wireMessages }),
+        body: JSON.stringify({ state, messages: wireMessages, language: lang }),
       })
       const data = await res.json()
 
@@ -379,12 +380,13 @@ export default function Home() {
       <header className="border-b border-neutral-200 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
           <div className="flex items-center gap-3">
-            <span className="text-lg font-semibold tracking-tight">formcutter</span>
-            <span className="text-xs text-neutral-500">I-864 Affidavit of Support</span>
+            <span className="text-lg font-semibold tracking-tight">{t('header.brand')}</span>
+            <span className="text-xs text-neutral-500">{t('header.subtitle')}</span>
             <StatusBadge status={caseStatus} />
           </div>
           <div className="flex items-center gap-3 text-xs text-neutral-500">
-            <span>not a law firm · does not provide legal advice</span>
+            <span>{t('header.disclaimer')}</span>
+            <LanguagePicker />
             {buildStamp && (
               <span className="font-mono text-[10px] text-neutral-400" suppressHydrationWarning>
                 build {buildStamp}
@@ -397,9 +399,9 @@ export default function Home() {
       <main className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-6 py-6 lg:grid-cols-[380px_1fr]">
         <section className="space-y-4">
           <div className="rounded-xl border border-neutral-200 bg-white p-4">
-            <h2 className="mb-2 text-sm font-semibold">Upload documents</h2>
+            <h2 className="mb-2 text-sm font-semibold">{t('upload.heading')}</h2>
             <label className="mb-2 block text-xs text-neutral-600">
-              What is this document?
+              {t('upload.docType.label')}
               <select
                 className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-2 py-1 text-sm"
                 value={docHint}
@@ -407,7 +409,7 @@ export default function Home() {
               >
                 {DOC_HINTS.map((h) => (
                   <option key={h.value} value={h.value}>
-                    {h.label}
+                    {t(h.i18nKey as Parameters<typeof t>[0])}
                   </option>
                 ))}
               </select>
@@ -458,9 +460,9 @@ export default function Home() {
                   e.target.value = ''
                 }}
               />
-              {isDragging ? 'Drop to upload' : 'Drag and drop, or click to upload'}
+              {isDragging ? t('upload.dropzone.dragging') : t('upload.dropzone.idle')}
               <br />
-              <span className="text-xs text-neutral-400">png, jpg, or pdf — up to 10MB</span>
+              <span className="text-xs text-neutral-400">{t('upload.dropzone.hint')}</span>
             </label>
 
             {uploads.length > 0 && (
@@ -492,16 +494,18 @@ export default function Home() {
 
           <div className="rounded-xl border border-neutral-200 bg-white p-4">
             <h2 className="mb-2 flex items-center justify-between text-sm font-semibold">
-              <span>Form state</span>
+              <span>{t('state.heading')}</span>
               <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => setShowSensitive((s) => !s)}
                   className="rounded border border-neutral-300 px-1.5 py-0.5 text-[10px] font-medium text-neutral-600 hover:bg-neutral-100"
                 >
-                  {showSensitive ? 'hide sensitive' : 'show sensitive'}
+                  {showSensitive ? t('state.hideSensitive') : t('state.showSensitive')}
                 </button>
-                <span className="text-xs font-normal text-neutral-500">{filledCount} filled</span>
+                <span className="text-xs font-normal text-neutral-500">
+                  {t('state.filledCount', { count: filledCount })}
+                </span>
               </div>
             </h2>
             <pre className="max-h-64 overflow-auto rounded-md bg-neutral-50 p-2 text-[11px] leading-snug text-neutral-700">
@@ -516,19 +520,15 @@ export default function Home() {
           {/* Status banner — changes with case lifecycle. */}
           {caseStatus === 'pending_review' && (
             <div className="rounded-lg border border-amber-300 bg-amber-50 p-3 text-xs">
-              <div className="font-semibold text-amber-900">Waiting on reviewer</div>
-              <p className="mt-1 text-amber-800">
-                An accredited representative is reviewing your case. Your PDF will unlock once they approve.
-              </p>
+              <div className="font-semibold text-amber-900">{t('banner.pendingReview.title')}</div>
+              <p className="mt-1 text-amber-800">{t('banner.pendingReview.body')}</p>
             </div>
           )}
 
           {caseStatus === 'approved' && (
             <div className="rounded-lg border border-emerald-300 bg-emerald-50 p-3 text-xs">
-              <div className="font-semibold text-emerald-900">Approved ✓</div>
-              <p className="mt-1 text-emerald-800">
-                Your reviewer signed off. Download the filled I-864 below.
-              </p>
+              <div className="font-semibold text-emerald-900">{t('banner.approved.title')}</div>
+              <p className="mt-1 text-emerald-800">{t('banner.approved.body')}</p>
             </div>
           )}
 
@@ -552,7 +552,7 @@ export default function Home() {
               }}
               className="w-full rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:bg-neutral-300"
             >
-              {submitting ? 'Submitting...' : 'Submit for reviewer'}
+              {submitting ? t('action.submitting') : t('action.submit')}
             </button>
           ) : (
             <button
@@ -579,7 +579,7 @@ export default function Home() {
                   : 'cursor-not-allowed bg-neutral-300'
               }`}
             >
-              {caseStatus === 'approved' ? 'Download filled PDF' : 'Locked until reviewer approves'}
+              {caseStatus === 'approved' ? t('action.download') : t('action.downloadLocked')}
             </button>
           )}
 
@@ -594,7 +594,7 @@ export default function Home() {
             }}
             className="w-full rounded-lg border border-neutral-200 bg-white px-4 py-1.5 text-[11px] font-medium text-neutral-500 hover:bg-neutral-50"
           >
-            Start a new case
+            {t('action.newCase')}
           </button>
         </section>
 
@@ -653,7 +653,7 @@ export default function Home() {
                         {showSpeakerHeader && (
                           <div className="mb-1 flex items-center gap-1.5 px-1 text-[11px] font-medium text-neutral-600">
                             <span className="inline-block h-4 w-4 rounded-full bg-neutral-900" />
-                            Formcutter AI
+                            {t('chat.formcutterAi')}
                           </div>
                         )}
                         <div
@@ -745,10 +745,10 @@ export default function Home() {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder={
                   caseStatus !== 'drafting'
-                    ? 'Case locked — start a new case to edit'
+                    ? t('chat.locked')
                     : sending
-                      ? 'thinking...'
-                      : 'type your answer...'
+                      ? t('chat.thinking')
+                      : t('chat.inputPlaceholder')
                 }
                 disabled={sending || caseStatus !== 'drafting'}
                 className="flex-1 rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-neutral-900 focus:outline-none disabled:bg-neutral-100"
@@ -758,12 +758,11 @@ export default function Home() {
                 disabled={sending || !input.trim() || caseStatus !== 'drafting'}
                 className="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:bg-neutral-300"
               >
-                Send
+                {t('chat.send')}
               </button>
             </div>
             <p className="mt-2 text-[10px] leading-tight text-neutral-500">
-              Formcutter is not a law firm and does not provide legal advice. Legal-strategy
-              questions are flagged for an accredited-representative reviewer.
+              {t('chat.footer.disclaimer')}
             </p>
           </form>
         </section>
@@ -795,17 +794,18 @@ function mergeFields(
 }
 
 function StatusBadge({ status }: { status: CaseStatus }) {
+  const { t } = useI18n()
   const meta = {
-    drafting: { label: 'Drafting', cls: 'bg-neutral-100 text-neutral-700' },
-    pending_review: { label: 'Pending review', cls: 'bg-amber-100 text-amber-800' },
-    approved: { label: 'Approved', cls: 'bg-emerald-100 text-emerald-800' },
-    released: { label: 'Released', cls: 'bg-emerald-100 text-emerald-800' },
+    drafting: { key: 'status.drafting' as const, cls: 'bg-neutral-100 text-neutral-700' },
+    pending_review: { key: 'status.pendingReview' as const, cls: 'bg-amber-100 text-amber-800' },
+    approved: { key: 'status.approved' as const, cls: 'bg-emerald-100 text-emerald-800' },
+    released: { key: 'status.released' as const, cls: 'bg-emerald-100 text-emerald-800' },
   }[status]
   return (
     <span
       className={`rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide ${meta.cls}`}
     >
-      {meta.label}
+      {t(meta.key)}
     </span>
   )
 }

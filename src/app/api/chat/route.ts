@@ -138,6 +138,20 @@ const TOOL_DEFINITION: Tool = {
 type TurnInput = {
   state: Record<string, unknown>
   messages: Array<{ role: 'user' | 'assistant'; content: string }>
+  language?: string
+}
+
+const LANGUAGE_NAMES: Record<string, string> = {
+  en: 'English',
+  es: 'Spanish (Español)',
+  zh: 'Simplified Chinese (中文)',
+  vi: 'Vietnamese (Tiếng Việt)',
+  tl: 'Tagalog',
+  ru: 'Russian (Русский)',
+  uk: 'Ukrainian (Українська)',
+  ar: 'Modern Standard Arabic (العربية)',
+  ht: 'Haitian Creole (Kreyòl Ayisyen)',
+  pt: 'Brazilian Portuguese (Português)',
 }
 
 type ToolOutput = {
@@ -164,6 +178,8 @@ export async function POST(req: Request) {
 
   const state = body.state ?? {}
   const messages = body.messages ?? []
+  const language = body.language && LANGUAGE_NAMES[body.language] ? body.language : 'en'
+  const languageName = LANGUAGE_NAMES[language]
 
   if (messages.length === 0 || messages.length > 50) {
     return NextResponse.json({ error: 'invalid_message_count' }, { status: 400 })
@@ -232,6 +248,13 @@ export async function POST(req: Request) {
           type: 'text',
           text: SYSTEM_PROMPT,
           cache_control: { type: 'ephemeral' },
+        },
+        {
+          type: 'text',
+          text:
+            language === 'en'
+              ? 'Respond in clear, natural English at a 5th-grade reading level.'
+              : `Respond in ${languageName}. Use warm, natural, 5th-grade-reading-level phrasing. Keep USCIS form names (like "I-864"), the acronym "USCIS", and the word "SSN" in English/Latin script. Translate everything else, including option-chip labels in \`options\`. When echoing field values the user provided, keep names/addresses/numbers as-is.`,
         },
       ],
       tools: [TOOL_DEFINITION],

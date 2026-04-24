@@ -57,3 +57,6 @@ next-env.d.ts
 
 # Generated test docs (regenerate via scripts/gen-test-docs.mjs)
 test-docs/
+
+# Translation cache (regenerate via scripts/translate-messages.mjs)
+.translation-cache.json
