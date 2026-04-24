@@ -317,12 +317,27 @@ const VERDICT_STYLE: Record<ReliefVerdict, { label: string; cls: string }> = {
   'not-eligible': { label: 'Not eligible', cls: 'bg-red-100 text-red-800' },
 }
 
+/** A top recommendation earns the "Best match" highlight only when it's
+ * meaningfully better than the runner-up: verdict must be "likely", and
+ * either no second exists or the second is strictly weaker. */
+function deservesBestMatch(
+  top: WizardResult['recommendations'][number],
+  second: WizardResult['recommendations'][number] | undefined,
+): boolean {
+  if (top.verdict !== 'likely') return false
+  if (!second) return true
+  return second.verdict === 'possibly' || second.verdict === 'unlikely' || second.verdict === 'not-eligible'
+}
+
 function ResultsPage({ result }: { result: WizardResult }) {
   const { t } = useI18n()
+  const top3 = result.recommendations.slice(0, 3)
+  const showBestMatch = top3.length > 0 && deservesBestMatch(top3[0], top3[1])
+
   return (
     <div className="min-h-screen bg-neutral-50">
       <header className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-3">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
           <Link href="/fill" className="text-lg font-semibold tracking-tight">
             {t('header.brand')}
           </Link>
@@ -330,8 +345,11 @@ function ResultsPage({ result }: { result: WizardResult }) {
         </div>
       </header>
 
-      <main className="mx-auto max-w-3xl px-6 py-10">
+      <main className="mx-auto max-w-6xl px-6 py-10">
         <h1 className="text-2xl font-semibold tracking-tight">Your options</h1>
+        <p className="mt-2 text-sm text-neutral-600">
+          Based on what you shared, here are the paths most worth considering.
+        </p>
 
         {result.urgentDeadlines && result.urgentDeadlines.length > 0 && (
           <div className="mt-6 rounded-xl border border-red-300 bg-red-50 p-4">
@@ -349,103 +367,149 @@ function ResultsPage({ result }: { result: WizardResult }) {
           </div>
         )}
 
-        <div className="mt-6 space-y-3">
-          {result.recommendations.map((r) => {
-            const v = VERDICT_STYLE[r.verdict]
-            return (
-              <div key={r.id} className="rounded-xl border border-neutral-200 bg-white p-5">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="text-base font-semibold">{r.relief}</h3>
-                    <p className="mt-1 text-sm text-neutral-600">{r.summary}</p>
-                  </div>
-                  <span
-                    className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${v.cls}`}
-                  >
-                    {v.label}
-                  </span>
-                </div>
-                {r.forms.length > 0 && (
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    {r.forms.map((f) => (
-                      <span
-                        key={f}
-                        className="rounded border border-neutral-200 bg-neutral-50 px-2 py-0.5 font-mono text-[11px]"
-                      >
-                        {f}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {r.deadlines && r.deadlines.length > 0 && (
-                  <ul className="mt-3 space-y-1 text-xs">
-                    {r.deadlines.map((d, i) => (
-                      <li
-                        key={i}
-                        className={
-                          d.severity === 'critical'
-                            ? 'text-red-700'
-                            : d.severity === 'warn'
-                              ? 'text-amber-700'
-                              : 'text-neutral-600'
-                        }
-                      >
-                        • {d.label}
-                        {d.daysRemaining !== undefined && ` — ${d.daysRemaining} days`}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {r.evidenceNeeded.length > 0 && (
-                  <div className="mt-3">
-                    <div className="text-[10px] uppercase tracking-wider text-neutral-500">
-                      Evidence you'll need
-                    </div>
-                    <ul className="mt-1 list-disc space-y-0.5 pl-5 text-xs text-neutral-700">
-                      {r.evidenceNeeded.map((e, i) => (
-                        <li key={i}>{e}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                <p className="mt-3 text-xs text-neutral-500 italic">{r.reasoning}</p>
-                <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                  <span className="text-xs font-medium text-neutral-800">
-                    Next step: {r.nextStep}
-                  </span>
-                  <div className="flex flex-wrap gap-2">
-                    {r.forms.map((rawForm) => {
-                      const formId = normalizeFormId(rawForm)
-                      if (formId && FORM_REGISTRY[formId]) {
-                        return (
-                          <Link
-                            key={rawForm}
-                            href={`/fill?formId=${formId}`}
-                            className="rounded-lg bg-neutral-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-neutral-800"
-                          >
-                            Start {rawForm} →
-                          </Link>
-                        )
-                      }
-                      return (
-                        <span
-                          key={rawForm}
-                          className="rounded-lg border border-neutral-300 bg-neutral-100 px-3 py-1.5 text-xs font-medium text-neutral-500"
-                          title="This form is not yet supported by Formcutter. Consult an accredited rep or attorney."
-                        >
-                          {rawForm} · not yet supported
-                        </span>
-                      )
-                    })}
-                  </div>
-                </div>
-              </div>
-            )
-          })}
+        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+          {top3.map((r, idx) => (
+            <OptionCard
+              key={r.id}
+              rec={r}
+              isBestMatch={idx === 0 && showBestMatch}
+            />
+          ))}
         </div>
+
+        {/* Full-width escape hatch — accredited legal help for anyone whose
+         * situation doesn't match the suggestions above. */}
+        <a
+          href="https://www.cliniclegal.org/find-help"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="mt-6 flex w-full items-center justify-between rounded-2xl border border-neutral-300 bg-white px-6 py-5 transition-colors hover:border-neutral-900 hover:bg-neutral-50"
+        >
+          <div>
+            <div className="text-sm font-semibold text-neutral-900">
+              None of these fit? Speak to a DOJ-accredited legal representative.
+            </div>
+            <div className="mt-0.5 text-xs text-neutral-600">
+              Free or low-cost help near you, searchable by ZIP code and language.
+            </div>
+          </div>
+          <span className="shrink-0 text-sm font-medium text-neutral-900">Find help →</span>
+        </a>
 
         <p className="mt-8 text-xs italic text-neutral-500">{result.disclaimer}</p>
       </main>
+    </div>
+  )
+}
+
+function OptionCard({
+  rec,
+  isBestMatch,
+}: {
+  rec: WizardResult['recommendations'][number]
+  isBestMatch: boolean
+}) {
+  const v = VERDICT_STYLE[rec.verdict]
+  const primaryRawForm = rec.forms[0]
+  const primaryFormId = primaryRawForm ? normalizeFormId(primaryRawForm) : null
+  const primarySupported = Boolean(primaryFormId && FORM_REGISTRY[primaryFormId])
+
+  return (
+    <div
+      className={`relative flex flex-col rounded-xl border bg-white p-5 ${
+        isBestMatch ? 'border-emerald-500 ring-2 ring-emerald-500/20' : 'border-neutral-200'
+      }`}
+    >
+      {isBestMatch && (
+        <div className="absolute -top-2.5 left-4 rounded-full bg-emerald-600 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+          Best match
+        </div>
+      )}
+
+      <div className="flex items-start justify-between gap-2">
+        <h3 className="text-base font-semibold">{rec.relief}</h3>
+        <span
+          className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${v.cls}`}
+        >
+          {v.label}
+        </span>
+      </div>
+
+      <p className="mt-2 text-sm text-neutral-600">{rec.summary}</p>
+
+      {rec.forms.length > 0 && (
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {rec.forms.map((f) => (
+            <span
+              key={f}
+              className="rounded border border-neutral-200 bg-neutral-50 px-2 py-0.5 font-mono text-[11px]"
+            >
+              {f}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {rec.deadlines && rec.deadlines.length > 0 && (
+        <ul className="mt-3 space-y-1 text-xs">
+          {rec.deadlines.map((d, i) => (
+            <li
+              key={i}
+              className={
+                d.severity === 'critical'
+                  ? 'text-red-700'
+                  : d.severity === 'warn'
+                    ? 'text-amber-700'
+                    : 'text-neutral-600'
+              }
+            >
+              • {d.label}
+              {d.daysRemaining !== undefined && ` — ${d.daysRemaining} days`}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {rec.evidenceNeeded.length > 0 && (
+        <div className="mt-3">
+          <div className="text-[10px] uppercase tracking-wider text-neutral-500">
+            Evidence you'll need
+          </div>
+          <ul className="mt-1 list-disc space-y-0.5 pl-5 text-xs text-neutral-700">
+            {rec.evidenceNeeded.map((e, i) => (
+              <li key={i}>{e}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <p className="mt-3 text-xs italic text-neutral-500">{rec.reasoning}</p>
+
+      <div className="mt-4 text-xs font-medium text-neutral-800">
+        Next step: {rec.nextStep}
+      </div>
+
+      {/* Pin the primary CTA to the bottom so all 3 cards align. */}
+      <div className="mt-4 flex-grow" />
+      <div className="mt-2">
+        {primarySupported && primaryFormId ? (
+          <Link
+            href={`/fill?formId=${primaryFormId}`}
+            className={`block w-full rounded-lg px-3 py-2 text-center text-sm font-medium text-white ${
+              isBestMatch ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-neutral-900 hover:bg-neutral-800'
+            }`}
+          >
+            Start {primaryRawForm} →
+          </Link>
+        ) : (
+          <span
+            className="block w-full rounded-lg border border-neutral-300 bg-neutral-100 px-3 py-2 text-center text-sm font-medium text-neutral-500"
+            title="This form isn't supported yet. Consult an accredited rep or attorney."
+          >
+            {primaryRawForm ?? 'No form'} · not yet supported
+          </span>
+        )}
+      </div>
     </div>
   )
 }
