@@ -1,214 +1,143 @@
 'use client'
 
-import { useRef } from 'react'
 import Link from 'next/link'
-import { useI18n } from '@/lib/i18n/provider'
+import type { ReactNode } from 'react'
+import { AppSidebar, BrandGlyph } from '@/components/AppSidebar'
 import { LanguagePicker } from '@/components/LanguagePicker'
-import { TriageChat, type TriageChatHandle } from '@/components/TriageChat'
-import { FORM_REGISTRY } from '@/lib/forms'
 
-export default function LandingPage() {
-  const { t } = useI18n()
-  const triageRef = useRef<TriageChatHandle>(null)
-
-  // Header "Speak to a rep" CTA mirrors the in-card button. Scroll into view
-  // first (especially on mobile where the chat may be below the fold once
-  // someone's scrolled down) and then trigger the chat's self-escalation.
-  function requestEscalation() {
-    const el = document.getElementById('triage-chat')
-    el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    triageRef.current?.triggerEscalation()
-  }
-
+/**
+ * Home. Mimics Granted's app-shell landing: left sidebar + soft gradient
+ * canvas + centered brand glyph + "Meet Formcutter" heading + dark pill
+ * "Get started" CTA + three "Get help" rows that all funnel into /chat.
+ *
+ * All brochure content (FAQ, how-it-works, etc.) is intentionally gone —
+ * the chat is the single funnel and this page is purely the door to it.
+ */
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-neutral-50 text-neutral-900">
-      <Header onRequestEscalation={requestEscalation} />
-      <Hero t={t} />
-      <TriageChat ref={triageRef} />
-      <HowItWorks t={t} />
-      <FormsSupported t={t} />
-      <FAQ t={t} />
-      <Footer t={t} />
+    <div className="flex min-h-screen bg-neutral-50 text-neutral-900">
+      <AppSidebar />
+      <main className="relative flex-1 overflow-hidden bg-gradient-to-br from-sky-50 via-emerald-50 to-amber-50">
+        {/* Mobile-only top bar with brand + language */}
+        <div className="flex items-center justify-between border-b border-neutral-200 bg-white/80 px-4 py-3 backdrop-blur lg:hidden">
+          <Link href="/" className="text-lg font-semibold tracking-tight">
+            formcutter
+          </Link>
+          <LanguagePicker />
+        </div>
+
+        <div className="mx-auto flex max-w-3xl flex-col items-center px-6 pb-20 pt-16 md:pt-24">
+          <BrandGlyph className="h-20 w-20" />
+
+          <h1 className="mt-6 text-center text-4xl font-semibold tracking-tight md:text-5xl">
+            Meet Formcutter
+          </h1>
+          <p className="mt-2 text-center text-sm text-neutral-600 md:text-base">
+            Your AI USCIS immigration assistant
+          </p>
+
+          <Link
+            href="/chat"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-neutral-900 px-7 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-neutral-800"
+          >
+            Get started
+            <span aria-hidden>✨</span>
+          </Link>
+
+          <div className="mt-16 w-full">
+            <h2 className="text-sm font-semibold text-neutral-900">Get help</h2>
+            <div className="mt-3 divide-y divide-neutral-200 rounded-2xl border border-neutral-200 bg-white">
+              <HelpCard
+                href="/chat"
+                tint="from-sky-100 to-indigo-100"
+                icon={<BillLikeIcon />}
+                title="Fill a form"
+                description="Upload your docs, chat through the gaps, get a USCIS-ready PDF."
+              />
+              <HelpCard
+                href="/chat"
+                tint="from-emerald-100 to-teal-100"
+                icon={<ShieldIcon />}
+                title="Find the right form"
+                description="Not sure what you need? Answer a few questions and we'll point you to it."
+              />
+              <HelpCard
+                href="/chat"
+                tint="from-amber-100 to-lime-100"
+                icon={<ChatIcon />}
+                title="Something else"
+                description="Complex situation? We'll connect you to an accredited representative."
+              />
+            </div>
+          </div>
+
+          <p className="mt-8 text-center text-[11px] italic text-neutral-500">
+            Not a law firm. Not legal advice. Accredited representatives review before you file.
+          </p>
+        </div>
+      </main>
     </div>
   )
 }
 
-// ─── Header ─────────────────────────────────────────────────────────────
-
-function Header({ onRequestEscalation }: { onRequestEscalation: () => void }) {
+function HelpCard({
+  href,
+  tint,
+  icon,
+  title,
+  description,
+}: {
+  href: string
+  tint: string
+  icon: ReactNode
+  title: string
+  description: string
+}) {
   return (
-    <header className="sticky top-0 z-10 border-b border-neutral-200 bg-white/80 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 py-3">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="inline-block h-5 w-5 rounded-sm bg-neutral-900" />
-          <span className="text-lg font-semibold tracking-tight">formcutter</span>
-        </Link>
-        <div className="flex items-center gap-3 text-xs">
-          <LanguagePicker />
-          <Link
-            href="/rep/cases"
-            className="hidden text-neutral-500 hover:text-neutral-900 sm:inline"
-          >
-            Reviewer console →
-          </Link>
-          <button
-            type="button"
-            onClick={onRequestEscalation}
-            className="rounded-full bg-emerald-500 px-3.5 py-1.5 text-xs font-semibold text-neutral-900 hover:bg-emerald-400"
-          >
-            Speak to a rep
-          </button>
-        </div>
-      </div>
-    </header>
+    <Link
+      href={href}
+      className="flex items-center gap-4 px-5 py-4 transition-colors first:rounded-t-2xl last:rounded-b-2xl hover:bg-neutral-50"
+    >
+      <span
+        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-neutral-700 ${tint}`}
+      >
+        {icon}
+      </span>
+      <span className="flex-1">
+        <span className="block text-sm font-semibold text-neutral-900">{title}</span>
+        <span className="block text-xs text-neutral-600">{description}</span>
+      </span>
+      <span aria-hidden className="text-neutral-400">
+        <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <path d="m7 5 6 5-6 5" />
+        </svg>
+      </span>
+    </Link>
   )
 }
 
-// ─── Hero ───────────────────────────────────────────────────────────────
-
-function Hero({ t }: { t: ReturnType<typeof useI18n>['t'] }) {
+function BillLikeIcon() {
   return (
-    <section className="mx-auto max-w-4xl px-6 pb-2 pt-12 text-center md:pt-16">
-      <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-        {t('landing.hero.title')}
-      </h1>
-      <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
-        {t('landing.hero.subtitle')}
-      </p>
-    </section>
+    <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 3h7l3 3v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" />
+      <path d="M12 3v3h3M7 10h6M7 13h4" />
+    </svg>
   )
 }
 
-// ─── How it works ───────────────────────────────────────────────────────
-
-function HowItWorks({ t }: { t: ReturnType<typeof useI18n>['t'] }) {
-  const steps = [
-    { n: '1', titleKey: 'landing.how.step1.title' as const, emoji: '📸' },
-    { n: '2', titleKey: 'landing.how.step2.title' as const, emoji: '💬' },
-    { n: '3', titleKey: 'landing.how.step3.title' as const, emoji: '✅' },
-    { n: '4', titleKey: 'landing.how.step4.title' as const, emoji: '📄' },
-  ]
+function ShieldIcon() {
   return (
-    <section className="border-t border-neutral-200 bg-white py-10">
-      <div className="mx-auto max-w-5xl px-6">
-        <h2 className="text-center text-sm font-semibold uppercase tracking-wider text-neutral-500">
-          {t('landing.how.heading')}
-        </h2>
-        <div className="mt-5 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {steps.map((s) => (
-            <div key={s.n} className="flex items-start gap-3">
-              <span className="text-xl leading-none">{s.emoji}</span>
-              <div>
-                <div className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400">
-                  Step {s.n}
-                </div>
-                <h3 className="mt-0.5 text-sm font-semibold">{t(s.titleKey)}</h3>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 3 4 5v5c0 3.5 2.5 6.5 6 7 3.5-.5 6-3.5 6-7V5l-6-2z" />
+      <path d="m7.5 10 1.8 1.8L13 8.5" />
+    </svg>
   )
 }
 
-// ─── Forms supported ────────────────────────────────────────────────────
-
-function FormsSupported({ t }: { t: ReturnType<typeof useI18n>['t'] }) {
-  const forms = Object.values(FORM_REGISTRY)
+function ChatIcon() {
   return (
-    <section className="mx-auto max-w-5xl px-6 py-10">
-      <h2 className="text-center text-sm font-semibold uppercase tracking-wider text-neutral-500">
-        {t('landing.forms.heading')}
-      </h2>
-      <div className="mt-4 flex flex-wrap justify-center gap-2">
-        {forms.map((f) => (
-          <span
-            key={f.id}
-            title={f.shortDescription}
-            className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-xs"
-          >
-            <span className="font-mono font-semibold uppercase">{f.id}</span>
-            <span className="text-neutral-300">·</span>
-            <span className="text-neutral-600">
-              {f.name.replace(`${f.id.toUpperCase()} `, '')}
-            </span>
-          </span>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-// ─── FAQ ────────────────────────────────────────────────────────────────
-
-function FAQ({ t }: { t: ReturnType<typeof useI18n>['t'] }) {
-  const items: Array<{ q: Parameters<typeof t>[0]; a: Parameters<typeof t>[0] }> = [
-    { q: 'landing.faq.q1.q', a: 'landing.faq.q1.a' },
-    { q: 'landing.faq.q2.q', a: 'landing.faq.q2.a' },
-    { q: 'landing.faq.q3.q', a: 'landing.faq.q3.a' },
-    { q: 'landing.faq.q4.q', a: 'landing.faq.q4.a' },
-    { q: 'landing.faq.q5.q', a: 'landing.faq.q5.a' },
-    { q: 'landing.faq.q6.q', a: 'landing.faq.q6.a' },
-  ]
-  return (
-    <section className="mx-auto max-w-3xl px-6 py-16">
-      <h2 className="text-center text-2xl font-semibold tracking-tight">
-        {t('landing.faq.heading')}
-      </h2>
-      <div className="mt-8 space-y-2">
-        {items.map((i) => (
-          <details
-            key={i.q}
-            className="group rounded-xl border border-neutral-200 bg-white p-4 [&[open]]:border-neutral-400"
-          >
-            <summary className="flex cursor-pointer items-center justify-between text-sm font-medium">
-              <span>{t(i.q)}</span>
-              <span className="ml-3 text-neutral-400 group-open:rotate-45 transition-transform">
-                +
-              </span>
-            </summary>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-              {t(i.a)}
-            </p>
-          </details>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-// ─── Footer ─────────────────────────────────────────────────────────────
-
-function Footer({ t }: { t: ReturnType<typeof useI18n>['t'] }) {
-  return (
-    <footer className="border-t border-neutral-200 bg-neutral-50 py-8">
-      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 text-xs text-neutral-500 sm:flex-row">
-        <div>
-          {t('landing.footer.tagline')} · built by{' '}
-          <a
-            href="https://github.com/adityuhkapoor/formcutter"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-neutral-700"
-          >
-            @adityuhkapoor
-          </a>
-        </div>
-        <div className="flex gap-4">
-          <Link href="/rep/cases" className="hover:text-neutral-900">
-            Reviewer console
-          </Link>
-          <a
-            href="https://github.com/adityuhkapoor/formcutter"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-neutral-900"
-          >
-            GitHub
-          </a>
-        </div>
-      </div>
-    </footer>
+    <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 6.5A1.5 1.5 0 0 1 5.5 5h9A1.5 1.5 0 0 1 16 6.5v6a1.5 1.5 0 0 1-1.5 1.5H9l-3 3v-3h-.5A1.5 1.5 0 0 1 4 12.5v-6z" />
+    </svg>
   )
 }

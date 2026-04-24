@@ -11,6 +11,7 @@ import {
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useI18n } from '@/lib/i18n/provider'
+import { BrandGlyph } from '@/components/AppSidebar'
 import { RecommendationsGrid } from '@/components/RecommendationsGrid'
 import type {
   TriageFacts,
@@ -155,91 +156,122 @@ export const TriageChat = forwardRef<TriageChatHandle>(function TriageChat(_, re
     []
   )
 
+  const today = new Date().toLocaleDateString([], {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  })
+
   return (
     <section
       id="triage-chat"
-      className="mx-auto w-full max-w-4xl px-4 pb-6 pt-2 sm:px-6"
+      className="flex h-full w-full flex-1 flex-col"
     >
-      <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-        {/* Floating top-right "Speak to a rep" button inside the card (Granted
-         * pattern: the CTA repeats close to the product). */}
-        <button
-          type="button"
-          onClick={requestSelfEscalation}
-          disabled={loading}
-          className="absolute right-3 top-3 z-10 rounded-full border border-neutral-300 bg-white/90 px-2.5 py-1 text-[11px] font-medium text-neutral-700 backdrop-blur hover:border-neutral-900 hover:bg-neutral-100 disabled:opacity-50"
-        >
-          Speak to a rep
-        </button>
+      <div
+        ref={scrollRef}
+        className="flex-1 overflow-y-auto px-4 py-6 sm:px-10"
+      >
+        <div className="mx-auto w-full max-w-3xl">
+          {messages.length > 0 && (
+            <div className="mb-3 text-center text-xs text-neutral-400">
+              {today}
+            </div>
+          )}
 
-        <div
-          ref={scrollRef}
-          className="max-h-[540px] min-h-[400px] space-y-3 overflow-y-auto px-4 py-4 pt-12 sm:px-6 sm:pt-12"
-        >
-          {messages.map((m) => (
-            <ChatBubble key={m.id} msg={m} onChip={handleChip} chipsEnabled={!loading && m === messages[messages.length - 1]} />
+          {messages.map((m, i) => (
+            <ChatBubble
+              key={m.id}
+              msg={m}
+              showHeader={
+                m.role === 'assistant' &&
+                (i === 0 || messages[i - 1]?.role !== 'assistant')
+              }
+              onChip={handleChip}
+              chipsEnabled={!loading && m === messages[messages.length - 1]}
+            />
           ))}
+
           {loading && <TypingIndicator />}
 
           {/* Inline outcome cards rendered below the chat stream */}
-          {outcome?.type === 'route' && <RouteCard outcome={outcome} onAccept={() => router.push(`/fill?formId=${outcome.formId}`)} />}
+          {outcome?.type === 'route' && (
+            <RouteCard
+              outcome={outcome}
+              onAccept={() => router.push(`/fill?formId=${outcome.formId}`)}
+            />
+          )}
           {outcome?.type === 'recommend' && (
-            <div className="pt-2">
+            <div className="pt-4">
               <RecommendationsGrid result={outcome.result} />
             </div>
           )}
           {outcome?.type === 'escalate' && (
-            <EscalationCard outcome={outcome} transcript={messages} formId={facts.namedForm} />
+            <EscalationCard
+              outcome={outcome}
+              transcript={messages}
+              formId={facts.namedForm}
+            />
           )}
         </div>
-
-        {/* Composer: hidden when the outcome is a terminal state (route / escalate)
-         * where further typing doesn't make sense. Still active on ask + recommend. */}
-        {outcome?.type !== 'escalate' && (
-          <form onSubmit={handleSubmit} className="border-t border-neutral-200 bg-neutral-50 px-3 py-2 sm:px-4">
-            <div className="flex items-end gap-2">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder={lastAskChips?.length ? 'Tap a chip above or type your answer…' : 'e.g. "I married a U.S. citizen and want a green card"'}
-                disabled={loading}
-                aria-label="Describe your immigration situation"
-                className="flex-1 rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-neutral-900 focus:outline-none disabled:bg-neutral-100"
-              />
-              <button
-                type="submit"
-                disabled={loading || !input.trim()}
-                className="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-300"
-              >
-                Send
-              </button>
-            </div>
-          </form>
-        )}
       </div>
 
-      {/* Trust strip — relocated from the hero. Keeps the signal without
-       * putting chrome between the hero copy and the chat card. */}
-      <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[11px] text-neutral-500">
-        <TrustDot>Works in 10 languages</TrustDot>
-        <TrustDot>Always free while in beta</TrustDot>
-        <TrustDot>Your docs stay on your device until you submit</TrustDot>
-      </div>
-
-      <p className="mt-2 text-center text-xs text-neutral-500">
-        Formcutter is not a law firm and does not provide legal advice.
-      </p>
+      {/* Composer: full-width bottom bar with + prefix and circular send. */}
+      {outcome?.type !== 'escalate' && (
+        <form
+          onSubmit={handleSubmit}
+          className="border-t border-neutral-200 bg-white px-4 py-4 sm:px-10"
+        >
+          <div className="mx-auto flex w-full max-w-3xl items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2 shadow-sm focus-within:border-neutral-400">
+            <button
+              type="button"
+              onClick={requestSelfEscalation}
+              disabled={loading}
+              aria-label="Speak to an accredited representative"
+              title="Speak to a rep"
+              className="shrink-0 text-neutral-400 hover:text-neutral-700 disabled:opacity-50"
+            >
+              <PlusIcon />
+            </button>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask Formcutter..."
+              disabled={loading}
+              aria-label="Describe your immigration situation"
+              className="flex-1 bg-transparent px-1 text-sm outline-none placeholder:text-neutral-400 disabled:opacity-60"
+            />
+            <button
+              type="submit"
+              disabled={loading || !input.trim()}
+              aria-label="Send message"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-300"
+            >
+              <SendArrow />
+            </button>
+          </div>
+          <p className="mx-auto mt-2 max-w-3xl text-center text-[11px] text-neutral-400">
+            Formcutter is not a law firm and does not provide legal advice.
+          </p>
+        </form>
+      )}
     </section>
   )
 })
 
-function TrustDot({ children }: { children: React.ReactNode }) {
+function PlusIcon() {
   return (
-    <span className="inline-flex items-center gap-1.5">
-      <span className="inline-block h-1 w-1 rounded-full bg-emerald-500" />
-      {children}
-    </span>
+    <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+      <path d="M10 4v12M4 10h12" />
+    </svg>
+  )
+}
+
+function SendArrow() {
+  return (
+    <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 15V5M5 10l5-5 5 5" />
+    </svg>
   )
 }
 
@@ -247,40 +279,58 @@ function ChatBubble({
   msg,
   onChip,
   chipsEnabled,
+  showHeader,
 }: {
   msg: TriageMessage
   onChip: (value: string) => void
   chipsEnabled: boolean
+  showHeader: boolean
 }) {
   const isUser = msg.role === 'user'
-  return (
-    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
-      <div className={`flex max-w-[85%] flex-col gap-2 ${isUser ? 'items-end' : 'items-start'}`}>
-        <div
-          className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
-            isUser
-              ? 'rounded-br-md bg-neutral-900 text-white'
-              : 'rounded-bl-md bg-neutral-100 text-neutral-900'
-          }`}
-        >
+  const timeLabel = new Date(msg.createdAt).toLocaleTimeString([], {
+    hour: 'numeric',
+    minute: '2-digit',
+  })
+
+  if (isUser) {
+    // User's own typed message renders as a plain right-aligned row.
+    return (
+      <div className="mb-4 flex justify-end">
+        <div className="max-w-[85%] rounded-2xl bg-neutral-900 px-4 py-2 text-sm text-white">
           {msg.content}
         </div>
-        {!isUser && msg.chips && msg.chips.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
-            {msg.chips.map((c) => (
-              <button
-                key={c}
-                type="button"
-                disabled={!chipsEnabled}
-                onClick={() => onChip(c)}
-                className="rounded-full border border-neutral-300 bg-white px-3 py-1 text-xs font-medium text-neutral-700 hover:border-neutral-900 hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {c}
-              </button>
-            ))}
-          </div>
-        )}
       </div>
+    )
+  }
+
+  return (
+    <div className="mb-6">
+      {showHeader && (
+        <div className="mb-2 flex items-center gap-2 text-xs">
+          <BrandGlyph className="h-5 w-5" />
+          <span className="font-medium text-neutral-700">Formcutter AI</span>
+          <span className="ml-auto text-neutral-400">{timeLabel}</span>
+        </div>
+      )}
+      <div className="text-[15px] leading-relaxed text-neutral-900">
+        {msg.content}
+      </div>
+      {msg.chips && msg.chips.length > 0 && (
+        <div className="mt-4 flex flex-col items-end gap-2">
+          <div className="text-xs text-neutral-500">Select an option:</div>
+          {msg.chips.map((c) => (
+            <button
+              key={c}
+              type="button"
+              disabled={!chipsEnabled}
+              onClick={() => onChip(c)}
+              className="rounded-full border border-neutral-300 bg-white px-5 py-2 text-sm text-neutral-800 hover:border-neutral-900 hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
