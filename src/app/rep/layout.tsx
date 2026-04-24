@@ -26,7 +26,7 @@ export default function RepLayout({ children }: { children: React.ReactNode }) {
           </div>
           <div className="flex items-center gap-4 text-xs text-slate-300">
             <span>signed in as: Aditya K. · accredited rep (demo)</span>
-            <Link href="/" className="underline hover:text-white">
+            <Link href="/fill" className="underline hover:text-white">
               Back to immigrant view
             </Link>
           </div>

@@ -53,13 +53,13 @@ export default function StartPage() {
     <div className="min-h-screen bg-neutral-50">
       <header className="border-b border-neutral-200 bg-white">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-3">
-          <Link href="/" className="text-lg font-semibold tracking-tight">
+          <Link href="/fill" className="text-lg font-semibold tracking-tight">
             {t('header.brand')}
           </Link>
           <div className="flex items-center gap-3">
             <LanguagePicker />
             <Link
-              href="/"
+              href="/fill"
               className="rounded-lg border border-neutral-300 px-3 py-1 text-xs font-medium text-neutral-700 hover:bg-neutral-100"
             >
               {t('wizard.bypass')}
@@ -312,7 +312,7 @@ function ResultsPage({ result }: { result: WizardResult }) {
     <div className="min-h-screen bg-neutral-50">
       <header className="border-b border-neutral-200 bg-white">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-3">
-          <Link href="/" className="text-lg font-semibold tracking-tight">
+          <Link href="/fill" className="text-lg font-semibold tracking-tight">
             {t('header.brand')}
           </Link>
           <LanguagePicker />
@@ -404,7 +404,7 @@ function ResultsPage({ result }: { result: WizardResult }) {
                   </span>
                   {r.forms.includes('I-864') && (
                     <Link
-                      href="/"
+                      href="/fill"
                       className="rounded-lg bg-neutral-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-neutral-800"
                     >
                       Start the I-864 →
