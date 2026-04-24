@@ -146,10 +146,12 @@ const SIMPLE: Record<string, (v: unknown) => WidgetOp | null> = {
   ),
 
   // ─── Contact + signature (Part 8) ────────────────────────────────────
-  'part8.sponsorDaytimePhone': text(
+  // Phones use digits-only renderer: the widgets have maxLength=10 (per-digit
+  // boxes) and dashes eat character slots.
+  'part8.sponsorDaytimePhone': digits(
     'form1[0].#subform[9].P8_Line3_DaytimeTelephoneNumber[0]'
   ),
-  'part8.sponsorMobilePhone': text(
+  'part8.sponsorMobilePhone': digits(
     'form1[0].#subform[9].P8_Line4_MobileTelephoneNumber[0]'
   ),
   'part8.sponsorEmail': text('form1[0].#subform[9].P7Line7_EmailAddress[0]'),

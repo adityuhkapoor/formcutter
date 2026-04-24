@@ -31,6 +31,13 @@ const DOC_HINTS = [
   { value: 'other', label: 'Other' },
 ] as const
 
+// Build stamp — bumps on every reload because Next dev rebuilds the module.
+// Lets us spot a stuck cache at a glance: if this number matches the last
+// refresh, the browser served stale JS.
+const BUILD_STAMP = typeof window === 'undefined'
+  ? new Date().toISOString().slice(11, 19)
+  : ''
+
 export default function Home() {
   const [state, setState] = useState<Record<string, unknown>>({})
   const [messages, setMessages] = useState<Msg[]>([
@@ -202,8 +209,13 @@ export default function Home() {
             <span className="text-lg font-semibold tracking-tight">formcutter</span>
             <span className="text-xs text-neutral-500">I-864 Affidavit of Support</span>
           </div>
-          <div className="text-xs text-neutral-500">
-            not a law firm · does not provide legal advice
+          <div className="flex items-center gap-3 text-xs text-neutral-500">
+            <span>not a law firm · does not provide legal advice</span>
+            {BUILD_STAMP && (
+              <span className="font-mono text-[10px] text-neutral-400">
+                build {BUILD_STAMP}
+              </span>
+            )}
           </div>
         </div>
       </header>
