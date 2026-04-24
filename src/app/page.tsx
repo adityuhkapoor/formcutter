@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, type FormEvent } from 'react'
+import ReactMarkdown from 'react-markdown'
 
 type Msg = { role: 'user' | 'assistant'; content: string }
 type ExtractionResult = {
@@ -381,7 +382,45 @@ export default function Home() {
                       : 'bg-neutral-100 text-neutral-800'
                   }`}
                 >
-                  {m.content}
+                  {m.role === 'assistant' ? (
+                    <div className="prose-chat">
+                      <ReactMarkdown
+                        components={{
+                          p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                          ul: ({ children }) => (
+                            <ul className="mb-2 list-disc pl-4 last:mb-0">{children}</ul>
+                          ),
+                          ol: ({ children }) => (
+                            <ol className="mb-2 list-decimal pl-4 last:mb-0">{children}</ol>
+                          ),
+                          li: ({ children }) => <li className="mb-0.5">{children}</li>,
+                          strong: ({ children }) => (
+                            <strong className="font-semibold text-neutral-900">{children}</strong>
+                          ),
+                          em: ({ children }) => <em className="italic">{children}</em>,
+                          code: ({ children }) => (
+                            <code className="rounded bg-neutral-200 px-1 py-0.5 font-mono text-[11px]">
+                              {children}
+                            </code>
+                          ),
+                          a: ({ children, href }) => (
+                            <a
+                              href={href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline"
+                            >
+                              {children}
+                            </a>
+                          ),
+                        }}
+                      >
+                        {m.content}
+                      </ReactMarkdown>
+                    </div>
+                  ) : (
+                    m.content
+                  )}
                 </div>
               </div>
             ))}
