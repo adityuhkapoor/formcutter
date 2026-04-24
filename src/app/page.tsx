@@ -3,7 +3,48 @@
 import { useState, useRef, useEffect, type FormEvent } from 'react'
 import ReactMarkdown from 'react-markdown'
 
-type Msg = { role: 'user' | 'assistant'; content: string }
+type Msg = {
+  id: string
+  role: 'user' | 'assistant'
+  content: string
+  createdAt: number
+  /** Attachment marker — used for "file uploaded" chat bubbles. */
+  attachment?: { fileName: string; docType?: string; status: 'uploading' | 'done' | 'error' }
+  /** Structured option choices the user can tap instead of typing. */
+  options?: string[]
+}
+
+function makeMsg(
+  role: 'user' | 'assistant',
+  content: string,
+  extra?: Partial<Omit<Msg, 'id'>> & { id?: string }
+): Msg {
+  return {
+    id: extra?.id ?? crypto.randomUUID(),
+    role,
+    content,
+    createdAt: Date.now(),
+    ...extra,
+  }
+}
+
+function formatTime(ts: number): string {
+  return new Date(ts).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+}
+
+function formatDateHeader(ts: number): string {
+  const d = new Date(ts)
+  const today = new Date()
+  const yesterday = new Date(today)
+  yesterday.setDate(today.getDate() - 1)
+  const sameDay = (a: Date, b: Date) =>
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  if (sameDay(d, today)) return 'Today'
+  if (sameDay(d, yesterday)) return 'Yesterday'
+  return d.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' })
+}
 type ExtractionResult = {
   docType: string
   fields: Record<string, unknown>
@@ -46,11 +87,10 @@ export default function Home() {
     setBuildStamp(BUILD_STAMP_VALUE)
   }, [])
   const [messages, setMessages] = useState<Msg[]>([
-    {
-      role: 'assistant',
-      content:
-        "Hey — I'll help you fill out your I-864. Upload a photo of your license, green card, passport, or tax transcript on the left. I'll extract what I can and ask you about anything missing.",
-    },
+    makeMsg(
+      'assistant',
+      "Hey — I'll help you fill out your I-864. Upload a photo of your license, green card, passport, or tax transcript. I'll extract what I can and then walk through anything missing."
+    ),
   ])
   const [uploads, setUploads] = useState<UploadEntry[]>([])
   const [input, setInput] = useState('')
@@ -88,7 +128,10 @@ export default function Home() {
       })
       const data = await res.json()
       if (res.ok && data.message) {
-        setMessages((m) => [...m, { role: 'assistant', content: data.message }])
+        setMessages((m) => [
+          ...m,
+          makeMsg('assistant', data.message, { options: data.options }),
+        ])
         if (data.state) setState(data.state)
       }
     } catch {
@@ -106,6 +149,15 @@ export default function Home() {
     const id = crypto.randomUUID()
     setUploads((u) => [...u, { id, fileName: file.name, status: 'uploading' }])
     activeUploadsRef.current += 1
+    // Single chat bubble whose attachment status updates in place.
+    const msgId = crypto.randomUUID()
+    setMessages((m) => [
+      ...m,
+      makeMsg('user', '', {
+        id: msgId,
+        attachment: { fileName: file.name, status: 'uploading' },
+      }),
+    ])
 
     const fd = new FormData()
     fd.append('file', file)
@@ -146,6 +198,21 @@ export default function Home() {
       )
 
       activeUploadsRef.current = Math.max(0, activeUploadsRef.current - 1)
+      // Flip the attachment bubble from uploading → done in place.
+      setMessages((m) =>
+        m.map((x) =>
+          x.id === msgId
+            ? {
+                ...x,
+                attachment: {
+                  fileName: file.name,
+                  docType: extraction.docType,
+                  status: 'done',
+                },
+              }
+            : x
+        )
+      )
       // Let state settle, then try kickoff.
       setTimeout(() => maybeKickoffChat(merged), 300)
     } catch (err) {
@@ -153,55 +220,78 @@ export default function Home() {
       setUploads((u) =>
         u.map((x) => (x.id === id ? { ...x, status: 'error', error: String(err) } : x))
       )
+      setMessages((m) =>
+        m.map((x) =>
+          x.id === msgId
+            ? { ...x, attachment: { fileName: file.name, status: 'error' } }
+            : x
+        )
+      )
     }
   }
 
-  async function handleSend(e: FormEvent) {
-    e.preventDefault()
-    const text = input.trim()
+  async function sendText(text: string) {
     if (!text || sending) return
 
-    const nextMessages: Msg[] = [...messages, { role: 'user', content: text }]
+    const userMsg = makeMsg('user', text)
+    const nextMessages = [...messages, userMsg]
     setMessages(nextMessages)
-    setInput('')
     setSending(true)
+
+    // Flatten to a wire format the API expects (role + content only).
+    const wireMessages = nextMessages
+      .filter((m) => m.content || !m.attachment) // skip pure-attachment bubbles
+      .map((m) => ({
+        role: m.role,
+        content: m.content || (m.attachment ? `[uploaded ${m.attachment.fileName}]` : ''),
+      }))
 
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ state, messages: nextMessages }),
+        body: JSON.stringify({ state, messages: wireMessages }),
       })
       const data = await res.json()
 
       if (!res.ok) {
         setMessages((m) => [
           ...m,
-          { role: 'assistant', content: `(error: ${data.error ?? 'unknown'})` },
+          makeMsg('assistant', `(error: ${data.error ?? 'unknown'})`),
         ])
         return
       }
 
       setState(data.state ?? state)
-      setMessages((m) => [...m, { role: 'assistant', content: data.message }])
+      setMessages((m) => [
+        ...m,
+        makeMsg('assistant', data.message, { options: data.options }),
+      ])
 
       if (data.needsRepReview) {
         setMessages((m) => [
           ...m,
-          {
-            role: 'assistant',
-            content: `⚑ Flagged for reviewer: ${data.reviewReason ?? 'legal-strategy question'}`,
-          },
+          makeMsg(
+            'assistant',
+            `⚑ Flagged for reviewer: ${data.reviewReason ?? 'legal-strategy question'}`
+          ),
         ])
       }
     } catch (err) {
       setMessages((m) => [
         ...m,
-        { role: 'assistant', content: `(network error: ${String(err)})` },
+        makeMsg('assistant', `(network error: ${String(err)})`),
       ])
     } finally {
       setSending(false)
     }
+  }
+
+  async function handleSend(e: FormEvent) {
+    e.preventDefault()
+    const text = input.trim()
+    setInput('')
+    await sendText(text)
   }
 
   const filledCount = countFilledPaths(state)
@@ -372,58 +462,142 @@ export default function Home() {
         </section>
 
         <section className="flex min-h-[600px] flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white">
-          <div className="flex-1 space-y-3 overflow-auto p-4">
-            {messages.map((m, i) => (
-              <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div
-                  className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-snug ${
-                    m.role === 'user'
-                      ? 'bg-neutral-900 text-white'
-                      : 'bg-neutral-100 text-neutral-800'
-                  }`}
-                >
-                  {m.role === 'assistant' ? (
-                    <div className="prose-chat">
-                      <ReactMarkdown
-                        components={{
-                          p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
-                          ul: ({ children }) => (
-                            <ul className="mb-2 list-disc pl-4 last:mb-0">{children}</ul>
-                          ),
-                          ol: ({ children }) => (
-                            <ol className="mb-2 list-decimal pl-4 last:mb-0">{children}</ol>
-                          ),
-                          li: ({ children }) => <li className="mb-0.5">{children}</li>,
-                          strong: ({ children }) => (
-                            <strong className="font-semibold text-neutral-900">{children}</strong>
-                          ),
-                          em: ({ children }) => <em className="italic">{children}</em>,
-                          code: ({ children }) => (
-                            <code className="rounded bg-neutral-200 px-1 py-0.5 font-mono text-[11px]">
-                              {children}
-                            </code>
-                          ),
-                          a: ({ children, href }) => (
-                            <a
-                              href={href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="underline"
-                            >
-                              {children}
-                            </a>
-                          ),
-                        }}
-                      >
-                        {m.content}
-                      </ReactMarkdown>
+          <div className="flex-1 space-y-2 overflow-auto p-4">
+            {messages.map((m, i) => {
+              const prev = messages[i - 1]
+              const showDateHeader =
+                !prev ||
+                new Date(prev.createdAt).toDateString() !==
+                  new Date(m.createdAt).toDateString()
+              const showSpeakerHeader =
+                m.role === 'assistant' &&
+                (!prev || prev.role !== 'assistant' || (prev.createdAt && m.createdAt - prev.createdAt > 60_000))
+
+              return (
+                <div key={m.id}>
+                  {showDateHeader && (
+                    <div className="my-3 flex items-center gap-2 text-[10px] uppercase tracking-wider text-neutral-400">
+                      <div className="h-px flex-1 bg-neutral-200" />
+                      <span>{formatDateHeader(m.createdAt)}</span>
+                      <div className="h-px flex-1 bg-neutral-200" />
                     </div>
-                  ) : (
-                    m.content
+                  )}
+
+                  {/* Attachment bubble (user-side upload marker) */}
+                  {m.attachment && (
+                    <div className="flex justify-end">
+                      <div
+                        className={`flex items-center gap-2 rounded-2xl border px-3 py-2 text-xs ${
+                          m.attachment.status === 'uploading'
+                            ? 'border-neutral-200 bg-neutral-50 text-neutral-500'
+                            : m.attachment.status === 'error'
+                              ? 'border-red-200 bg-red-50 text-red-700'
+                              : 'border-neutral-200 bg-white text-neutral-700'
+                        }`}
+                      >
+                        <span className="text-base">📎</span>
+                        <span className="font-medium">{m.attachment.fileName}</span>
+                        <span className="text-neutral-400">
+                          ·{' '}
+                          {m.attachment.status === 'uploading'
+                            ? 'extracting...'
+                            : m.attachment.status === 'error'
+                              ? 'failed'
+                              : m.attachment.docType?.replace('-', ' ') ?? 'done'}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Text bubble (skip if this is a pure-attachment message) */}
+                  {m.content && (
+                    <div className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                      <div className="flex max-w-[85%] flex-col">
+                        {showSpeakerHeader && (
+                          <div className="mb-1 flex items-center gap-1.5 px-1 text-[11px] font-medium text-neutral-600">
+                            <span className="inline-block h-4 w-4 rounded-full bg-neutral-900" />
+                            Formcutter AI
+                          </div>
+                        )}
+                        <div
+                          className={`rounded-2xl px-3 py-2 text-sm leading-snug ${
+                            m.role === 'user'
+                              ? 'bg-neutral-900 text-white'
+                              : 'bg-neutral-100 text-neutral-800'
+                          }`}
+                        >
+                          {m.role === 'assistant' ? (
+                            <div className="prose-chat">
+                              <ReactMarkdown
+                                components={{
+                                  p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                                  ul: ({ children }) => (
+                                    <ul className="mb-2 list-disc pl-4 last:mb-0">{children}</ul>
+                                  ),
+                                  ol: ({ children }) => (
+                                    <ol className="mb-2 list-decimal pl-4 last:mb-0">{children}</ol>
+                                  ),
+                                  li: ({ children }) => <li className="mb-0.5">{children}</li>,
+                                  strong: ({ children }) => (
+                                    <strong className="font-semibold text-neutral-900">
+                                      {children}
+                                    </strong>
+                                  ),
+                                  em: ({ children }) => <em className="italic">{children}</em>,
+                                  code: ({ children }) => (
+                                    <code className="rounded bg-neutral-200 px-1 py-0.5 font-mono text-[11px]">
+                                      {children}
+                                    </code>
+                                  ),
+                                  a: ({ children, href }) => (
+                                    <a
+                                      href={href}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="underline"
+                                    >
+                                      {children}
+                                    </a>
+                                  ),
+                                }}
+                              >
+                                {m.content}
+                              </ReactMarkdown>
+                            </div>
+                          ) : (
+                            m.content
+                          )}
+                        </div>
+                        <div
+                          className={`mt-0.5 px-1 text-[10px] text-neutral-400 ${
+                            m.role === 'user' ? 'text-right' : 'text-left'
+                          }`}
+                        >
+                          {formatTime(m.createdAt)}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Tappable option chips under the assistant's message */}
+                  {m.role === 'assistant' && m.options && m.options.length > 0 && (
+                    <div className="mt-1 flex flex-wrap gap-2 pl-1">
+                      {m.options.map((opt) => (
+                        <button
+                          key={opt}
+                          type="button"
+                          disabled={sending}
+                          onClick={() => sendText(opt)}
+                          className="rounded-full border border-neutral-300 bg-white px-3 py-1 text-xs font-medium text-neutral-700 hover:border-neutral-900 hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
+                        >
+                          {opt}
+                        </button>
+                      ))}
+                    </div>
                   )}
                 </div>
-              </div>
-            ))}
+              )
+            })}
             <div ref={messagesEndRef} />
           </div>
           <form onSubmit={handleSend} className="border-t border-neutral-200 bg-neutral-50 p-3">

@@ -53,6 +53,23 @@ Each turn you see a MISSING list with a tier for each field. Ask in this order:
 
 Ask ONE field per turn unless the user bundles multiple answers ("I'm married, no kids, employed"). In that case, record ALL the fields they gave you.
 
+# Tappable option chips
+
+When a question has a small set of valid answers, populate the \`options\` array with them so the UI can render tappable buttons. Good candidates:
+- Citizenship status: ["U.S. citizen", "U.S. national", "Green card holder (LPR)"]
+- Employment status: ["Employed", "Self-employed", "Retired", "Unemployed"]
+- Yes/no questions: ["Yes", "No"]
+- Marital status: ["Married", "Single", "Divorced", "Widowed"]
+- Skip: ["Skip for now"] (always include as an additional option on non-obvious required fields)
+
+DO NOT provide \`options\` for:
+- Free-text fields (name, email, address)
+- Dates
+- Numbers (SSN, phone, income amounts, household counts)
+- Any question where the answer space is open-ended
+
+When the user taps an option, their next message will be that exact string. Record the corresponding field from it.
+
 # Handling "skip" / "I don't know"
 
 Users MUST be able to move past fields. If they say "skip," "I don't know," "unsure," "come back to it," etc.:
@@ -99,6 +116,12 @@ const TOOL_DEFINITION: Tool = {
         description: 'Flat map of dotted I-864 field paths → values to persist. Empty if no new facts.',
         additionalProperties: true,
       },
+      options: {
+        type: 'array',
+        items: { type: 'string' },
+        description:
+          'Optional tappable answer choices. Provide 2-6 options ONLY when the question is yes/no or a small enum (citizenship status, employment status, marital status). Do NOT provide options for free-text questions (SSN, email, name). When provided, the UI renders each as a button; the user taps one, which sends that exact string as their next message.',
+      },
       needs_rep_review: {
         type: 'boolean',
         description: 'True if the user asked a legal/strategic question that should be escalated.',
@@ -120,6 +143,7 @@ type TurnInput = {
 type ToolOutput = {
   message: string
   updates: Record<string, unknown>
+  options?: string[]
   needs_rep_review: boolean
   review_reason?: string
 }
@@ -229,6 +253,7 @@ export async function POST(req: Request) {
       ok: true,
       message: redactMessage(out.message),
       state: nextState,
+      options: out.options ?? [],
       needsRepReview: out.needs_rep_review,
       reviewReason: out.review_reason,
       usage: {

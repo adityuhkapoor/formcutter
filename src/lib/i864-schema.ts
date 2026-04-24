@@ -195,8 +195,8 @@ export type I864PartialData = z.input<typeof I864Schema>
  * - `tier: optional` → strengthens case but isn't blocking.
  *
  * `why` is a one-line plain-English reason surfaced in chat when we ask for the
- * field, so users understand the request. Modeled after Granted Health / Plaid
- * KYC "why we need this" patterns.
+ * field, so users understand the request. Mirrors the standard healthcare /
+ * fintech KYC "why we need this" pattern.
  *
  * `sensitivity` flags fields that should be masked in chat bubbles (e.g. SSN →
  * show only last 4). The form state panel displays full values with a
