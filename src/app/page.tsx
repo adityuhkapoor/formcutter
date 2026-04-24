@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown'
 import { useI18n } from '@/lib/i18n/provider'
 import { LanguagePicker } from '@/components/LanguagePicker'
 import { EvidenceChecklist } from '@/components/EvidenceChecklist'
+import { MicButton } from '@/components/MicButton'
 import {
   evaluateEvidence,
   I864_EVIDENCE,
@@ -21,6 +22,10 @@ type Msg = {
   attachment?: { fileName: string; docType?: string; status: 'uploading' | 'done' | 'error' }
   /** Structured option choices the user can tap instead of typing. */
   options?: string[]
+  /** If a Simplify call rewrote the message, store the simplified version. */
+  simplified?: string
+  /** Whether to render the simplified version (toggled by button). */
+  showSimplified?: boolean
 }
 
 function makeMsg(
@@ -398,6 +403,34 @@ export default function Home() {
     await sendText(text)
   }
 
+  async function simplifyMessage(messageId: string) {
+    const target = messages.find((m) => m.id === messageId)
+    if (!target) return
+    // If already simplified, just toggle visibility.
+    if (target.simplified) {
+      setMessages((m) =>
+        m.map((x) => (x.id === messageId ? { ...x, showSimplified: !x.showSimplified } : x))
+      )
+      return
+    }
+    try {
+      const r = await fetch('/api/simplify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: target.content, language: lang }),
+      })
+      if (!r.ok) return
+      const data = await r.json()
+      setMessages((m) =>
+        m.map((x) =>
+          x.id === messageId ? { ...x, simplified: data.simplified, showSimplified: true } : x
+        )
+      )
+    } catch {
+      // silent fail — button just does nothing
+    }
+  }
+
   const filledCount = countFilledPaths(state)
   const evidence = evaluateEvidence({
     requirements: I864_EVIDENCE,
@@ -704,6 +737,7 @@ export default function Home() {
                           {m.role === 'assistant' ? (
                             <div className="prose-chat">
                               <ReactMarkdown
+                                key={m.showSimplified ? 'simple' : 'original'}
                                 components={{
                                   p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
                                   ul: ({ children }) => (
@@ -736,7 +770,7 @@ export default function Home() {
                                   ),
                                 }}
                               >
-                                {m.content}
+                                {m.showSimplified && m.simplified ? m.simplified : m.content}
                               </ReactMarkdown>
                             </div>
                           ) : (
@@ -744,11 +778,20 @@ export default function Home() {
                           )}
                         </div>
                         <div
-                          className={`mt-0.5 px-1 text-[10px] text-neutral-400 ${
-                            m.role === 'user' ? 'text-right' : 'text-left'
+                          className={`mt-0.5 flex items-center gap-2 px-1 text-[10px] text-neutral-400 ${
+                            m.role === 'user' ? 'justify-end' : 'justify-start'
                           }`}
                         >
-                          {formatTime(m.createdAt)}
+                          <span>{formatTime(m.createdAt)}</span>
+                          {m.role === 'assistant' && (
+                            <button
+                              type="button"
+                              onClick={() => simplifyMessage(m.id)}
+                              className="underline-offset-2 hover:text-neutral-700 hover:underline"
+                            >
+                              {m.showSimplified ? 'Original' : t('chat.simplify')}
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -790,6 +833,10 @@ export default function Home() {
                 }
                 disabled={sending || caseStatus !== 'drafting'}
                 className="flex-1 rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-neutral-900 focus:outline-none disabled:bg-neutral-100"
+              />
+              <MicButton
+                disabled={sending || caseStatus !== 'drafting'}
+                onTranscript={(text) => setInput((prev) => (prev ? `${prev} ${text}` : text))}
               />
               <button
                 type="submit"
