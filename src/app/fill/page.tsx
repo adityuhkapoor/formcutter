@@ -8,6 +8,7 @@ import { useI18n } from '@/lib/i18n/provider'
 import { LanguagePicker } from '@/components/LanguagePicker'
 import { EvidenceChecklist } from '@/components/EvidenceChecklist'
 import { MicButton } from '@/components/MicButton'
+import { CompleteCaseCard } from '@/components/CompleteCaseCard'
 import {
   evaluateEvidence,
   I864_EVIDENCE,
@@ -29,6 +30,14 @@ type Msg = {
   simplified?: string
   /** Whether to render the simplified version (toggled by button). */
   showSimplified?: boolean
+  /** Applicant tapped 🙋 on this assistant turn — flag id returned from server. */
+  repHelpFlagId?: string
+  /** Set when server confirms the rep-help flag is created ('waiting') or resolved. */
+  repHelpStatus?: 'waiting' | 'answered'
+  /** If this message is a rep reply injected from the poller, marks it human-authored. */
+  authoredBy?: 'ai' | 'rep'
+  /** Internal id from the flag_replies table — used to dedupe on poll. */
+  replyId?: string
 }
 
 function makeMsg(
@@ -114,7 +123,6 @@ export default function Home() {
   const [caseId, setCaseId] = useState<string | null>(null)
   const [caseStatus, setCaseStatus] = useState<CaseStatus>('drafting')
   const [formId, setFormId] = useState<FormId>('i-864')
-  const [submitting, setSubmitting] = useState(false)
   // Messages start empty to avoid SSR/hydration timestamp drift. Initial
   // greeting is added after mount so Date.now() only runs client-side.
   const [messages, setMessages] = useState<Msg[]>([])
@@ -192,6 +200,52 @@ export default function Home() {
     }, 2500)
     return () => clearInterval(t)
   }, [caseId, caseStatus])
+
+  // Poll for rep replies to question_help flags. Runs any time the applicant
+  // has at least one outstanding rep-help request. Replies are injected into
+  // the chat transcript as rep-authored messages (green avatar).
+  useEffect(() => {
+    if (!caseId) return
+    const hasOutstanding = messages.some((m) => m.repHelpStatus === 'waiting')
+    if (!hasOutstanding) return
+
+    const t = setInterval(async () => {
+      try {
+        const r = await fetch(`/api/case/${caseId}/question-help`)
+        if (!r.ok) return
+        const data = await r.json()
+        const replies: Array<{ id: string; flagId: string; authorLabel: string; body: string; createdAt: number }> =
+          data.replies ?? []
+        if (replies.length === 0) return
+
+        setMessages((prev) => {
+          const existingReplyIds = new Set(prev.map((m) => m.replyId).filter(Boolean))
+          const newMsgs: Msg[] = []
+          let mutated = [...prev]
+          for (const reply of replies) {
+            if (existingReplyIds.has(reply.id)) continue
+            // Mark the linked applicant message as answered.
+            mutated = mutated.map((m) =>
+              m.repHelpFlagId === reply.flagId ? { ...m, repHelpStatus: 'answered' } : m
+            )
+            newMsgs.push({
+              id: crypto.randomUUID(),
+              role: 'assistant',
+              content: reply.body,
+              createdAt:
+                typeof reply.createdAt === 'number' ? reply.createdAt : Date.now(),
+              authoredBy: 'rep',
+              replyId: reply.id,
+            })
+          }
+          return newMsgs.length > 0 ? [...mutated, ...newMsgs] : mutated
+        })
+      } catch {
+        /* transient fetch failure is fine — next tick retries */
+      }
+    }, 3000)
+    return () => clearInterval(t)
+  }, [caseId, messages])
 
   // Autosave state + messages to the case.
   const saveDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -422,6 +476,45 @@ export default function Home() {
     await sendText(text)
   }
 
+  async function requestRepHelp(messageId: string) {
+    if (!caseId) return
+    const target = messages.find((m) => m.id === messageId)
+    if (!target || target.repHelpFlagId) return
+
+    // Optimistically mark "waiting".
+    setMessages((m) =>
+      m.map((x) => (x.id === messageId ? { ...x, repHelpStatus: 'waiting' } : x))
+    )
+
+    try {
+      const r = await fetch(`/api/case/${caseId}/question-help`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messageId,
+          questionText: target.content,
+          partialAnswer: input.trim() || undefined,
+        }),
+      })
+      if (!r.ok) {
+        setMessages((m) =>
+          m.map((x) => (x.id === messageId ? { ...x, repHelpStatus: undefined } : x))
+        )
+        return
+      }
+      const data = await r.json()
+      setMessages((m) =>
+        m.map((x) =>
+          x.id === messageId ? { ...x, repHelpFlagId: data.flagId, repHelpStatus: 'waiting' } : x
+        )
+      )
+    } catch {
+      setMessages((m) =>
+        m.map((x) => (x.id === messageId ? { ...x, repHelpStatus: undefined } : x))
+      )
+    }
+  }
+
   async function simplifyMessage(messageId: string) {
     const target = messages.find((m) => m.id === messageId)
     if (!target) return
@@ -624,27 +717,13 @@ export default function Home() {
           )}
 
           {caseStatus === 'drafting' ? (
-            <button
-              type="button"
-              disabled={submitting || filledCount < 3 || !caseId}
-              onClick={async () => {
-                if (!caseId) return
-                setSubmitting(true)
-                try {
-                  const r = await fetch(`/api/case/${caseId}/submit`, { method: 'POST' })
-                  if (r.ok) {
-                    setCaseStatus('pending_review')
-                  } else {
-                    alert('Submit failed. Check server logs.')
-                  }
-                } finally {
-                  setSubmitting(false)
-                }
-              }}
-              className="w-full rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:bg-neutral-300"
-            >
-              {submitting ? t('action.submitting') : t('action.submit')}
-            </button>
+            <CompleteCaseCard
+              caseId={caseId}
+              formId={formId}
+              state={state}
+              canSubmit={filledCount >= 8}
+              onSubmitted={() => setCaseStatus('pending_review')}
+            />
           ) : (
             <button
               type="button"
@@ -743,15 +822,23 @@ export default function Home() {
                       <div className="flex max-w-[85%] flex-col">
                         {showSpeakerHeader && (
                           <div className="mb-1 flex items-center gap-1.5 px-1 text-[11px] font-medium text-neutral-600">
-                            <span className="inline-block h-4 w-4 rounded-full bg-neutral-900" />
-                            {t('chat.formcutterAi')}
+                            <span
+                              className={`inline-block h-4 w-4 rounded-full ${
+                                m.authoredBy === 'rep' ? 'bg-emerald-600' : 'bg-neutral-900'
+                              }`}
+                            />
+                            {m.authoredBy === 'rep'
+                              ? 'Accredited rep'
+                              : t('chat.formcutterAi')}
                           </div>
                         )}
                         <div
                           className={`rounded-2xl px-3 py-2 text-sm leading-snug ${
                             m.role === 'user'
                               ? 'bg-neutral-900 text-white'
-                              : 'bg-neutral-100 text-neutral-800'
+                              : m.authoredBy === 'rep'
+                                ? 'border border-emerald-200 bg-emerald-50 text-neutral-800'
+                                : 'bg-neutral-100 text-neutral-800'
                           }`}
                         >
                           {m.role === 'assistant' ? (
@@ -798,19 +885,39 @@ export default function Home() {
                           )}
                         </div>
                         <div
-                          className={`mt-0.5 flex items-center gap-2 px-1 text-[10px] text-neutral-400 ${
+                          className={`mt-0.5 flex flex-wrap items-center gap-2 px-1 text-[10px] text-neutral-400 ${
                             m.role === 'user' ? 'justify-end' : 'justify-start'
                           }`}
                         >
                           <span>{formatTime(m.createdAt)}</span>
-                          {m.role === 'assistant' && (
-                            <button
-                              type="button"
-                              onClick={() => simplifyMessage(m.id)}
-                              className="underline-offset-2 hover:text-neutral-700 hover:underline"
-                            >
-                              {m.showSimplified ? 'Original' : t('chat.simplify')}
-                            </button>
+                          {m.role === 'assistant' && m.authoredBy !== 'rep' && (
+                            <>
+                              <button
+                                type="button"
+                                onClick={() => simplifyMessage(m.id)}
+                                className="underline-offset-2 hover:text-neutral-700 hover:underline"
+                              >
+                                {m.showSimplified ? 'Original' : t('chat.simplify')}
+                              </button>
+                              {m.repHelpStatus === 'waiting' ? (
+                                <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-1.5 py-0.5 text-[9px] font-medium text-amber-800">
+                                  🙋 waiting on rep
+                                </span>
+                              ) : m.repHelpStatus === 'answered' ? (
+                                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-medium text-emerald-800">
+                                  ✓ rep answered
+                                </span>
+                              ) : caseId && caseStatus === 'drafting' ? (
+                                <button
+                                  type="button"
+                                  onClick={() => requestRepHelp(m.id)}
+                                  className="underline-offset-2 hover:text-neutral-700 hover:underline"
+                                  title="Ask an accredited rep to weigh in on this question"
+                                >
+                                  🙋 Get rep help
+                                </button>
+                              ) : null}
+                            </>
                           )}
                         </div>
                       </div>

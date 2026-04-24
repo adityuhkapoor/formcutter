@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useI18n } from '@/lib/i18n/provider'
 import { LanguagePicker } from '@/components/LanguagePicker'
+import { TriageChat } from '@/components/TriageChat'
 import { FORM_REGISTRY } from '@/lib/forms'
 
 export default function LandingPage() {
@@ -12,7 +13,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
       <Header />
       <Hero t={t} />
-      <Archetypes t={t} />
+      <TriageChat />
       <HowItWorks t={t} />
       <FormsSupported t={t} />
       <TrustSection t={t} />
@@ -50,28 +51,14 @@ function Header() {
 
 function Hero({ t }: { t: ReturnType<typeof useI18n>['t'] }) {
   return (
-    <section className="mx-auto max-w-4xl px-6 pb-16 pt-20 text-center">
+    <section className="mx-auto max-w-4xl px-6 pb-4 pt-16 text-center md:pt-20">
       <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
         {t('landing.hero.title')}
       </h1>
       <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg">
         {t('landing.hero.subtitle')}
       </p>
-      <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <Link
-          href="/start"
-          className="inline-flex w-full items-center justify-center rounded-lg bg-neutral-900 px-6 py-3 text-sm font-medium text-white hover:bg-neutral-800 sm:w-auto"
-        >
-          {t('landing.hero.ctaHelp')} →
-        </Link>
-        <Link
-          href="/fill"
-          className="inline-flex w-full items-center justify-center rounded-lg border border-neutral-300 bg-white px-6 py-3 text-sm font-medium text-neutral-700 hover:border-neutral-900 hover:bg-neutral-100 sm:w-auto"
-        >
-          {t('landing.hero.ctaKnow')}
-        </Link>
-      </div>
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-neutral-500">
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-neutral-500">
         <TrustPill>{t('landing.hero.trust1')}</TrustPill>
         <TrustPill>{t('landing.hero.trust2')}</TrustPill>
         <TrustPill>{t('landing.hero.trust3')}</TrustPill>
@@ -86,59 +73,6 @@ function TrustPill({ children }: { children: React.ReactNode }) {
       <span className="inline-block h-1 w-1 rounded-full bg-emerald-500" />
       {children}
     </span>
-  )
-}
-
-// ─── Archetype cards ────────────────────────────────────────────────────
-
-function Archetypes({ t }: { t: ReturnType<typeof useI18n>['t'] }) {
-  const cards = [
-    {
-      emoji: '🧾',
-      href: '/fill',
-      titleKey: 'landing.archetypes.a.title' as const,
-      descKey: 'landing.archetypes.a.desc' as const,
-      ctaKey: 'landing.archetypes.a.cta' as const,
-    },
-    {
-      emoji: '🤔',
-      href: '/start',
-      titleKey: 'landing.archetypes.b.title' as const,
-      descKey: 'landing.archetypes.b.desc' as const,
-      ctaKey: 'landing.archetypes.b.cta' as const,
-    },
-    {
-      emoji: '💙',
-      href: '/start',
-      titleKey: 'landing.archetypes.c.title' as const,
-      descKey: 'landing.archetypes.c.desc' as const,
-      ctaKey: 'landing.archetypes.c.cta' as const,
-    },
-  ]
-  return (
-    <section className="mx-auto max-w-5xl px-6 py-16">
-      <h2 className="text-center text-2xl font-semibold tracking-tight">
-        {t('landing.archetypes.heading')}
-      </h2>
-      <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-        {cards.map((c) => (
-          <Link
-            key={c.titleKey}
-            href={c.href}
-            className="group rounded-2xl border border-neutral-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-neutral-900 hover:shadow-sm"
-          >
-            <div className="text-3xl">{c.emoji}</div>
-            <h3 className="mt-3 text-base font-semibold">{t(c.titleKey)}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-              {t(c.descKey)}
-            </p>
-            <div className="mt-4 inline-flex items-center text-xs font-medium text-neutral-700 group-hover:text-neutral-900">
-              {t(c.ctaKey)} →
-            </div>
-          </Link>
-        ))}
-      </div>
-    </section>
   )
 }
 

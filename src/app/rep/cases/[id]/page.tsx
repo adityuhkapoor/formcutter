@@ -18,6 +18,13 @@ type FlagRow = {
   createdAt: string
 }
 
+type TriageMsg = {
+  id: string
+  role: 'user' | 'assistant'
+  content: string
+  createdAt: number
+}
+
 type CaseRow = {
   id: string
   status: 'drafting' | 'pending_review' | 'approved' | 'released'
@@ -28,6 +35,7 @@ type CaseRow = {
   updatedAt: string
   submittedAt: string | null
   approvedAt: string | null
+  triageTranscript: TriageMsg[] | null
 }
 
 export default function CaseDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -61,6 +69,20 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status }),
+      })
+      if (r.ok) await load()
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function replyToQuestionHelp(flagId: string, body: string) {
+    setBusy(true)
+    try {
+      const r = await fetch(`/api/case/${id}/question-help/${flagId}/reply`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ body }),
       })
       if (r.ok) await load()
     } finally {
@@ -170,6 +192,7 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
                 busy={busy}
                 onApprove={() => resolveFlag(f.id, 'approved')}
                 onDismiss={() => resolveFlag(f.id, 'dismissed')}
+                onReply={(body) => replyToQuestionHelp(f.id, body)}
               />
             ))}
             {resolvedFlags.length > 0 && (
@@ -198,8 +221,33 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
           </div>
         </section>
 
-        {/* State inspection */}
+        {/* Right aside: triage transcript (if escalated from landing) + state inspector */}
         <aside className="space-y-4">
+          {caseData.triageTranscript && caseData.triageTranscript.length > 0 && (
+            <details open className="rounded-xl border border-blue-200 bg-white p-4">
+              <summary className="cursor-pointer text-xs font-semibold uppercase tracking-wider text-blue-700">
+                Triage transcript ({caseData.triageTranscript.length} messages)
+              </summary>
+              <div className="mt-3 space-y-2">
+                {caseData.triageTranscript.map((m) => (
+                  <div
+                    key={m.id}
+                    className={`rounded-lg px-3 py-2 text-xs ${
+                      m.role === 'user'
+                        ? 'bg-slate-100 text-slate-800'
+                        : 'border border-slate-200 bg-white text-slate-700'
+                    }`}
+                  >
+                    <div className="mb-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+                      {m.role === 'user' ? 'applicant' : 'triage AI'}
+                    </div>
+                    <div className="whitespace-pre-wrap">{m.content}</div>
+                  </div>
+                ))}
+              </div>
+            </details>
+          )}
+
           <div className="rounded-xl border border-slate-200 bg-white p-4">
             <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
               Submitted form state
@@ -219,11 +267,13 @@ function FlagCard({
   busy,
   onApprove,
   onDismiss,
+  onReply,
 }: {
   flag: FlagRow
   busy: boolean
   onApprove: () => void
   onDismiss: () => void
+  onReply: (body: string) => void
 }) {
   const severityStyle = {
     error: 'border-red-300 bg-red-50',
@@ -237,6 +287,8 @@ function FlagCard({
     info: 'bg-slate-400',
   }[flag.severity]
 
+  const isQuestionHelp = flag.kind === 'question_help'
+
   return (
     <div className={`rounded-xl border p-4 ${severityStyle}`}>
       <div className="flex items-start gap-3">
@@ -248,7 +300,7 @@ function FlagCard({
             </span>
           </div>
           <h3 className="mt-1 text-sm font-semibold text-slate-900">{flag.title}</h3>
-          <p className="mt-1 text-sm text-slate-700">{flag.detail}</p>
+          <p className="mt-1 whitespace-pre-wrap text-sm text-slate-700">{flag.detail}</p>
           {flag.llmReasoning && (
             <details className="mt-2 text-xs text-slate-500">
               <summary className="cursor-pointer">Why this was flagged</summary>
@@ -260,25 +312,58 @@ function FlagCard({
               field: {flag.suggestedFieldPath}
             </p>
           )}
-          <div className="mt-3 flex gap-2">
-            <button
-              type="button"
-              disabled={busy}
-              onClick={onApprove}
-              className="rounded border border-emerald-600 bg-white px-3 py-1 text-xs font-medium text-emerald-700 hover:bg-emerald-50 disabled:opacity-50"
-            >
-              Approve
-            </button>
-            <button
-              type="button"
-              disabled={busy}
-              onClick={onDismiss}
-              className="rounded border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-100 disabled:opacity-50"
-            >
-              Dismiss
-            </button>
-          </div>
+
+          {isQuestionHelp ? (
+            <ReplyForm busy={busy} onSubmit={onReply} />
+          ) : (
+            <div className="mt-3 flex gap-2">
+              <button
+                type="button"
+                disabled={busy}
+                onClick={onApprove}
+                className="rounded border border-emerald-600 bg-white px-3 py-1 text-xs font-medium text-emerald-700 hover:bg-emerald-50 disabled:opacity-50"
+              >
+                Approve
+              </button>
+              <button
+                type="button"
+                disabled={busy}
+                onClick={onDismiss}
+                className="rounded border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-100 disabled:opacity-50"
+              >
+                Dismiss
+              </button>
+            </div>
+          )}
         </div>
+      </div>
+    </div>
+  )
+}
+
+function ReplyForm({ busy, onSubmit }: { busy: boolean; onSubmit: (body: string) => void }) {
+  const [text, setText] = useState('')
+  return (
+    <div className="mt-3">
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Write a reply — this appears in the applicant's chat as a message from an accredited rep."
+        rows={3}
+        className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:border-slate-900 focus:outline-none"
+      />
+      <div className="mt-2 flex justify-end">
+        <button
+          type="button"
+          disabled={busy || !text.trim()}
+          onClick={() => {
+            onSubmit(text.trim())
+            setText('')
+          }}
+          className="rounded-lg bg-emerald-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+        >
+          Send reply
+        </button>
       </div>
     </div>
   )

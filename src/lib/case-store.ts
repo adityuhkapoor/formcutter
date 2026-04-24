@@ -1,8 +1,12 @@
-import { eq, desc, sql } from 'drizzle-orm'
+import { eq, desc, sql, asc } from 'drizzle-orm'
 import { db, cases, flags } from './db'
+import { flagReplies } from './db/schema'
 import type { CaseStatus, CaseMessage, FlagKind, FlagSeverity, FlagStatus } from './db/schema'
 
-export function createCase(opts: { formType?: string } = {}): typeof cases.$inferSelect {
+export function createCase(opts: {
+  formType?: string
+  triageTranscript?: CaseMessage[]
+} = {}): typeof cases.$inferSelect {
   const id = crypto.randomUUID()
   const now = new Date()
   const row = {
@@ -12,6 +16,7 @@ export function createCase(opts: { formType?: string } = {}): typeof cases.$infe
     messages: [],
     formType: opts.formType ?? 'i-864',
     displayName: null,
+    triageTranscript: opts.triageTranscript ?? null,
     createdAt: now,
     updatedAt: now,
     submittedAt: null,
@@ -114,4 +119,49 @@ export function updateFlag(
 
 export function clearFlagsForCase(caseId: string) {
   db.delete(flags).where(eq(flags.caseId, caseId)).run()
+}
+
+// ─── Flag replies (rep-authored responses to question_help flags) ─────
+
+export function createFlagReply(opts: {
+  flagId: string
+  body: string
+  authorLabel?: string
+}) {
+  const id = crypto.randomUUID()
+  db.insert(flagReplies).values({
+    id,
+    flagId: opts.flagId,
+    authorLabel: opts.authorLabel ?? 'Accredited rep',
+    body: opts.body,
+    createdAt: new Date(),
+  }).run()
+  return id
+}
+
+export function getRepliesForFlag(flagId: string) {
+  return db
+    .select()
+    .from(flagReplies)
+    .where(eq(flagReplies.flagId, flagId))
+    .orderBy(asc(flagReplies.createdAt))
+    .all()
+}
+
+export function getRepliesForCase(caseId: string) {
+  return db
+    .select({
+      id: flagReplies.id,
+      flagId: flagReplies.flagId,
+      authorLabel: flagReplies.authorLabel,
+      body: flagReplies.body,
+      createdAt: flagReplies.createdAt,
+      flagKind: flags.kind,
+      flagTitle: flags.title,
+    })
+    .from(flagReplies)
+    .innerJoin(flags, eq(flagReplies.flagId, flags.id))
+    .where(eq(flags.caseId, caseId))
+    .orderBy(asc(flagReplies.createdAt))
+    .all()
 }
