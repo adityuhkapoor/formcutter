@@ -25,6 +25,20 @@ export type TriageChatHandle = {
   triggerEscalation: () => void
 }
 
+/** Meta starter chip — short-circuited to a deterministic reply instead of
+ * burning an LLM call. Recognized by exact string match in sendMessage. */
+const META_CHIP = 'How can Formcutter help me?'
+
+const META_REPLY = `Formcutter helps you fill out U.S. immigration forms without paying a lawyer for paperwork you can do yourself. Three ways I can help:
+
+1. Fill a form you already know — tell me which form (e.g. I-864, N-400) and I'll walk you through it. Upload your docs, I extract what I can, we chat to fill the rest.
+
+2. Find the right form — describe your situation and I'll point you to the USCIS form(s) you likely need.
+
+3. Talk to an accredited rep — if your case is complicated (deportation hearings, criminal history, fraud issues), an accredited representative should weigh in before you file anything. Tap the + button next to the input to request one.
+
+What sounds like your situation?`
+
 /**
  * Landing-page chat that triages free-text user input into one of four
  * outcomes (route / recommend / ask / escalate) via POST /api/triage. The
@@ -42,16 +56,22 @@ export const TriageChat = forwardRef<TriageChatHandle>(function TriageChat(_, re
   const [loading, setLoading] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
 
-  // Seed greeting once the lang provider has hydrated.
+  // Seed greeting once the lang provider has hydrated. Three starter chips
+  // mirror the "Get help" cards on the home page — zero-blank-state so users
+  // who don't know what to type have immediate footholds.
   useEffect(() => {
     if (messages.length > 0) return
     setMessages([
       {
         id: crypto.randomUUID(),
         role: 'assistant',
-        content:
-          "Hi — tell me your situation in a sentence or two and I'll point you to the right USCIS form. You can say something like \"my husband is a U.S. citizen\" or \"I need to fill out I-864\".",
+        content: 'Hi there! What can I help you with today?',
         createdAt: Date.now(),
+        chips: [
+          'Help me fill out a USCIS form I know about',
+          "I'm not sure which form I need",
+          META_CHIP,
+        ],
       },
     ])
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -73,6 +93,14 @@ export const TriageChat = forwardRef<TriageChatHandle>(function TriageChat(_, re
     setMessages(nextMessages)
     setInput('')
     setOutcome(null)
+
+    // Meta chip is deterministic — no LLM call. Keep the reply identical
+    // across demo runs so the walkthrough is predictable.
+    if (text === META_CHIP) {
+      appendAssistant(META_REPLY)
+      return
+    }
+
     setLoading(true)
 
     try {
@@ -312,7 +340,7 @@ function ChatBubble({
           <span className="ml-auto text-neutral-400">{timeLabel}</span>
         </div>
       )}
-      <div className="text-[15px] leading-relaxed text-neutral-900">
+      <div className="whitespace-pre-wrap text-[15px] leading-relaxed text-neutral-900">
         {msg.content}
       </div>
       {msg.chips && msg.chips.length > 0 && (
