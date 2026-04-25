@@ -11,11 +11,11 @@ import { MicButton } from '@/components/MicButton'
 import { CompleteCaseCard } from '@/components/CompleteCaseCard'
 import {
   evaluateEvidence,
-  I864_EVIDENCE,
   type DocType,
   type UploadedDoc,
 } from '@/lib/evidence'
 import { FORM_REGISTRY, type FormId } from '@/lib/forms'
+import { getGreeting, getEvidence } from '@/lib/forms/per-form-meta'
 
 type Msg = {
   id: string
@@ -180,9 +180,9 @@ export default function Home() {
         if (typeof window !== 'undefined') {
           localStorage.setItem(LOCAL_CASE_KEY, data.case.id)
         }
-        setMessages([
-          makeMsg('assistant', t('chat.greeting')),
-        ])
+        // Greeting names the actual form so the user immediately sees the
+        // chat is on-form (was hardcoded I-864 pre-refactor).
+        setMessages([makeMsg('assistant', getGreeting(targetForm))])
       }
     })()
   }, [])
@@ -286,6 +286,7 @@ export default function Home() {
         body: JSON.stringify({
           state: nextState,
           language: lang,
+          formId,
           messages: [
             {
               role: 'user',
@@ -331,6 +332,7 @@ export default function Home() {
     const fd = new FormData()
     fd.append('file', file)
     fd.append('hint', docHint)
+    fd.append('formId', formId)
 
     try {
       const res = await fetch('/api/extract', { method: 'POST', body: fd })
@@ -433,7 +435,7 @@ export default function Home() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ state, messages: wireMessages, language: lang }),
+        body: JSON.stringify({ state, messages: wireMessages, language: lang, formId }),
       })
       const data = await res.json()
 
@@ -546,7 +548,7 @@ export default function Home() {
 
   const filledCount = countFilledPaths(state)
   const evidence = evaluateEvidence({
-    requirements: I864_EVIDENCE,
+    requirements: getEvidence(formId),
     docs,
     state,
   })

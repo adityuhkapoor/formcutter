@@ -3,6 +3,23 @@
 import { useI18n } from '@/lib/i18n/provider'
 import type { EvidenceStatus } from '@/lib/evidence'
 
+/**
+ * Render the localized label for an evidence requirement. Falls back to the
+ * hand-written English label if the i18n catalog has no entry — newer forms
+ * (I-130/I-485/N-400/etc.) ship with English-only `evidence.<form>.*` keys
+ * that the translator script will fill out post-demo. Without this fallback
+ * the user sees the literal key string ("evidence.n400.greenCard").
+ */
+function labelOrFallback(
+  t: ReturnType<typeof useI18n>['t'],
+  key: string,
+  fallback: string
+): string {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const out = t(key as any)
+  return out === key ? fallback : out
+}
+
 const STATUS_STYLES: Record<EvidenceStatus['status'], { dot: string; text: string; bg: string }> = {
   met: { dot: 'bg-emerald-500', text: 'text-emerald-700', bg: 'bg-emerald-50' },
   partial: { dot: 'bg-amber-400', text: 'text-amber-700', bg: 'bg-amber-50' },
@@ -48,7 +65,7 @@ export function EvidenceChecklist({ items }: { items: EvidenceStatus[] }) {
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <span className="truncate font-medium text-neutral-800">
-                    {t(requirement.labelI18nKey as Parameters<typeof t>[0])}
+                    {labelOrFallback(t, requirement.labelI18nKey, requirement.labelEn)}
                   </span>
                   <span className={`text-[10px] font-semibold uppercase tracking-wider ${styles.text}`}>
                     {statusLabel}

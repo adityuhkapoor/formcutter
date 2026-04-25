@@ -2,75 +2,48 @@ import { NextResponse } from 'next/server'
 import type { Tool } from '@anthropic-ai/sdk/resources/messages'
 import { anthropic, MODEL, DEFAULTS, type DocHint } from '@/lib/anthropic'
 import { ipFromRequest, rateLimit } from '@/lib/rate-limit'
+import { FORM_REGISTRY, type FormId } from '@/lib/forms'
+import { getDocFieldPaths } from '@/lib/forms/per-form-meta'
 
 export const runtime = 'nodejs'
 export const maxDuration = 60
 
-const SYSTEM_PROMPT = `You are a document-extraction assistant for U.S. immigration form filling (I-864 Affidavit of Support).
+/**
+ * Build the system prompt for a vision-extraction call. The list of allowed
+ * field paths varies per form — I-864's are split across part2/part4/part6,
+ * the others use the simpler petitioner/applicant/beneficiary tree.
+ */
+function buildSystemPrompt(formId: FormId): string {
+  const meta = FORM_REGISTRY[formId]
+  const formName = meta?.name ?? `USCIS Form ${formId.toUpperCase()}`
+  const formShort = formId.toUpperCase()
+  const docPaths = getDocFieldPaths(formId)
+
+  return `You are a document-extraction assistant for U.S. immigration form filling (${formName}).
 
 You receive one document at a time — a photo or scan of an identification card, passport, tax return, tax transcript, or pay stub. Your only job is to read the document and emit structured data via the \`extract_fields\` tool.
 
-FIELD PATHS — you MUST use exactly these dotted paths (no abbreviations, no renaming). Any field not in this list must be omitted, not renamed:
+The extracted fields will populate ${formShort}. Use exactly these dotted paths (no abbreviations, no renaming). Any field not in this list must be omitted, not renamed:
 
-Sponsor identity (Part 4):
-- part4.name.familyName            (sponsor last name)
-- part4.name.givenName             (sponsor first name)
-- part4.name.middleName            (sponsor middle name, if shown)
-- part4.dateOfBirth                (ISO YYYY-MM-DD)
-- part4.ssn                        (###-##-#### if visible)
-- part4.placeOfBirth.cityOrTown
-- part4.placeOfBirth.state
-- part4.placeOfBirth.country
-- part4.mailingAddress.streetNumberAndName
-- part4.mailingAddress.aptSteFlrNumber
-- part4.mailingAddress.cityOrTown
-- part4.mailingAddress.state       (2-letter code, e.g. "TX")
-- part4.mailingAddress.zipCode
-- part4.mailingAddress.country
-- part4.citizenshipStatus          (one of: "us-citizen", "us-national", "lpr")
-- part4.aNumber                    (A-Number from green card, format "A123456789")
-
-Immigrant identity (Part 2, only if extracting from immigrant's documents):
-- part2.name.familyName
-- part2.name.givenName
-- part2.name.middleName
-- part2.dateOfBirth
-- part2.ssn
-- part2.aNumber
-- part2.countryOfCitizenship
-- part2.mailingAddress.streetNumberAndName
-- part2.mailingAddress.cityOrTown
-- part2.mailingAddress.state
-- part2.mailingAddress.zipCode
-
-Employment and income (Part 6):
-- part6.employerOrBusinessName
-- part6.occupation
-- part6.currentIndividualAnnualIncome  (number)
-- part6.taxReturnIncome.mostRecentYear.taxYear        (integer)
-- part6.taxReturnIncome.mostRecentYear.totalIncome    (number, 1040 line 9 "Total income")
-
-Contact (Part 8):
-- part8.sponsorDaytimePhone
-- part8.sponsorMobilePhone
-- part8.sponsorEmail
+${docPaths.map((p) => `- ${p}`).join('\n')}
 
 HARD RULES:
-- Use ONLY the field paths listed above. Do NOT invent new paths like "name.firstName" or "address.street". If a value on the document doesn't fit one of these paths, omit it.
+- Use ONLY the field paths listed above. Do NOT invent new paths. If a value on the document doesn't fit one of these paths, omit it.
 - Only extract what you can actually read. If a field is partially occluded, illegible, or absent, OMIT it (do not guess).
 - Dates: ISO 8601 YYYY-MM-DD.
 - Money: plain numbers only, no currency symbols or commas (95000, not "$95,000").
-- If the document is a license/green card/passport: assume it belongs to the SPONSOR unless context clearly says otherwise — use part4.* paths.
-- Pay stubs and tax returns: use part6.* paths, and set \`taxYear\`/\`totalIncome\`/\`grossYTD\` top-level fields too.
-- Do NOT invent fields not present on the document. Returning an empty \`fields\` object is better than hallucinating.
+- Pay stubs and tax returns: also set top-level \`taxYear\` / \`totalIncome\` / \`grossYTD\` when applicable.
+- Returning an empty \`fields\` object is better than hallucinating.
 - Do NOT ask the user questions — another component handles that.
 
 DOC VETTING RULES (critical for reviewer):
 - ALWAYS set \`docType\` to what you actually see, even if the user's hint says something different. If your detected type differs from the user's hint, set \`mismatchReason\` to a short sentence like "User said 'license' but the document is clearly an IRS Form 1040."
-- For tax returns: if the 1040 visible but W-2(s), 1099(s), or any Schedule referenced (A/B/C/D/E) are NOT present in what you can see, list them in \`missingComponents\`. USCIS rejects for missing schedules more than any other reason.
+- For tax returns: if the 1040 is visible but W-2(s), 1099(s), or any Schedule referenced (A/B/C/D/E) are NOT present in what you can see, list them in \`missingComponents\`. USCIS rejects for missing schedules more than any other reason.
 - Always populate \`docDate\` with the most relevant date: pay-stub pay-period-end for paystubs; Dec 31 of the tax year for 1040s; issue date for licenses/passports/green cards.
 - If watermarked "SAMPLE" / "SPECIMEN" / "NOT REAL", note in \`warnings\`. Don't reject — this is a dev/test document.
 - If the document is older than expected for its type (pay stub > 6 months, tax return > 2 years), mention in \`warnings\`.`
+}
+
 
 const TOOL_DEFINITION: Tool = {
   name: 'extract_fields',
@@ -165,6 +138,11 @@ export async function POST(req: Request) {
 
   const file = formData.get('file')
   const hint = (formData.get('hint') as DocHint | null) ?? 'other'
+  const rawFormId = formData.get('formId')
+  const formId: FormId =
+    typeof rawFormId === 'string' && rawFormId in FORM_REGISTRY
+      ? (rawFormId as FormId)
+      : 'i-864'
 
   if (!(file instanceof File)) {
     return NextResponse.json({ error: 'missing_file' }, { status: 400 })
@@ -195,7 +173,7 @@ export async function POST(req: Request) {
     },
     {
       type: 'text' as const,
-      text: `Document hint from user: ${hint}. Extract all legibly present I-864-relevant fields via the extract_fields tool.`,
+      text: `Document hint from user: ${hint}. Extract all legibly present ${formId.toUpperCase()}-relevant fields via the extract_fields tool.`,
     },
   ]
 
@@ -207,7 +185,7 @@ export async function POST(req: Request) {
       system: [
         {
           type: 'text',
-          text: SYSTEM_PROMPT,
+          text: buildSystemPrompt(formId),
           cache_control: { type: 'ephemeral' },
         },
       ],

@@ -2,8 +2,10 @@ import { NextResponse } from 'next/server'
 import type { Tool, MessageParam } from '@anthropic-ai/sdk/resources/messages'
 import { anthropic, MODEL, DEFAULTS } from '@/lib/anthropic'
 import { ipFromRequest, rateLimit } from '@/lib/rate-limit'
-import { FIELD_META, SENSITIVE_PATHS } from '@/lib/i864-schema'
+import { FIELD_META as I864_FIELD_META, SENSITIVE_PATHS, type FieldMeta } from '@/lib/i864-schema'
 import { flattenPaths, mergeExtractionIntoState } from '@/lib/field-paths'
+import { FORM_REGISTRY, type FormId } from '@/lib/forms'
+import { getFieldMeta } from '@/lib/forms/per-form-meta'
 
 /** Replace SSN / A-Number-shaped values with last-4 masks before sending to
  * the LLM or returning to the client. */
@@ -31,9 +33,22 @@ function redactMessage(text: string): string {
 export const runtime = 'nodejs'
 export const maxDuration = 60
 
-const SYSTEM_PROMPT = `You are Formcutter's assistant for the U.S. I-864 Affidavit of Support.
+function getFieldMetaForForm(formId: FormId): Record<string, FieldMeta> {
+  if (formId === 'i-864') return I864_FIELD_META
+  // Auto-mapped forms have a slim FIELD_META in per-form-meta.ts. We fall
+  // back to I-864's set if a form somehow isn't covered — that just means
+  // the chat will ask I-864 questions for an unsupported form, which is the
+  // pre-refactor behavior.
+  return getFieldMeta(formId) ?? I864_FIELD_META
+}
 
-You guide a sponsor through completing their I-864. Your job is to gather missing fields conversationally after an initial document extraction has already pulled what it can.
+function buildSystemPrompt(formId: FormId): string {
+  const meta = FORM_REGISTRY[formId]
+  const formName = meta?.name ?? `USCIS Form ${formId.toUpperCase()}`
+  const formShort = formId.toUpperCase()
+  return `You are Formcutter's assistant for the U.S. ${formName} (${formShort}).
+
+You guide an applicant through completing their ${formShort}. Your job is to gather missing fields conversationally after an initial document extraction has already pulled what it can.
 
 # Style
 
@@ -88,18 +103,22 @@ Never loop on a field. Never refuse to continue because something is missing.
 
 # Hard rules
 
-- Never give legal advice. Do not tell the user whether they qualify, whether they need a joint sponsor, how to explain domicile, whether their income is "enough," whether using assets is "better." For any such question: set \`needs_rep_review: true\` and reply with something like "I'll flag this for your accredited-rep reviewer — they'll give you a straight answer. For reference, here's what the instructions say: [quote]." Then move on to the next unrelated missing field.
-- Topics that are ALWAYS legal-strategy (flag these):
-  - Joint sponsor eligibility or whether to use one
-  - Whether assets can substitute for income
-  - Domicile / re-establishing domicile
-  - Public charge / means-tested benefits
-  - Whether the sponsor qualifies at all
-  - Naturalization consequences of sponsoring
-  - Any "what should I do" or "is this enough" question
+- Never give legal advice. Do not tell the user whether they qualify, whether they need a particular kind of help, how to argue a discretionary issue, or whether their evidence is "enough." For any such question: set \`needs_rep_review: true\` and reply with something like "I'll flag this for your accredited-rep reviewer — they'll give you a straight answer. For reference, here's what the instructions say: [quote]." Then move on to the next unrelated missing field.
+- Topics that are ALWAYS legal-strategy (flag on any form):
+  - Whether the user qualifies at all
+  - Any criminal history or immigration violation
+  - Past fraud or misrepresentation
+  - Active or prior removal proceedings
+  - "What should I do" / "is this enough" / strategic-choice questions
+- Form-specific legal-strategy topics (always flag for the relevant form):
+  - I-864: joint sponsor eligibility, asset substitution, domicile, public charge
+  - N-400: good moral character, tax compliance disputes, selective service issues
+  - I-485: bars to adjustment, inspection-and-admission disputes
+  - I-589: nexus to a protected ground, particular social group analysis, one-year bar exceptions, persecution narrative wording (the user's statement is theirs — don't shape it)
 - Dates → YYYY-MM-DD. Money → plain numbers, no commas/$.
 - If the MISSING list is empty (all required filled), congratulate and tell them to hit Generate PDF.
 - Do not fabricate field paths — use only the paths shown in MISSING or already in state.`
+}
 
 const TOOL_DEFINITION: Tool = {
   name: 'respond',
@@ -113,7 +132,7 @@ const TOOL_DEFINITION: Tool = {
       },
       updates: {
         type: 'object',
-        description: 'Flat map of dotted I-864 field paths → values to persist. Empty if no new facts.',
+        description: 'Flat map of dotted USCIS form field paths → values to persist. Empty if no new facts.',
         additionalProperties: true,
       },
       options: {
@@ -139,6 +158,7 @@ type TurnInput = {
   state: Record<string, unknown>
   messages: Array<{ role: 'user' | 'assistant'; content: string }>
   language?: string
+  formId?: FormId
 }
 
 const LANGUAGE_NAMES: Record<string, string> = {
@@ -180,6 +200,9 @@ export async function POST(req: Request) {
   const messages = body.messages ?? []
   const language = body.language && LANGUAGE_NAMES[body.language] ? body.language : 'en'
   const languageName = LANGUAGE_NAMES[language]
+  const formId: FormId =
+    body.formId && FORM_REGISTRY[body.formId] ? body.formId : 'i-864'
+  const fieldMetaForForm = getFieldMetaForForm(formId)
 
   if (messages.length === 0 || messages.length > 50) {
     return NextResponse.json({ error: 'invalid_message_count' }, { status: 400 })
@@ -190,7 +213,7 @@ export async function POST(req: Request) {
   const flatState = flattenPaths(state as Record<string, unknown>)
   const tierRank = { required: 0, conditional: 1, optional: 2 } as const
 
-  const missing = Object.entries(FIELD_META)
+  const missing = Object.entries(fieldMetaForForm)
     .filter(([path, meta]) => {
       const filled = flatState[path] !== undefined && flatState[path] !== ''
       if (filled) return false
@@ -246,7 +269,7 @@ export async function POST(req: Request) {
       system: [
         {
           type: 'text',
-          text: SYSTEM_PROMPT,
+          text: buildSystemPrompt(formId),
           cache_control: { type: 'ephemeral' },
         },
         {
