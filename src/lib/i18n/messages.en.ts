@@ -65,6 +65,21 @@ export const MESSAGES_EN = {
 
   'chat.formcutterAi': 'Formcutter AI',
 
+  // Triage chat surface (`/chat`)
+  'triage.topbar': 'Get started with Formcutter',
+  'triage.placeholder': 'Ask Formcutter…',
+  'triage.greeting': 'Hi there! What can I help you with today?',
+  'triage.selectOption': 'Select an option:',
+  'triage.repAriaLabel': 'Speak to an accredited representative',
+  'triage.formPicker.intro':
+    "Great — pick the form you want to fill out. If you don't see it in the list, let me know which one and I'll check if we support it.",
+  'triage.formPicker.fallbackPrompt': "Don't see your form? →",
+  'triage.formPicker.fallbackPlaceholder': 'Type the form number (e.g. I-751)',
+  'triage.formPicker.submit': 'Submit',
+  'triage.chip.fillKnown': 'Help me fill out a USCIS form I know about',
+  'triage.chip.findRight': "I'm not sure which form I need",
+  'triage.chip.meta': 'How can Formcutter help me?',
+
   'chat.footer.disclaimer':
     'Formcutter is not a law firm and does not provide legal advice. Legal-strategy questions are flagged for an accredited-representative reviewer.',
 

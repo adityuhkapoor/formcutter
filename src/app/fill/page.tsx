@@ -132,6 +132,7 @@ export default function Home() {
   const [sending, setSending] = useState(false)
   const [docHint, setDocHint] = useState<(typeof DOC_HINTS)[number]['value']>('license')
   const [isDragging, setIsDragging] = useState(false)
+  const [uploadError, setUploadError] = useState<string | null>(null)
   const [showSensitive, setShowSensitive] = useState(false)
   const dragCounterRef = useRef(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -617,11 +618,22 @@ export default function Home() {
                 dragCounterRef.current = 0
                 setIsDragging(false)
                 const files = Array.from(e.dataTransfer?.files ?? [])
+                const rejected: string[] = []
+                let accepted = 0
                 for (const f of files) {
                   if (f.type.startsWith('image/') || f.type === 'application/pdf') {
                     handleUpload(f)
+                    accepted += 1
+                  } else {
+                    rejected.push(f.name)
                   }
                 }
+                setUploadError(
+                  rejected.length > 0
+                    ? `Skipped ${rejected.length} file${rejected.length === 1 ? '' : 's'} — only images and PDFs are supported.`
+                    : null
+                )
+                if (accepted > 0 && rejected.length === 0) setUploadError(null)
               }}
               className={`block cursor-pointer rounded-lg border-2 border-dashed p-6 text-center text-sm transition-colors ${
                 isDragging
@@ -636,7 +648,19 @@ export default function Home() {
                 className="hidden"
                 onChange={(e) => {
                   const files = Array.from(e.target.files ?? [])
-                  for (const f of files) handleUpload(f)
+                  const rejected: string[] = []
+                  for (const f of files) {
+                    if (f.type.startsWith('image/') || f.type === 'application/pdf') {
+                      handleUpload(f)
+                    } else {
+                      rejected.push(f.name)
+                    }
+                  }
+                  setUploadError(
+                    rejected.length > 0
+                      ? `Skipped ${rejected.length} file${rejected.length === 1 ? '' : 's'} — only images and PDFs are supported.`
+                      : null
+                  )
                   e.target.value = ''
                 }}
               />
@@ -644,6 +668,11 @@ export default function Home() {
               <br />
               <span className="text-xs text-neutral-400">{t('upload.dropzone.hint')}</span>
             </label>
+            {uploadError && (
+              <p className="mt-2 rounded-md border border-amber-300 bg-amber-50 px-2 py-1 text-[11px] text-amber-900">
+                {uploadError}
+              </p>
+            )}
 
             {uploads.length > 0 && (
               <ul className="mt-3 space-y-1 text-xs">
@@ -722,6 +751,8 @@ export default function Home() {
               formId={formId}
               state={state}
               canSubmit={filledCount >= 8}
+              filledCount={filledCount}
+              threshold={8}
               onSubmitted={() => setCaseStatus('pending_review')}
             />
           ) : (

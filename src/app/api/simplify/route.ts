@@ -24,6 +24,18 @@ const LANGUAGE_NAMES: Record<string, string> = {
  *
  * Used by the "Simplify" button below each assistant message in chat.
  */
+
+/**
+ * The model often prefixes its answer with "Here is the simpler version:" or
+ * a localized equivalent — strip any leading "<intro>:\n" prefix so the chat
+ * bubble shows just the rewritten content.
+ */
+function stripPreamble(s: string): string {
+  return s
+    .trim()
+    .replace(/^[^\n:]{0,80}:\s*\n+/, '')
+    .trim()
+}
 export async function POST(req: Request) {
   const ip = ipFromRequest(req)
   const rl = rateLimit({ key: `simplify:${ip}`, limit: 60, windowMs: 60 * 60_000 })
@@ -65,8 +77,8 @@ export async function POST(req: Request) {
       messages: [{ role: 'user', content: `Rewrite this simpler:\n\n${text}` }],
     })
 
-    const simplified = response.content.find((b) => b.type === 'text')?.text ?? text
-    return NextResponse.json({ ok: true, simplified: simplified.trim() })
+    const raw = response.content.find((b) => b.type === 'text')?.text ?? text
+    return NextResponse.json({ ok: true, simplified: stripPreamble(raw) })
   } catch (err) {
     console.error('simplify error', err)
     return NextResponse.json(

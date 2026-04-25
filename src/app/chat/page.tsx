@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { AppSidebar } from '@/components/AppSidebar'
 import { LanguagePicker } from '@/components/LanguagePicker'
 import { TriageChat } from '@/components/TriageChat'
+import { useI18n } from '@/lib/i18n/provider'
 
 /**
  * /chat — app-shell with sidebar + top bar + full-height chat area.
@@ -11,6 +12,7 @@ import { TriageChat } from '@/components/TriageChat'
  * and all outcome rendering.
  */
 export default function ChatPage() {
+  const { t } = useI18n()
   return (
     <div className="flex min-h-screen bg-neutral-50 text-neutral-900">
       <AppSidebar />
@@ -28,7 +30,7 @@ export default function ChatPage() {
           <div className="flex items-center gap-3">
             <PanelIcon />
             <h1 className="text-sm font-semibold text-neutral-900">
-              Get started with Formcutter
+              {t('triage.topbar')}
             </h1>
           </div>
           <div className="flex items-center gap-3 text-xs text-neutral-500">

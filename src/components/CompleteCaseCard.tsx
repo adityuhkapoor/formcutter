@@ -14,6 +14,8 @@ export function CompleteCaseCard({
   formId,
   state,
   canSubmit,
+  filledCount,
+  threshold,
   onSubmitted,
 }: {
   caseId: string | null
@@ -21,6 +23,10 @@ export function CompleteCaseCard({
   state: Record<string, unknown>
   /** Has the user filled enough to reasonably finish? */
   canSubmit: boolean
+  /** Number of fields filled so far. Drives the locked-state progress hint. */
+  filledCount: number
+  /** Threshold above which canSubmit flips true. */
+  threshold: number
   /** Called after a successful rep-review submit (so parent can flip case status). */
   onSubmitted: () => void
 }) {
@@ -100,9 +106,22 @@ export function CompleteCaseCard({
       </div>
 
       {!canSubmit && (
-        <p className="mt-2 text-[11px] italic text-neutral-500">
-          Keep answering a few more questions to unlock these.
-        </p>
+        <div className="mt-3">
+          <div className="flex items-center justify-between text-[11px] text-neutral-500">
+            <span>Keep answering a few more questions to unlock these.</span>
+            <span className="font-mono text-neutral-700">
+              {Math.min(filledCount, threshold)}/{threshold}
+            </span>
+          </div>
+          <div className="mt-1 h-1 overflow-hidden rounded-full bg-neutral-200">
+            <div
+              className="h-full bg-neutral-900 transition-all"
+              style={{
+                width: `${Math.min(100, Math.round((filledCount / threshold) * 100))}%`,
+              }}
+            />
+          </div>
+        </div>
       )}
     </div>
   )

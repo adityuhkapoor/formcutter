@@ -19,10 +19,10 @@ export function normalizeFormId(raw: string): FormId | null {
 }
 
 const VERDICT_STYLE: Record<ReliefVerdict, { label: string; cls: string }> = {
-  likely: { label: 'Likely eligible', cls: 'bg-emerald-100 text-emerald-800' },
-  possibly: { label: 'Possibly eligible', cls: 'bg-amber-100 text-amber-800' },
-  unlikely: { label: 'Unlikely', cls: 'bg-neutral-200 text-neutral-700' },
-  'not-eligible': { label: 'Not eligible', cls: 'bg-red-100 text-red-800' },
+  likely: { label: 'Likely eligible', cls: 'bg-emerald-100 text-emerald-900' },
+  possibly: { label: 'Possibly eligible', cls: 'bg-amber-100 text-amber-900' },
+  unlikely: { label: 'Unlikely', cls: 'bg-neutral-200 text-neutral-800' },
+  'not-eligible': { label: 'Not eligible', cls: 'bg-red-100 text-red-900' },
 }
 
 /** A top recommendation earns the "Best match" highlight only when it's
@@ -113,13 +113,13 @@ function OptionCard({
         </div>
       )}
 
-      <div className="flex items-start justify-between gap-2">
-        <h3 className="text-base font-semibold">{rec.relief}</h3>
+      <div className="flex flex-col gap-2">
         <span
-          className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${v.cls}`}
+          className={`inline-flex w-fit items-center rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${v.cls}`}
         >
           {v.label}
         </span>
+        <h3 className="text-base font-semibold leading-snug">{rec.relief}</h3>
       </div>
 
       <p className="mt-2 text-sm text-neutral-600">{rec.summary}</p>

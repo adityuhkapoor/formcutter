@@ -26,13 +26,10 @@ export type TriageChatHandle = {
   triggerEscalation: () => void
 }
 
-/** Meta starter chip — short-circuited to a deterministic reply instead of
- * burning an LLM call. Recognized by exact string match in sendMessage. */
-const META_CHIP = 'How can Formcutter help me?'
-
-/** "I know the form" starter chip — short-circuited to render a deterministic
- * form picker in-message rather than letting the LLM improvise a chip list. */
-const FILL_FORM_CHIP = 'Help me fill out a USCIS form I know about'
+// Starter chips are short-circuited by exact label match in sendMessage.
+// Both the rendered label and the matching string come from the same i18n
+// key, so the transcript shows what the user actually tapped (localized)
+// and the short-circuit still triggers regardless of language.
 
 const META_REPLY = `Formcutter helps you fill out U.S. immigration forms without paying a lawyer for paperwork you can do yourself. Three ways I can help:
 
@@ -51,8 +48,12 @@ What sounds like your situation?`
  * the /start wizard.
  */
 export const TriageChat = forwardRef<TriageChatHandle>(function TriageChat(_, ref) {
-  const { lang } = useI18n()
+  const { lang, t } = useI18n()
   const router = useRouter()
+
+  const metaChip = t('triage.chip.meta')
+  const fillFormChip = t('triage.chip.fillKnown')
+  const findFormChip = t('triage.chip.findRight')
 
   const [messages, setMessages] = useState<TriageMessage[]>([])
   const [facts, setFacts] = useState<TriageFacts>({})
@@ -70,17 +71,13 @@ export const TriageChat = forwardRef<TriageChatHandle>(function TriageChat(_, re
       {
         id: crypto.randomUUID(),
         role: 'assistant',
-        content: 'Hi there! What can I help you with today?',
+        content: t('triage.greeting'),
         createdAt: Date.now(),
-        chips: [
-          'Help me fill out a USCIS form I know about',
-          "I'm not sure which form I need",
-          META_CHIP,
-        ],
+        chips: [fillFormChip, findFormChip, metaChip],
       },
     ])
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [lang])
 
   // Auto-scroll on new messages.
   useEffect(() => {
@@ -101,21 +98,20 @@ export const TriageChat = forwardRef<TriageChatHandle>(function TriageChat(_, re
 
     // Meta chip is deterministic — no LLM call. Keep the reply identical
     // across demo runs so the walkthrough is predictable.
-    if (text === META_CHIP) {
+    if (text === metaChip) {
       appendAssistant(META_REPLY)
       return
     }
 
     // "I know the form" — render a deterministic form picker rather than
     // asking the LLM to list supported forms (which it does inconsistently).
-    if (text === FILL_FORM_CHIP) {
+    if (text === fillFormChip) {
       setMessages((prev) => [
         ...prev,
         {
           id: crypto.randomUUID(),
           role: 'assistant',
-          content:
-            "Great — pick the form you want to fill out. If you don't see it in the list, let me know which one and I'll check if we support it.",
+          content: t('triage.formPicker.intro'),
           createdAt: Date.now(),
           formPicker: true,
         },
@@ -278,8 +274,8 @@ export const TriageChat = forwardRef<TriageChatHandle>(function TriageChat(_, re
               type="button"
               onClick={requestSelfEscalation}
               disabled={loading}
-              aria-label="Speak to an accredited representative"
-              title="Speak to a rep"
+              aria-label={t('triage.repAriaLabel')}
+              title={t('triage.repAriaLabel')}
               className="shrink-0 text-neutral-400 hover:text-neutral-700 disabled:opacity-50"
             >
               <PlusIcon />
@@ -288,7 +284,7 @@ export const TriageChat = forwardRef<TriageChatHandle>(function TriageChat(_, re
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask Formcutter..."
+              placeholder={t('triage.placeholder')}
               disabled={loading}
               aria-label="Describe your immigration situation"
               className="flex-1 bg-transparent px-1 text-sm outline-none placeholder:text-neutral-400 disabled:opacity-60"
@@ -342,6 +338,7 @@ function ChatBubble({
   onSelectForm: (formId: FormId) => void
   onTypeFallback: (text: string) => void
 }) {
+  const { t } = useI18n()
   const isUser = msg.role === 'user'
   const timeLabel = new Date(msg.createdAt).toLocaleTimeString([], {
     hour: 'numeric',
@@ -380,7 +377,7 @@ function ChatBubble({
       )}
       {msg.chips && msg.chips.length > 0 && (
         <div className="mt-4 flex flex-col items-end gap-2">
-          <div className="text-xs text-neutral-500">Select an option:</div>
+          <div className="text-xs text-neutral-500">{t('triage.selectOption')}</div>
           {msg.chips.map((c) => (
             <button
               key={c}
@@ -414,6 +411,7 @@ function FormPicker({
   onSelectForm: (formId: FormId) => void
   onTypeFallback: (text: string) => void
 }) {
+  const { t } = useI18n()
   const [showFallback, setShowFallback] = useState(false)
   const [typed, setTyped] = useState('')
   const forms = Object.values(FORM_REGISTRY)
@@ -457,7 +455,7 @@ function FormPicker({
                 submitFallback()
               }
             }}
-            placeholder="Type the form number (e.g. I-751)"
+            placeholder={t('triage.formPicker.fallbackPlaceholder')}
             disabled={!enabled}
             className="flex-1 rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-neutral-900 focus:outline-none disabled:opacity-50"
           />
@@ -467,7 +465,7 @@ function FormPicker({
             onClick={submitFallback}
             className="rounded-md bg-neutral-900 px-3 py-2 text-xs font-medium text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-300"
           >
-            Submit
+            {t('triage.formPicker.submit')}
           </button>
         </div>
       ) : (
@@ -477,7 +475,7 @@ function FormPicker({
           onClick={() => setShowFallback(true)}
           className="mt-3 text-xs text-neutral-500 underline-offset-2 hover:text-neutral-800 hover:underline disabled:cursor-not-allowed disabled:opacity-50"
         >
-          Don&apos;t see your form? →
+          {t('triage.formPicker.fallbackPrompt')}
         </button>
       )}
     </div>
