@@ -14,11 +14,11 @@ import { useI18n } from '@/lib/i18n/provider'
 export default function ChatPage() {
   const { t } = useI18n()
   return (
-    <div className="flex min-h-screen bg-neutral-50 text-neutral-900">
+    <div className="flex min-h-screen bg-[#faf7ee] text-neutral-900">
       <AppSidebar />
       <main className="flex min-h-screen flex-1 flex-col">
         {/* Mobile-only top brand row */}
-        <div className="flex items-center justify-between border-b border-neutral-200 bg-white/80 px-4 py-3 backdrop-blur lg:hidden">
+        <div className="flex items-center justify-between border-b border-stone-200/70 bg-[#faf7ee]/80 px-4 py-3 backdrop-blur lg:hidden">
           <Link href="/" className="text-lg font-semibold tracking-tight">
             formcutter
           </Link>
@@ -26,10 +26,10 @@ export default function ChatPage() {
         </div>
 
         {/* Desktop top bar — title + info icons, same spot as Granted's */}
-        <div className="hidden items-center justify-between border-b border-neutral-200 bg-white/60 px-6 py-4 backdrop-blur lg:flex">
+        <div className="hidden items-center justify-between border-b border-stone-200/70 bg-[#faf7ee]/60 px-6 py-4 backdrop-blur lg:flex">
           <div className="flex items-center gap-3">
             <PanelIcon />
-            <h1 className="text-sm font-semibold text-neutral-900">
+            <h1 className="font-display text-lg text-neutral-900">
               {t('triage.topbar')}
             </h1>
           </div>

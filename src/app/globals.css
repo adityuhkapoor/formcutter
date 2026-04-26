@@ -22,5 +22,101 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Geist Sans for everything by default — clean, readable, modern. The
+   * display serif is opted into via `.font-display` on hero headings only. */
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-feature-settings: 'cv11' on, 'ss01' on, 'ss03' on;
+}
+
+/* Editorial display serif — Instrument Serif. Used for hero headlines, big
+ * marketing text, and section openers where character matters more than
+ * legibility-at-12px. Italic variant available for accent words.
+ *
+ * Tracking tightens proportionally to size: at 48px+ a serif benefits from
+ * negative letter-spacing because optical sizing makes the gaps feel large. */
+.font-display {
+  font-family: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.022em;
+  font-weight: 400;
+}
+
+/* Tabular numbers — locks digit width so counters (X / 8, 6:05 PM) don't
+ * shimmy when values tick. Apply via `tabular-nums` class. */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Chat polish — message fade-in + morphing thinking-blob loader. Defined at
+ * the top level (not inside a component) so the animations register before
+ * the elements that consume them mount, avoiding the first-paint flash. */
+@keyframes fc-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fc-morph {
+  0%   { border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%; transform: rotate(0deg)   scale(1); }
+  20%  { border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%; transform: rotate(72deg)  scale(1.05); }
+  40%  { border-radius: 28% 72% 44% 56% / 49% 40% 60% 51%; transform: rotate(144deg) scale(0.96); }
+  60%  { border-radius: 37% 63% 51% 49% / 37% 65% 35% 63%; transform: rotate(216deg) scale(1.08); }
+  80%  { border-radius: 60% 40% 34% 66% / 64% 28% 72% 36%; transform: rotate(288deg) scale(0.98); }
+  100% { border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%; transform: rotate(360deg) scale(1); }
+}
+
+/* Slow drifting blobs for the home-page gradient wash. Three layered blurs
+ * with staggered timing produce an ambient, organic background that feels
+ * alive without distracting from content. Distinct durations + directions
+ * keep them from syncing into a visible loop. */
+@keyframes fc-blob-1 {
+  0%, 100% { transform: translate(0, 0)         scale(1); }
+  50%      { transform: translate(40px, -30px)  scale(1.08); }
+}
+@keyframes fc-blob-2 {
+  0%, 100% { transform: translate(0, 0)         scale(1); }
+  50%      { transform: translate(-50px, 30px)  scale(1.12); }
+}
+@keyframes fc-blob-3 {
+  0%, 100% { transform: translate(0, 0)         scale(1); }
+  50%      { transform: translate(30px, 50px)   scale(0.92); }
+}
+
+/* Gentle float for hero glyphs / illustrations. ~5s loop so it reads as
+ * "alive" without being twitchy. */
+@keyframes fc-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* Banner reveal — slide-down + fade. Used for case-status banners (pending
+ * review, approved). Distinct from `fc-fade-in` so banners feel like a
+ * milestone landing, not just another paragraph appearing. */
+@keyframes fc-slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* One-shot pulse for "this just changed" moments — evidence dot flipping to
+ * met, submit button becoming actionable. Brief scale + glow + ease-out;
+ * runs once via the animation-iteration-count default of 1. */
+@keyframes fc-pulse-glow {
+  0%   { transform: scale(1);    box-shadow: 0 0 0 0 currentColor; }
+  35%  { transform: scale(1.18); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.18); }
+  100% { transform: scale(1);    box-shadow: 0 0 0 0 transparent; }
+}
+
+/* Subtle highlight for buttons that just became enabled (e.g. submit when the
+ * threshold is crossed). 2 cycles is enough to draw the eye without nagging. */
+@keyframes fc-attention {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(15, 23, 42, 0); }
+  50%      { box-shadow: 0 0 0 6px rgba(15, 23, 42, 0.12); }
+}
+
+/* Honor users who've asked the OS to dial back motion. We only quiet the
+ * ambient background drift + float — message fade-ins, banner reveals, and
+ * status pulses are short and informational, so they still play. */
+@media (prefers-reduced-motion: reduce) {
+  .fc-motion-blob,
+  .fc-motion-float {
+    animation: none !important;
+  }
 }

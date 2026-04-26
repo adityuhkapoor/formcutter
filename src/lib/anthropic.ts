@@ -17,7 +17,7 @@ export const anthropic = new Anthropic({
   apiKey: cleanKey(process.env.ANTHROPIC_API_KEY),
 })
 
-export const MODEL = 'claude-sonnet-4-6'
+export const MODEL = 'claude-opus-4-7'
 
 // Rate caps applied per request to prevent runaway costs from demo traffic.
 export const DEFAULTS = {

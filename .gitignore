@@ -63,3 +63,7 @@ test-docs/
 
 # Ad-hoc design review screenshots (regenerate via Chrome DevTools MCP)
 design-review/
+
+# Local-only working notes (demo scripts, planning docs). Not part of the
+# shipped repo — keep them on disk for reference but out of git.
+docs/

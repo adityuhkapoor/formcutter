@@ -16,11 +16,11 @@ export function AppSidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="hidden w-64 shrink-0 border-r border-neutral-200 bg-white lg:flex lg:flex-col">
+    <aside className="hidden w-64 shrink-0 border-r border-stone-200/70 bg-[#f5f1e6] lg:flex lg:flex-col">
       <div className="px-6 pb-6 pt-6">
         <Link
           href="/"
-          className="text-2xl font-semibold tracking-tight text-neutral-900"
+          className="font-display text-3xl tracking-tight text-neutral-900"
         >
           formcutter
         </Link>
@@ -82,8 +82,8 @@ function NavItem({
       href={href}
       className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
         active
-          ? 'bg-neutral-100 text-neutral-900'
-          : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'
+          ? 'bg-[#ebe5d4] text-neutral-900'
+          : 'text-neutral-600 hover:bg-[#efeadc] hover:text-neutral-900'
       }`}
     >
       <span className="text-neutral-500">{icon}</span>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect, type FormEvent } from 'react'
+import { useState, useRef, useEffect, Suspense, type FormEvent } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
@@ -113,7 +113,17 @@ type CaseStatus = 'drafting' | 'pending_review' | 'approved' | 'released'
 
 const LOCAL_CASE_KEY = 'formcutter:caseId'
 
-export default function Home() {
+export default function HomePage() {
+  // useSearchParams() requires a Suspense boundary at build time in Next.js
+  // 16+. Wrap the inner component so static generation doesn't bail out.
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#faf7ee]" />}>
+      <FillContent />
+    </Suspense>
+  )
+}
+
+function FillContent() {
   const { t, lang } = useI18n()
   const searchParams = useSearchParams()
   const requestedFormId = searchParams?.get('formId') as FormId | null
@@ -690,13 +700,19 @@ export default function Home() {
                     }`}
                   >
                     <span className="truncate">{u.fileName}</span>
-                    <span>
-                      {u.status === 'uploading'
-                        ? '…'
-                        : u.status === 'done'
+                    {u.status === 'uploading' ? (
+                      <span
+                        aria-label="extracting"
+                        className="inline-block h-3 w-3 shrink-0 bg-gradient-to-br from-emerald-200 via-cyan-100 to-sky-200"
+                        style={{ animation: 'fc-morph 3.2s ease-in-out infinite' }}
+                      />
+                    ) : (
+                      <span className="tabular-nums">
+                        {u.status === 'done'
                           ? `${u.fieldCount} fields`
                           : 'failed'}
-                    </span>
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -732,16 +748,24 @@ export default function Home() {
             </div>
           )}
 
-          {/* Status banner — changes with case lifecycle. */}
+          {/* Status banner — changes with case lifecycle. Slide-down +
+           * one-time pulse-glow on appear marks each milestone (this is
+           * the climax of the demo when the rep approves). */}
           {caseStatus === 'pending_review' && (
-            <div className="rounded-lg border border-amber-300 bg-amber-50 p-3 text-xs">
+            <div
+              className="rounded-lg border border-amber-300 bg-amber-50 p-3 text-xs text-amber-700 animate-[fc-slide-down_360ms_ease-out]"
+              style={{ animation: 'fc-slide-down 360ms ease-out, fc-pulse-glow 900ms ease-out' }}
+            >
               <div className="font-semibold text-amber-900">{t('banner.pendingReview.title')}</div>
               <p className="mt-1 text-amber-800">{t('banner.pendingReview.body')}</p>
             </div>
           )}
 
           {caseStatus === 'approved' && (
-            <div className="rounded-lg border border-emerald-300 bg-emerald-50 p-3 text-xs">
+            <div
+              className="rounded-lg border border-emerald-300 bg-emerald-50 p-3 text-xs text-emerald-500"
+              style={{ animation: 'fc-slide-down 360ms ease-out, fc-pulse-glow 900ms ease-out' }}
+            >
               <div className="font-semibold text-emerald-900">{t('banner.approved.title')}</div>
               <p className="mt-1 text-emerald-800">{t('banner.approved.body')}</p>
             </div>
@@ -814,7 +838,7 @@ export default function Home() {
                 (!prev || prev.role !== 'assistant' || (prev.createdAt && m.createdAt - prev.createdAt > 60_000))
 
               return (
-                <div key={m.id}>
+                <div key={m.id} className="animate-[fc-fade-in_280ms_ease-out]">
                   {showDateHeader && (
                     <div className="my-3 flex items-center gap-2 text-[10px] uppercase tracking-wider text-neutral-400">
                       <div className="h-px flex-1 bg-neutral-200" />
@@ -823,7 +847,10 @@ export default function Home() {
                     </div>
                   )}
 
-                  {/* Attachment bubble (user-side upload marker) */}
+                  {/* Attachment bubble (user-side upload marker). During the
+                   * uploading window (3-8s) we show a tiny morph blob next
+                   * to the filename so it visually matches the chat thinking
+                   * indicator — same visual language for "AI is working". */}
                   {m.attachment && (
                     <div className="flex justify-end">
                       <div
@@ -835,12 +862,20 @@ export default function Home() {
                               : 'border-neutral-200 bg-white text-neutral-700'
                         }`}
                       >
-                        <span className="text-base">📎</span>
+                        {m.attachment.status === 'uploading' ? (
+                          <span
+                            aria-hidden
+                            className="h-3.5 w-3.5 shrink-0 bg-gradient-to-br from-emerald-200 via-cyan-100 to-sky-200"
+                            style={{ animation: 'fc-morph 3.2s ease-in-out infinite' }}
+                          />
+                        ) : (
+                          <span className="text-base">📎</span>
+                        )}
                         <span className="font-medium">{m.attachment.fileName}</span>
                         <span className="text-neutral-400">
                           ·{' '}
                           {m.attachment.status === 'uploading'
-                            ? 'extracting...'
+                            ? 'extracting…'
                             : m.attachment.status === 'error'
                               ? 'failed'
                               : m.attachment.docType?.replace('-', ' ') ?? 'done'}
@@ -957,16 +992,18 @@ export default function Home() {
                     </div>
                   )}
 
-                  {/* Tappable option chips under the assistant's message */}
+                  {/* Tappable option chips under the assistant's message.
+                   * Fade-in animation matches the /chat page treatment so
+                   * the conversational feel is consistent across surfaces. */}
                   {m.role === 'assistant' && m.options && m.options.length > 0 && (
-                    <div className="mt-1 flex flex-wrap gap-2 pl-1">
+                    <div className="mt-1 flex flex-wrap gap-2 pl-1 animate-[fc-fade-in_320ms_ease-out]">
                       {m.options.map((opt) => (
                         <button
                           key={opt}
                           type="button"
                           disabled={sending}
                           onClick={() => sendText(opt)}
-                          className="rounded-full border border-neutral-300 bg-white px-3 py-1 text-xs font-medium text-neutral-700 hover:border-neutral-900 hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
+                          className="rounded-full border border-neutral-300 bg-white px-3 py-1 text-xs font-medium text-neutral-700 transition-all hover:-translate-y-px hover:border-neutral-900 hover:bg-neutral-100 hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-50"
                         >
                           {opt}
                         </button>
@@ -976,6 +1013,18 @@ export default function Home() {
                 </div>
               )
             })}
+            {sending && (
+              <div className="flex items-start gap-2 px-1 py-1 animate-[fc-fade-in_240ms_ease-out]">
+                <div
+                  className="h-6 w-6 bg-gradient-to-br from-emerald-200 via-cyan-100 to-sky-200 shadow-[0_2px_10px_-3px_rgba(16,185,129,0.4)]"
+                  style={{ animation: 'fc-morph 3.2s ease-in-out infinite' }}
+                  aria-label="Formcutter is thinking"
+                />
+                <span className="text-[11px] italic text-neutral-400">
+                  {t('chat.thinking')}
+                </span>
+              </div>
+            )}
             <div ref={messagesEndRef} />
           </div>
           <form onSubmit={handleSend} className="border-t border-neutral-200 bg-neutral-50 p-3">

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { FormId } from '@/lib/forms'
 
 /**
@@ -32,6 +32,21 @@ export function CompleteCaseCard({
 }) {
   const [downloading, setDownloading] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+
+  // Pulse the actions when canSubmit *just* flipped true. Tracks the prior
+  // value across renders so we don't pulse on every render where canSubmit
+  // happens to be true (e.g. nav back into the page mid-fill).
+  const prevCanSubmit = useRef(canSubmit)
+  const [justUnlocked, setJustUnlocked] = useState(false)
+  useEffect(() => {
+    if (canSubmit && !prevCanSubmit.current) {
+      setJustUnlocked(true)
+      const handle = setTimeout(() => setJustUnlocked(false), 1800)
+      prevCanSubmit.current = canSubmit
+      return () => clearTimeout(handle)
+    }
+    prevCanSubmit.current = canSubmit
+  }, [canSubmit])
 
   async function downloadPdf() {
     setDownloading(true)
@@ -87,7 +102,15 @@ export function CompleteCaseCard({
           type="button"
           disabled={!canAct || downloading}
           onClick={downloadPdf}
-          className="w-full rounded-lg bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-300"
+          // Two-cycle ring pulse only when canSubmit *just* flipped true —
+          // signals the user has crossed the threshold and the action is now
+          // theirs to take.
+          style={
+            justUnlocked
+              ? { animation: 'fc-attention 800ms ease-in-out 2' }
+              : undefined
+          }
+          className="w-full rounded-lg bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-300"
         >
           {downloading ? 'Preparing PDF…' : `Download ${formId.toUpperCase()} PDF`}
         </button>
@@ -109,7 +132,7 @@ export function CompleteCaseCard({
         <div className="mt-3">
           <div className="flex items-center justify-between text-[11px] text-neutral-500">
             <span>Keep answering a few more questions to unlock these.</span>
-            <span className="font-mono text-neutral-700">
+            <span className="font-mono tabular-nums text-neutral-700">
               {Math.min(filledCount, threshold)}/{threshold}
             </span>
           </div>

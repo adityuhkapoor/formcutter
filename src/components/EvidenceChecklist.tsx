@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import { useI18n } from '@/lib/i18n/provider'
 import type { EvidenceStatus } from '@/lib/evidence'
 
@@ -33,8 +34,40 @@ const TIER_LABEL_KEY = {
   conditional: 'evidence.tier.conditional',
 } as const
 
+/** Status rank — higher = stronger. Used to detect "this just improved" so
+ * we can pulse the dot. We treat any upward move (missing → partial → met,
+ * or stale → met) as a celebratable change. */
+const STATUS_RANK: Record<EvidenceStatus['status'], number> = {
+  missing: 0,
+  stale: 1,
+  partial: 2,
+  met: 3,
+}
+
 export function EvidenceChecklist({ items }: { items: EvidenceStatus[] }) {
   const { t } = useI18n()
+  // Track previous status per requirement so we can pulse only the dots
+  // whose status *just improved* on this render — the "AI figured it out"
+  // moment. New items (no prior status) don't pulse to avoid first-paint noise.
+  const prevStatusRef = useRef<Map<string, EvidenceStatus['status']>>(new Map())
+  const [pulsing, setPulsing] = useState<Set<string>>(new Set())
+
+  useEffect(() => {
+    const next = new Set<string>()
+    for (const item of items) {
+      const prev = prevStatusRef.current.get(item.requirement.id)
+      if (prev && STATUS_RANK[item.status] > STATUS_RANK[prev]) {
+        next.add(item.requirement.id)
+      }
+      prevStatusRef.current.set(item.requirement.id, item.status)
+    }
+    if (next.size > 0) {
+      setPulsing(next)
+      const handle = setTimeout(() => setPulsing(new Set()), 900)
+      return () => clearTimeout(handle)
+    }
+  }, [items])
+
   if (items.length === 0) return null
 
   const metCount = items.filter((i) => i.status === 'met').length
@@ -43,7 +76,7 @@ export function EvidenceChecklist({ items }: { items: EvidenceStatus[] }) {
     <div className="rounded-xl border border-neutral-200 bg-white p-4">
       <h2 className="mb-1 flex items-center justify-between text-sm font-semibold">
         <span>{t('evidence.heading')}</span>
-        <span className="text-xs font-normal text-neutral-500">
+        <span className="tabular-nums text-xs font-normal text-neutral-500">
           {metCount} / {items.length}
         </span>
       </h2>
@@ -56,12 +89,20 @@ export function EvidenceChecklist({ items }: { items: EvidenceStatus[] }) {
           const statusLabel = t(
             `evidence.status.${status}` as Parameters<typeof t>[0]
           )
+          const justImproved = pulsing.has(requirement.id)
           return (
             <li
               key={requirement.id}
-              className={`group flex items-start gap-2 rounded-md p-2 text-xs ${styles.bg}`}
+              className={`group flex items-start gap-2 rounded-md p-2 text-xs transition-colors duration-300 ${styles.bg}`}
             >
-              <span className={`mt-1 inline-block h-2 w-2 shrink-0 rounded-full ${styles.dot}`} />
+              <span
+                className={`mt-1 inline-block h-2 w-2 shrink-0 rounded-full text-emerald-500 transition-colors duration-300 ${styles.dot}`}
+                style={
+                  justImproved
+                    ? { animation: 'fc-pulse-glow 800ms ease-out' }
+                    : undefined
+                }
+              />
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <span className="truncate font-medium text-neutral-800">
