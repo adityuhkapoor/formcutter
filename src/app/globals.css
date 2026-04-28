@@ -111,12 +111,59 @@ body {
   50%      { box-shadow: 0 0 0 6px rgba(15, 23, 42, 0.12); }
 }
 
+/* Evidence row "match" celebration — soft emerald wash that fades out, paired
+ * with a quick scale punch. Read together as "this requirement just landed". */
+@keyframes fc-evidence-row-match {
+  0%   { background-color: rgba(16, 185, 129, 0.22); transform: scale(1); }
+  18%  { transform: scale(1.018); }
+  40%  { background-color: rgba(16, 185, 129, 0.12); }
+  100% { background-color: rgba(16, 185, 129, 0);    transform: scale(1); }
+}
+
+/* Apple-style left→right shimmer sweep. Runs over the row once, ~700ms. */
+@keyframes fc-evidence-sweep {
+  0%   { transform: translateX(-120%); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translateX(120%);  opacity: 0; }
+}
+
+/* Animated checkmark — strokes itself in. Pair with stroke-dasharray on the
+ * SVG path so the line draws from start to end. */
+@keyframes fc-evidence-check-draw {
+  from { stroke-dashoffset: 16; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Counter pulse when metCount ticks up — quick scale + emerald flash. */
+@keyframes fc-evidence-count-pop {
+  0%   { transform: scale(1);    color: inherit; }
+  35%  { transform: scale(1.28); color: rgb(5, 150, 105); }
+  100% { transform: scale(1);    color: inherit; }
+}
+
+/* Whole-card celebratory shimmer for the "all evidence met" moment. */
+@keyframes fc-evidence-card-complete {
+  0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  35%  { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.18); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
 /* Honor users who've asked the OS to dial back motion. We only quiet the
  * ambient background drift + float — message fade-ins, banner reveals, and
  * status pulses are short and informational, so they still play. */
 @media (prefers-reduced-motion: reduce) {
   .fc-motion-blob,
   .fc-motion-float {
+    animation: none !important;
+  }
+  .fc-evidence-row-match,
+  .fc-evidence-sweep,
+  .fc-evidence-card-complete,
+  .fc-evidence-count-pop {
+    animation: none !important;
+  }
+  .fc-evidence-check path {
+    stroke-dashoffset: 0 !important;
     animation: none !important;
   }
 }

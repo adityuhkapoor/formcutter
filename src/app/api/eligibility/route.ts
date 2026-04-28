@@ -136,7 +136,6 @@ export async function POST(req: Request) {
     const response = await anthropic.messages.create({
       model: MODEL,
       max_tokens: 3000,
-      temperature: DEFAULTS.temperature,
       system: [
         { type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } },
         {

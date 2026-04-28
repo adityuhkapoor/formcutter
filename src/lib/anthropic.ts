@@ -20,9 +20,10 @@ export const anthropic = new Anthropic({
 export const MODEL = 'claude-opus-4-7'
 
 // Rate caps applied per request to prevent runaway costs from demo traffic.
+// Note: Opus 4.7 deprecated `temperature` — it's no longer accepted by the
+// API for newer Claude models, so we omit it from defaults entirely.
 export const DEFAULTS = {
   maxTokens: 2048,
-  temperature: 0,
 } as const
 
 export type DocHint =

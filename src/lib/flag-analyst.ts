@@ -223,7 +223,6 @@ export async function analyzeCase(opts: {
     const response = await anthropic.messages.create({
       model: MODEL,
       max_tokens: 2048,
-      temperature: 0,
       system: [
         { type: 'text', text: ANALYST_SYSTEM, cache_control: { type: 'ephemeral' } },
       ],

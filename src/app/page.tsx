@@ -116,6 +116,12 @@ export default function HomePage() {
           >
             Not a law firm. Not legal advice. Accredited representatives review before you file.
           </p>
+          <p
+            className="mt-2 text-center text-xs text-neutral-400 opacity-0"
+            style={{ animation: 'fc-fade-in 500ms ease-out 700ms forwards' }}
+          >
+            Powered by Claude Opus 4.7
+          </p>
         </div>
       </main>
     </div>

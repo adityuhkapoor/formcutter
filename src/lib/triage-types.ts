@@ -81,7 +81,7 @@ export type TriageOutcome =
  */
 export const RED_FLAG_PATTERNS: Array<{ pattern: RegExp; reason: string }> = [
   {
-    pattern: /\b(immigration court|master calendar|merits hearing|deport(ed|ation)?|removal proceeding|received (an? )?(nta|notice to appear)|ice detainer|expedited removal|reinstatement of removal)\b/i,
+    pattern: /\b(immigration court|master calendar|merits hearing|deport(ed|ation)?|removal proceeding|received (an? )?(nta|notice to appear)|immigration detainer|expedited removal|reinstatement of removal)\b/i,
     reason: 'Active or prior removal proceedings — outcome depends on legal strategy an AI shouldn\'t choose.',
   },
   {

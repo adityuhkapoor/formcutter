@@ -50,7 +50,21 @@ export function EvidenceChecklist({ items }: { items: EvidenceStatus[] }) {
   // whose status *just improved* on this render — the "AI figured it out"
   // moment. New items (no prior status) don't pulse to avoid first-paint noise.
   const prevStatusRef = useRef<Map<string, EvidenceStatus['status']>>(new Map())
+  const prevMetCountRef = useRef<number>(0)
+  const prevAllMetRef = useRef<boolean>(false)
   const [pulsing, setPulsing] = useState<Set<string>>(new Set())
+  const [countPop, setCountPop] = useState(false)
+  const [cardComplete, setCardComplete] = useState(false)
+
+  const metCount = items.filter((i) => i.status === 'met').length
+  const allMet = items.length > 0 && metCount === items.length
+
+  // Hold timer handles in refs so re-renders that arrive before the timer
+  // fires don't cancel the in-flight cleanup (which used to leave pulsing /
+  // cardComplete / countPop stuck on permanently).
+  const pulseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const countTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const cardTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     const next = new Set<string>()
@@ -63,20 +77,67 @@ export function EvidenceChecklist({ items }: { items: EvidenceStatus[] }) {
     }
     if (next.size > 0) {
       setPulsing(next)
-      const handle = setTimeout(() => setPulsing(new Set()), 900)
-      return () => clearTimeout(handle)
+      if (pulseTimerRef.current) clearTimeout(pulseTimerRef.current)
+      pulseTimerRef.current = setTimeout(() => {
+        setPulsing(new Set())
+        pulseTimerRef.current = null
+      }, 900)
     }
-  }, [items])
+    if (metCount > prevMetCountRef.current) {
+      setCountPop(true)
+      if (countTimerRef.current) clearTimeout(countTimerRef.current)
+      countTimerRef.current = setTimeout(() => {
+        setCountPop(false)
+        countTimerRef.current = null
+      }, 600)
+    }
+    if (allMet && !prevAllMetRef.current) {
+      setCardComplete(true)
+      if (cardTimerRef.current) clearTimeout(cardTimerRef.current)
+      cardTimerRef.current = setTimeout(() => {
+        setCardComplete(false)
+        cardTimerRef.current = null
+      }, 1200)
+    }
+    prevMetCountRef.current = metCount
+    prevAllMetRef.current = allMet
+  }, [items, metCount, allMet])
+
+  // Clear any in-flight timers on unmount so we don't setState on a dead component.
+  useEffect(() => {
+    return () => {
+      if (pulseTimerRef.current) clearTimeout(pulseTimerRef.current)
+      if (countTimerRef.current) clearTimeout(countTimerRef.current)
+      if (cardTimerRef.current) clearTimeout(cardTimerRef.current)
+    }
+  }, [])
 
   if (items.length === 0) return null
 
-  const metCount = items.filter((i) => i.status === 'met').length
-
   return (
-    <div className="rounded-xl border border-neutral-200 bg-white p-4">
+    <div
+      className="rounded-xl border border-neutral-200 bg-white p-4"
+      style={
+        cardComplete
+          ? { animation: 'fc-evidence-card-complete 1100ms ease-out' }
+          : undefined
+      }
+    >
       <h2 className="mb-1 flex items-center justify-between text-sm font-semibold">
-        <span>{t('evidence.heading')}</span>
-        <span className="tabular-nums text-xs font-normal text-neutral-500">
+        <span
+          className="transition-colors duration-500"
+          style={cardComplete ? { color: 'rgb(5, 150, 105)' } : undefined}
+        >
+          {t('evidence.heading')}
+        </span>
+        <span
+          className="tabular-nums text-xs font-normal text-neutral-500"
+          style={
+            countPop
+              ? { animation: 'fc-evidence-count-pop 550ms ease-out', display: 'inline-block' }
+              : undefined
+          }
+        >
           {metCount} / {items.length}
         </span>
       </h2>
@@ -93,16 +154,57 @@ export function EvidenceChecklist({ items }: { items: EvidenceStatus[] }) {
           return (
             <li
               key={requirement.id}
-              className={`group flex items-start gap-2 rounded-md p-2 text-xs transition-colors duration-300 ${styles.bg}`}
+              className={`group relative flex items-start gap-2 overflow-hidden rounded-md p-2 text-xs transition-colors duration-300 ${styles.bg}`}
+              style={
+                justImproved
+                  ? { animation: 'fc-evidence-row-match 850ms ease-out' }
+                  : undefined
+              }
             >
-              <span
-                className={`mt-1 inline-block h-2 w-2 shrink-0 rounded-full text-emerald-500 transition-colors duration-300 ${styles.dot}`}
-                style={
-                  justImproved
-                    ? { animation: 'fc-pulse-glow 800ms ease-out' }
-                    : undefined
-                }
-              />
+              {justImproved && (
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-y-0 left-0 w-1/3"
+                  style={{
+                    animation: 'fc-evidence-sweep 700ms ease-out',
+                    background:
+                      'linear-gradient(90deg, transparent 0%, rgba(16,185,129,0.28) 50%, transparent 100%)',
+                  }}
+                />
+              )}
+              {status === 'met' ? (
+                <svg
+                  viewBox="0 0 16 16"
+                  className="fc-evidence-check mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <circle cx="8" cy="8" r="7" stroke="rgba(16,185,129,0.35)" strokeWidth="1.2" />
+                  <path
+                    d="M4.5 8.4 L7 10.8 L11.5 5.6"
+                    style={{
+                      strokeDasharray: 16,
+                      strokeDashoffset: justImproved ? 16 : 0,
+                      animation: justImproved
+                        ? 'fc-evidence-check-draw 480ms ease-out 120ms forwards'
+                        : undefined,
+                    }}
+                  />
+                </svg>
+              ) : (
+                <span
+                  className={`mt-1 inline-block h-2 w-2 shrink-0 rounded-full text-emerald-500 transition-colors duration-300 ${styles.dot}`}
+                  style={
+                    justImproved
+                      ? { animation: 'fc-pulse-glow 800ms ease-out' }
+                      : undefined
+                  }
+                />
+              )}
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <span className="truncate font-medium text-neutral-800">

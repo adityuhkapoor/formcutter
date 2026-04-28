@@ -91,10 +91,15 @@ export function CompleteCaseCard({
 
   return (
     <div className="rounded-xl border border-neutral-200 bg-white p-4">
-      <h2 className="text-sm font-semibold">You&apos;re done — how do you want to finish?</h2>
+      <h2 className="text-sm font-semibold">
+        {canSubmit
+          ? 'You’re done — how do you want to finish?'
+          : 'Almost there'}
+      </h2>
       <p className="mt-1 text-xs text-neutral-600">
-        Your form is ready. Download it and file yourself, or have an accredited representative
-        review it first.
+        {canSubmit
+          ? 'Your form is ready. Download it and file yourself, or have an accredited representative review it first.'
+          : 'Upload your documents and answer a few questions. Once your form is complete you can download it or send it to an accredited representative for review.'}
       </p>
 
       <div className="mt-4 space-y-2">
@@ -112,7 +117,7 @@ export function CompleteCaseCard({
           }
           className="w-full rounded-lg bg-neutral-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-300"
         >
-          {downloading ? 'Preparing PDF…' : `Download ${formId.toUpperCase()} PDF`}
+          {downloading ? 'Generating PDF…' : `Generate ${formId.toUpperCase()} PDF`}
         </button>
 
         <button

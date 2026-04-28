@@ -62,6 +62,10 @@ export function AppSidebar() {
           Forms
         </NavItem>
       </nav>
+
+      <div className="mt-auto px-6 pb-6 pt-6 text-xs text-neutral-400">
+        Powered by Claude Opus 4.7
+      </div>
     </aside>
   )
 }

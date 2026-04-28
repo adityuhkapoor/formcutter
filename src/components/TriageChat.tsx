@@ -308,6 +308,9 @@ export const TriageChat = forwardRef<TriageChatHandle>(function TriageChat(_, re
           <p className="mx-auto mt-3 max-w-3xl text-center text-[11px] text-neutral-400">
             Formcutter is not a law firm and does not provide legal advice.
           </p>
+          <p className="mx-auto mt-1 max-w-3xl text-center text-[11px] text-neutral-400">
+            Powered by Claude Opus 4.7
+          </p>
         </form>
       )}
     </section>

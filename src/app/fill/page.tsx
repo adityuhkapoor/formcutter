@@ -6,6 +6,7 @@ import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { useI18n } from '@/lib/i18n/provider'
 import { LanguagePicker } from '@/components/LanguagePicker'
+import { BrandGlyph } from '@/components/AppSidebar'
 import { EvidenceChecklist } from '@/components/EvidenceChecklist'
 import { MicButton } from '@/components/MicButton'
 import { CompleteCaseCard } from '@/components/CompleteCaseCard'
@@ -776,7 +777,7 @@ function FillContent() {
               caseId={caseId}
               formId={formId}
               state={state}
-              canSubmit={filledCount >= 8}
+              canSubmit={Boolean(caseId)}
               filledCount={filledCount}
               threshold={8}
               onSubmitted={() => setCaseStatus('pending_review')}
@@ -890,11 +891,11 @@ function FillContent() {
                       <div className="flex max-w-[85%] flex-col">
                         {showSpeakerHeader && (
                           <div className="mb-1 flex items-center gap-1.5 px-1 text-[11px] font-medium text-neutral-600">
-                            <span
-                              className={`inline-block h-4 w-4 rounded-full ${
-                                m.authoredBy === 'rep' ? 'bg-emerald-600' : 'bg-neutral-900'
-                              }`}
-                            />
+                            {m.authoredBy === 'rep' ? (
+                              <span className="inline-block h-4 w-4 rounded-full bg-emerald-600" />
+                            ) : (
+                              <BrandGlyph className="h-5 w-5" />
+                            )}
                             {m.authoredBy === 'rep'
                               ? 'Accredited rep'
                               : t('chat.formcutterAi')}
