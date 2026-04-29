@@ -24,8 +24,10 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "formcutter · i-864 assistant",
-  description: "ai-assisted i-864 affidavit of support form filler",
+  title: "Formcutter — hackathon project (not in operation)",
+  description:
+    "Formcutter was a 48-hour project built for the Anthropic Opus 4.7 hackathon (April 2026). It is not in active operation.",
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({
